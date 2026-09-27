@@ -3377,5 +3377,43 @@ export function buildClockworkOwlBadge(
   return badge;
 }
 
+export {
+  buildCutePandaBadge,
+  buildCuteShibaBadge,
+  buildCuteRedPandaBadge,
+  buildCuteKoalaBadge,
+  buildCuteHamsterBadge,
+  buildCuteFoxBadge,
+  buildCutePenguinBadge,
+  buildCuteBunnyBadge,
+  buildCuteOtterBadge,
+  buildCuteAlpacaBadge,
+  buildOceanWhaleBadge,
+  buildOceanMantaBadge,
+  buildOceanTurtleBadge,
+  buildOceanDolphinBadge,
+  buildOceanSharkBadge,
+  buildOceanSeahorseBadge,
+  buildOceanNarwhalBadge,
+  buildOceanOctopusBadge,
+  buildOceanJellyfishBadge,
+  buildOceanFlyingFishBadge,
+} from './AnimalBadgeGeometry';
+
+export {
+  buildCartoonWizardBadge,
+  buildCartoonAstronautBadge,
+  buildCartoonMechaBadge,
+  buildCartoonKnightBadge,
+  buildCartoonPrinceBadge,
+  buildCartoonPirateBadge,
+  buildCartoonPixelHeroBadge,
+  buildCartoonAviatorBadge,
+  buildCartoonElfBadge,
+  buildCartoonNinjaBadge,
+} from './CartoonBadgeGeometry';
+
+
+
 
 

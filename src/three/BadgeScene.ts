@@ -29,6 +29,36 @@ import {
   buildNebulaJellyfishBadge,
   buildSovereignEagleBadge,
   buildClockworkOwlBadge,
+  buildCutePandaBadge,
+  buildCuteShibaBadge,
+  buildCuteRedPandaBadge,
+  buildCuteKoalaBadge,
+  buildCuteHamsterBadge,
+  buildCuteFoxBadge,
+  buildCutePenguinBadge,
+  buildCuteBunnyBadge,
+  buildCuteOtterBadge,
+  buildCuteAlpacaBadge,
+  buildOceanWhaleBadge,
+  buildOceanMantaBadge,
+  buildOceanTurtleBadge,
+  buildOceanDolphinBadge,
+  buildOceanSharkBadge,
+  buildOceanSeahorseBadge,
+  buildOceanNarwhalBadge,
+  buildOceanOctopusBadge,
+  buildOceanJellyfishBadge,
+  buildOceanFlyingFishBadge,
+  buildCartoonWizardBadge,
+  buildCartoonAstronautBadge,
+  buildCartoonMechaBadge,
+  buildCartoonKnightBadge,
+  buildCartoonPrinceBadge,
+  buildCartoonPirateBadge,
+  buildCartoonPixelHeroBadge,
+  buildCartoonAviatorBadge,
+  buildCartoonElfBadge,
+  buildCartoonNinjaBadge,
   AppleBadgeMeshGroup,
 } from './BadgeGeometry';
 import { BadgePrototypeId, BadgeState, ViewAngle } from '../types/badge';
@@ -375,6 +405,69 @@ export class AppleBadgeSceneController {
         earnedDate,
         isLocked
       );
+    // 10 Cute Animals
+    } else if (prototypeId === 'cute-panda') {
+      this.currentBadgeMesh = buildCutePandaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-shiba') {
+      this.currentBadgeMesh = buildCuteShibaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-red-panda') {
+      this.currentBadgeMesh = buildCuteRedPandaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-koala') {
+      this.currentBadgeMesh = buildCuteKoalaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-hamster') {
+      this.currentBadgeMesh = buildCuteHamsterBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-fennec-fox') {
+      this.currentBadgeMesh = buildCuteFoxBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-penguin') {
+      this.currentBadgeMesh = buildCutePenguinBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-bunny') {
+      this.currentBadgeMesh = buildCuteBunnyBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-otter') {
+      this.currentBadgeMesh = buildCuteOtterBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cute-alpaca') {
+      this.currentBadgeMesh = buildCuteAlpacaBadge(this.materialsLib, earnedDate, isLocked);
+    // 10 Ocean Animals
+    } else if (prototypeId === 'ocean-whale') {
+      this.currentBadgeMesh = buildOceanWhaleBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-manta') {
+      this.currentBadgeMesh = buildOceanMantaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-turtle') {
+      this.currentBadgeMesh = buildOceanTurtleBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-dolphin') {
+      this.currentBadgeMesh = buildOceanDolphinBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-hammerhead') {
+      this.currentBadgeMesh = buildOceanSharkBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-seahorse') {
+      this.currentBadgeMesh = buildOceanSeahorseBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-narwhal') {
+      this.currentBadgeMesh = buildOceanNarwhalBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-octopus') {
+      this.currentBadgeMesh = buildOceanOctopusBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-jellyfish') {
+      this.currentBadgeMesh = buildOceanJellyfishBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'ocean-flying-fish') {
+      this.currentBadgeMesh = buildOceanFlyingFishBadge(this.materialsLib, earnedDate, isLocked);
+    // 10 Cartoon Characters
+    } else if (prototypeId === 'cartoon-wizard') {
+      this.currentBadgeMesh = buildCartoonWizardBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-astronaut') {
+      this.currentBadgeMesh = buildCartoonAstronautBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-mecha') {
+      this.currentBadgeMesh = buildCartoonMechaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-knight') {
+      this.currentBadgeMesh = buildCartoonKnightBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-prince') {
+      this.currentBadgeMesh = buildCartoonPrinceBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-pirate') {
+      this.currentBadgeMesh = buildCartoonPirateBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-pixel-hero') {
+      this.currentBadgeMesh = buildCartoonPixelHeroBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-aviator') {
+      this.currentBadgeMesh = buildCartoonAviatorBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-elf') {
+      this.currentBadgeMesh = buildCartoonElfBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'cartoon-ninja') {
+      this.currentBadgeMesh = buildCartoonNinjaBadge(this.materialsLib, earnedDate, isLocked);
     } else {
       this.currentBadgeMesh = buildAppleChallengeHexBadge(
         this.materialsLib,

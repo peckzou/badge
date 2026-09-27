@@ -23,6 +23,21 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
   const categories: { key: string; label: string; count: number }[] = [
     { key: 'all', label: 'All Awards', count: awards.length },
     {
+      key: 'Cartoon Characters',
+      label: '✨ Cartoon Characters (10)',
+      count: awards.filter((a) => a.category === 'Cartoon Characters').length,
+    },
+    {
+      key: 'Cute Animals',
+      label: '🐾 Cute Animals (10)',
+      count: awards.filter((a) => a.category === 'Cute Animals').length,
+    },
+    {
+      key: 'Ocean Animals',
+      label: '🌊 Ocean Animals (10)',
+      count: awards.filter((a) => a.category === 'Ocean Animals').length,
+    },
+    {
       key: 'Close Your Study Rings',
       label: 'Study Rings',
       count: awards.filter((a) => a.category === 'Close Your Study Rings').length,
@@ -62,7 +77,7 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
         <div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Minest Learning Awards</h1>
           <p className="text-xs text-[#8E8E93] mt-0.5 font-medium">
-            50 High-Prestige Awards • 20 Architectural 3D Styles
+            {awards.length} High-Prestige Awards • Cute Animals, Ocean Animals & Cartoon Characters
           </p>
         </div>
 

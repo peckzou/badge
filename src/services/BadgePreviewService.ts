@@ -29,6 +29,36 @@ import {
   buildNebulaJellyfishBadge,
   buildSovereignEagleBadge,
   buildClockworkOwlBadge,
+  buildCutePandaBadge,
+  buildCuteShibaBadge,
+  buildCuteRedPandaBadge,
+  buildCuteKoalaBadge,
+  buildCuteHamsterBadge,
+  buildCuteFoxBadge,
+  buildCutePenguinBadge,
+  buildCuteBunnyBadge,
+  buildCuteOtterBadge,
+  buildCuteAlpacaBadge,
+  buildOceanWhaleBadge,
+  buildOceanMantaBadge,
+  buildOceanTurtleBadge,
+  buildOceanDolphinBadge,
+  buildOceanSharkBadge,
+  buildOceanSeahorseBadge,
+  buildOceanNarwhalBadge,
+  buildOceanOctopusBadge,
+  buildOceanJellyfishBadge,
+  buildOceanFlyingFishBadge,
+  buildCartoonWizardBadge,
+  buildCartoonAstronautBadge,
+  buildCartoonMechaBadge,
+  buildCartoonKnightBadge,
+  buildCartoonPrinceBadge,
+  buildCartoonPirateBadge,
+  buildCartoonPixelHeroBadge,
+  buildCartoonAviatorBadge,
+  buildCartoonElfBadge,
+  buildCartoonNinjaBadge,
   AppleBadgeMeshGroup,
 } from '../three/BadgeGeometry';
 import { BadgeModel, getBadgePrototypeId, BadgePrototypeId } from '../types/badge';
@@ -315,6 +345,69 @@ class BadgePreviewService {
         return buildSovereignEagleBadge(this.materialsLib, earnedDate, isLocked);
       case 'owl-clockwork':
         return buildClockworkOwlBadge(this.materialsLib, earnedDate, isLocked);
+      // 10 Cute Animals
+      case 'cute-panda':
+        return buildCutePandaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-shiba':
+        return buildCuteShibaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-red-panda':
+        return buildCuteRedPandaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-koala':
+        return buildCuteKoalaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-hamster':
+        return buildCuteHamsterBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-fennec-fox':
+        return buildCuteFoxBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-penguin':
+        return buildCutePenguinBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-bunny':
+        return buildCuteBunnyBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-otter':
+        return buildCuteOtterBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cute-alpaca':
+        return buildCuteAlpacaBadge(this.materialsLib, earnedDate, isLocked);
+      // 10 Ocean Animals
+      case 'ocean-whale':
+        return buildOceanWhaleBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-manta':
+        return buildOceanMantaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-turtle':
+        return buildOceanTurtleBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-dolphin':
+        return buildOceanDolphinBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-hammerhead':
+        return buildOceanSharkBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-seahorse':
+        return buildOceanSeahorseBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-narwhal':
+        return buildOceanNarwhalBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-octopus':
+        return buildOceanOctopusBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-jellyfish':
+        return buildOceanJellyfishBadge(this.materialsLib, earnedDate, isLocked);
+      case 'ocean-flying-fish':
+        return buildOceanFlyingFishBadge(this.materialsLib, earnedDate, isLocked);
+      // 10 Cartoon Characters
+      case 'cartoon-wizard':
+        return buildCartoonWizardBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-astronaut':
+        return buildCartoonAstronautBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-mecha':
+        return buildCartoonMechaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-knight':
+        return buildCartoonKnightBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-prince':
+        return buildCartoonPrinceBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-pirate':
+        return buildCartoonPirateBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-pixel-hero':
+        return buildCartoonPixelHeroBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-aviator':
+        return buildCartoonAviatorBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-elf':
+        return buildCartoonElfBadge(this.materialsLib, earnedDate, isLocked);
+      case 'cartoon-ninja':
+        return buildCartoonNinjaBadge(this.materialsLib, earnedDate, isLocked);
       default:
         return buildAppleChallengeHexBadge(this.materialsLib, earnedDate, isLocked);
     }

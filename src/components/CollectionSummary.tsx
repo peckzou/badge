@@ -69,7 +69,7 @@ export const CollectionSummary: React.FC<CollectionSummaryProps> = ({
               }}
               className="px-4 py-2 rounded-full text-xs font-medium bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-white/[0.08] text-white transition-all active:scale-95 flex items-center gap-1.5"
             >
-              <span>View All 50 Awards</span>
+              <span>View All {awards.length} Awards</span>
               <svg className="w-3.5 h-3.5 text-[#8E8E93]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
@@ -426,7 +426,7 @@ export const CollectionSummary: React.FC<CollectionSummaryProps> = ({
               Curriculum & Discipline Progress
             </h2>
             <p className="text-xs text-[#8E8E93] mt-0.5">
-              Completion distribution across the 4 core learning domains.
+              Completion distribution across learning domains and thematic series.
             </p>
           </div>
         </div>

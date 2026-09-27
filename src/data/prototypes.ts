@@ -1361,4 +1361,737 @@ export const APPLE_LEARNING_AWARDS_CATALOG: BadgeModel[] = [
       enamelFinish: 'Emerald Tourmaline & Geared Chrono-Aperture Cloisonné',
     },
   },
+
+  // =========================================================================
+  // 6. CUTE ANIMAL GUARDIANS (10 Cute Animals • 萌宠学伴守护神)
+  // =========================================================================
+  {
+    id: 'cute-panda-zen',
+    name: 'Zen Master Panda',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 12,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#18181B', // Obsidian Gloss
+      secondary: '#FFFFFF', // Pristine Ceramic White
+      accent: '#A6FF00', // Bamboo Volt
+      bezel: 'silver',
+    },
+    description: 'Maintained serene inner calm through 10 consecutive difficult exam weeks.',
+    longDescription:
+      'Celebrates tranquility and persistent gentle focus. Awarded for approaching challenging study marathons with mindful breath, composed poise, and unshakeable inner balance.',
+    badgeStyle: 'cute-panda',
+    depthMetrics: {
+      thickness: '2.4 mm (Embossed Enamel Wafer)',
+      curvature: 'Gentle Convex Disk',
+      layers: 5,
+      enamelFinish: 'Vitreous Black & Ceramic White Enamel with Golden Bamboo Inlay',
+    },
+  },
+  {
+    id: 'cute-shiba-loyal',
+    name: 'Loyal Companion Shiba',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 28,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#F5A623', // Warm Shiba Honey Amber
+      secondary: '#FFFFFF', // Pure White Muzzle
+      accent: '#FA114F', // Scarlet Bell Ribbon
+      bezel: 'gold',
+    },
+    description: 'Logged daily learning habit check-ins for 30 consecutive unbroken days.',
+    longDescription:
+      'Honoring steadfast devotion and unwavering cheerfulness. Awarded for standing faithfully by your study commitments rain or shine, never missing a single day.',
+    badgeStyle: 'cute-shiba',
+    depthMetrics: {
+      thickness: '2.5 mm (Heart Mask Relief)',
+      curvature: 'Convex Dome',
+      layers: 5,
+      enamelFinish: 'Honey Amber Vitreous Cloisonné with Gold Bell Pendant',
+    },
+  },
+  {
+    id: 'cute-red-panda-curious',
+    name: 'Whispering Red Panda',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 9,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#D35400', // Cinnamon Auburn
+      secondary: '#FFFFFF', // Soft Cheek Fluff
+      accent: '#F39C12', // Golden Tail Ring
+      bezel: 'gold',
+    },
+    description: 'Explored 15 uncharted intellectual topics outside your standard curriculum.',
+    longDescription:
+      'Inspired by the agile curiosity of the Himalayan red panda. Awarded for venturing fearlessly into unfamiliar disciplines with bright, playful wonder.',
+    badgeStyle: 'cute-red-panda',
+    depthMetrics: {
+      thickness: '2.4 mm (Ringed Tail Carve)',
+      curvature: 'Parabolic Dish',
+      layers: 5,
+      enamelFinish: 'Auburn Cinnamon Enamel with Multi-Striped Gold Tail',
+    },
+  },
+  {
+    id: 'cute-koala-serene',
+    name: 'Eucalyptus Calm Koala',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 6,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#52B788', // Eucalyptus Sage
+      secondary: '#95A5A6', // Soft Slate Fur
+      accent: '#18181B', // Button Nose Obsidian
+      bezel: 'silver',
+    },
+    description: 'Conducted 20 uninterrupted slow-reading deep literature sessions.',
+    longDescription:
+      'Embodying the gentle art of unhurried, patient contemplation. Awarded for absorbing dense foundational texts at a serene, thorough pace without cognitive rush.',
+    badgeStyle: 'cute-koala',
+    depthMetrics: {
+      thickness: '2.6 mm (Fluffy Fur Rim Relief)',
+      curvature: 'Concentric Sage Basin',
+      layers: 5,
+      enamelFinish: 'Eucalyptus Sage & Slate Gray with High-Gloss Button Nose',
+    },
+  },
+  {
+    id: 'cute-hamster-perpetual',
+    name: 'Perpetual Wheel Hamster',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 15,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#F39C12', // Caramel Gold
+      secondary: '#FFA8BA', // Sweet Pink Ears
+      accent: '#FFFFFF', // Puffy Cheek White
+      bezel: 'gold',
+    },
+    description: 'Maintained continuous micro-habit momentum through 100 flashcard sprints.',
+    longDescription:
+      'Celebrating tireless, energetic habit loops. Awarded for spinning your learning flywheel with relentless daily enthusiasm and adorable determination.',
+    badgeStyle: 'cute-hamster',
+    depthMetrics: {
+      thickness: '2.5 mm (Puffed Cheek Dome)',
+      curvature: 'Dual Concentric Orbit',
+      layers: 6,
+      enamelFinish: 'Honey Caramel with Spoked Golden Wheel Relief',
+    },
+  },
+  {
+    id: 'cute-fennec-aurora',
+    name: 'Acute Aurora Fennec Fox',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 7,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FAD02C', // Desert Sand Gold
+      secondary: '#FF85A2', // Ear Facet Rose
+      accent: '#FFFFFF', // Crisp Cheek White
+      bezel: 'gold',
+    },
+    description: 'Mastered 30 complex audio lectures with 100% note retention comprehension.',
+    longDescription:
+      'Recognizing acute perceptual listening and razor-sharp auditory focus. Awarded for tuning your mind to subtle conceptual nuances across demanding audio lectures.',
+    badgeStyle: 'cute-fennec-fox',
+    depthMetrics: {
+      thickness: '2.6 mm (Swept Ear Blades)',
+      curvature: 'Triangular Parabolic Flare',
+      layers: 5,
+      enamelFinish: 'Desert Sand & Blush Rose Inner Cloisonné',
+    },
+  },
+  {
+    id: 'cute-penguin-frost',
+    name: 'Arctic Frostling Penguin',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 22,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#70D7FF', // Glacial Ice Cyan
+      secondary: '#18181B', // Midnight Tuxedo
+      accent: '#FFD60A', // Emperor Plume Gold
+      bezel: 'silver',
+    },
+    description: 'Thrived through 14 sub-zero winter morning focus sessions before sunrise.',
+    longDescription:
+      'Honoring resilience and early-morning grit. Awarded for stepping bravely out into the frosty morning study hours with cheerful enthusiasm and warm perseverance.',
+    badgeStyle: 'cute-penguin',
+    depthMetrics: {
+      thickness: '2.5 mm (Tuxedo Shell)',
+      curvature: 'Parabolic Dome',
+      layers: 5,
+      enamelFinish: 'Glacial Ice Cyan & Satin White Ceramic Tuxedo',
+    },
+  },
+  {
+    id: 'cute-bunny-moonlit',
+    name: 'Moonlit Stride Bunny',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 18,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FFB7B2', // Sakura Rose Quartz
+      secondary: '#FFFFFF', // Pristine Cotton White
+      accent: '#FFD60A', // Golden Moon Crest
+      bezel: 'silver',
+    },
+    description: 'Achieved rapid-fire problem-solving agility across 50 timed sprint quizzes.',
+    longDescription:
+      'Inspired by the agile leap and joyful nimbleness of the rabbit. Awarded for swift mental reflexes, lightning deduction, and light-footed conceptual transitions.',
+    badgeStyle: 'cute-bunny',
+    depthMetrics: {
+      thickness: '2.7 mm (Tall Ear Crest)',
+      curvature: 'Crescent Moon Basin',
+      layers: 6,
+      enamelFinish: 'Sakura Pink & Polished Silver with 24K Gold Moon',
+    },
+  },
+  {
+    id: 'cute-otter-pearl',
+    name: 'Floating Gem Sea Otter',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 11,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#00B4D8', // Azure Ocean Wave
+      secondary: '#795548', // Cozy Chocolate Brown
+      accent: '#00F0FF', // Glowing Sea Pearl
+      bezel: 'gold',
+    },
+    description: 'Cracked 25 tough, stubborn logic puzzles by floating playful lateral hypotheses.',
+    longDescription:
+      'Embodying ingenious tool-using curiosity and effortless play. Awarded for cracking complex cognitive problems with joyful ease and clutching precious insights like pearls.',
+    badgeStyle: 'cute-otter',
+    depthMetrics: {
+      thickness: '2.6 mm (Pearl Gem Clasp)',
+      curvature: 'Wave Ripple Cavity',
+      layers: 6,
+      enamelFinish: 'Chocolate Brown & Aquamarine with Glowing Turquoise Gem',
+    },
+  },
+  {
+    id: 'cute-alpaca-scholar',
+    name: 'Cloudfluff Scholar Alpaca',
+    category: 'Cute Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 5,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#B388FF', // Soft Lavender Dream
+      secondary: '#FFFFFF', // Cloud Marshmallow White
+      accent: '#FFD60A', // Golden Spectacles
+      bezel: 'silver',
+    },
+    description: 'Synthesized 40 multi-chapter revision summaries with stylish elegance.',
+    longDescription:
+      'Distinguished by gentle scholarly dignity and soft, comforting wisdom. Awarded for compiling pristine, beautifully structured study guides that comfort and inspire fellow peers.',
+    badgeStyle: 'cute-alpaca',
+    depthMetrics: {
+      thickness: '2.8 mm (Scalloped Cloud Fleece)',
+      curvature: 'Multi-Puff Bas-Relief',
+      layers: 6,
+      enamelFinish: 'Lavender Pastel & Puffed Cloud White with Gold Wire Spectacles',
+    },
+  },
+
+  // =========================================================================
+  // 7. OCEAN REALM EXPLORERS (10 Ocean Animals • 深海秘境探索者)
+  // =========================================================================
+  {
+    id: 'ocean-whale-abyss',
+    name: 'Colossus Blue Whale',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 3,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#03045E', // Abyssal Deep Trench
+      secondary: '#0077B6', // Oceanic Sapphire
+      accent: '#00F0FF', // Geyser Fountain Cyan
+      bezel: 'silver',
+    },
+    description: 'Achieved deep-memory retention across a vast knowledge library of 10,000 facts.',
+    longDescription:
+      'Honoring oceanic depth of long-term memory. Awarded for building monumental cognitive vaults capable of storing and retrieving vast knowledge spanning years of dedicated inquiry.',
+    badgeStyle: 'ocean-whale',
+    depthMetrics: {
+      thickness: '2.8 mm (Ventral Groove Pleats)',
+      curvature: 'Deep Trench Parabola',
+      layers: 6,
+      enamelFinish: 'Deep Abyssal Blue & Ventral Silver Grooves with Cyan Spout',
+    },
+  },
+  {
+    id: 'ocean-manta-glide',
+    name: 'Pelagic Glider Manta',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 8,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0D1B2A', // Midnight Trench Navy
+      secondary: '#1B263B', // Slate Wing Blade
+      accent: '#FFFFFF', // Ventral Satin White
+      bezel: 'space-gray',
+    },
+    description: 'Glided friction-free through 40 hours of rigorous continuous study.',
+    longDescription:
+      'Inspired by the effortless hydrodynamic flight of the pelagic manta. Awarded for navigating demanding curricula with supreme aerodynamic poise, wide-winged grace, and frictionless ease.',
+    badgeStyle: 'ocean-manta',
+    depthMetrics: {
+      thickness: '2.7 mm (Swept Diamond Wings)',
+      curvature: 'Dual-Wing Aerodynamic Foil',
+      layers: 5,
+      enamelFinish: 'Midnight Slate & Satin Ceramic Belly with Titanium Horns',
+    },
+  },
+  {
+    id: 'ocean-turtle-centennial',
+    name: 'Centennial Voyager Turtle',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 14,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0096C7', // Tropical Reef Lagoon
+      secondary: '#2EC4B6', // Emerald Carapace
+      accent: '#FFD60A', // 24K Gold Scute Tile
+      bezel: 'gold',
+    },
+    description: 'Crossed the 1-year continuous daily study milestone across thousands of miles.',
+    longDescription:
+      'Celebrating centuries-old wisdom and long-horizon persistence. Awarded for navigating life’s cross-currents with calm resilience, returning faithfully to your intellectual compass every season.',
+    badgeStyle: 'ocean-turtle',
+    depthMetrics: {
+      thickness: '2.9 mm (Hexagonal Scute Dome)',
+      curvature: 'Concentric Carapace Shield',
+      layers: 6,
+      enamelFinish: 'Emerald Tourmaline & Gold Scute Tiles on Tropical Azure',
+    },
+  },
+  {
+    id: 'ocean-dolphin-sonar',
+    name: 'Sonar Echo Dolphin',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 16,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#023E8A', // Deep Ocean Cobalt
+      secondary: '#00F0FF', // Aqua Cyan Leaping Body
+      accent: '#FFD60A', // Gold Sonar Waves
+      bezel: 'silver',
+    },
+    description: 'Solved 60 fast-paced logical deduction challenges using high-frequency sonar intuition.',
+    longDescription:
+      'Honoring high-speed cognitive echolocation. Awarded for bouncing lateral insights across ideas to detect hidden structural patterns beneath the surface of complex problems.',
+    badgeStyle: 'ocean-dolphin',
+    depthMetrics: {
+      thickness: '2.6 mm (Sonar Ripple Rings)',
+      curvature: 'Wave Arc Cavity',
+      layers: 6,
+      enamelFinish: 'Aqua Cyan Pearl with Concentric Golden Sonar Waves',
+    },
+  },
+  {
+    id: 'ocean-shark-hammerhead',
+    name: 'Panoramic Hammerhead',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 5,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#14213D', // Abyssal Patrol Navy
+      secondary: '#4A4E69', // Titanium Shark Slate
+      accent: '#FFD60A', // Lateral Sensor Gold
+      bezel: 'space-gray',
+    },
+    description: 'Maintained 360° panoramic oversight of 8 concurrent multi-term research projects.',
+    longDescription:
+      'Embodying the wide-angle sensory vision of the cephalofoil hammerhead. Awarded for synthesizing vast operational perspectives across multifaceted engineering and academic challenges.',
+    badgeStyle: 'ocean-hammerhead',
+    depthMetrics: {
+      thickness: '2.7 mm (T-Bar Cephalofoil)',
+      curvature: 'Aerodynamic Torpedo Fuselage',
+      layers: 5,
+      enamelFinish: 'Titanium Slate with Space Gray Bezel and Dual Golden Sensors',
+    },
+  },
+  {
+    id: 'ocean-seahorse-coral',
+    name: 'Coral Sentry Seahorse',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 10,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FF6B6B', // Coral Reef Rose
+      secondary: '#FFD166', // Golden Amber Armor
+      accent: '#FFFFFF', // Pearl Coronet
+      bezel: 'gold',
+    },
+    description: 'Held absolute precision equilibrium through 30 micro-focus proof-checking drills.',
+    longDescription:
+      'Recognizing delicate, upright balance and unyielding precision. Awarded for anchoring steadily onto core foundational principles even when buffeted by shifting intellectual currents.',
+    badgeStyle: 'ocean-seahorse',
+    depthMetrics: {
+      thickness: '2.8 mm (Segmented Ring Plates)',
+      curvature: 'S-Curve Spiral Relief',
+      layers: 6,
+      enamelFinish: 'Coral Rose & Gold Armor Segments with Crown Coronet',
+    },
+  },
+  {
+    id: 'ocean-narwhal-aurora',
+    name: 'Arctic Aurora Narwhal',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 4,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#005F73', // Arctic Teal Trench
+      secondary: '#94D2BD', // Polar Sea Mint
+      accent: '#FFD60A', // 24K Spiral Horn
+      bezel: 'silver',
+    },
+    description: 'Pierced through 10 notoriously difficult barrier exams with legendary precision.',
+    longDescription:
+      'Known as the Unicorn of the Arctic Seas. Awarded to pioneering scholars who break through seemingly impenetrable intellectual ice packs with pinpoint, focused brilliance.',
+    badgeStyle: 'ocean-narwhal',
+    depthMetrics: {
+      thickness: '3.0 mm (Helical Tusk Spear)',
+      curvature: 'Glacial Ice Basin',
+      layers: 6,
+      enamelFinish: 'Arctic Teal & Dappled Mint with 24K Mirror Gold Spiral Horn',
+    },
+  },
+  {
+    id: 'ocean-octopus-kraken',
+    name: 'Kraken Sovereign Octopus',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 7,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0A1128', // Midnight Trench Abyss
+      secondary: '#9D0208', // Abyssal Crimson
+      accent: '#FFD60A', // Golden Suction Rings
+      bezel: 'space-gray',
+    },
+    description: 'Orchestrated 8 parallel intellectual workstreams simultaneously with zero regression.',
+    longDescription:
+      'Commemorates high-order cognitive multithreading. Awarded for executing 8 complex research tasks in parallel with autonomous, decentralized mastery and trench-deep intelligence.',
+    badgeStyle: 'ocean-octopus',
+    depthMetrics: {
+      thickness: '2.8 mm (Coiling Sinuous Tentacles)',
+      curvature: 'Cephalopod Mantle Dome',
+      layers: 6,
+      enamelFinish: 'Crimson Vitreous Lacquer with Golden Ratio Spiral Suction Nodes',
+    },
+  },
+  {
+    id: 'ocean-jellyfish-crown',
+    name: 'Crown Bioluminescent Jellyfish',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 6,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#10002B', // Midnight Pelagic Void
+      secondary: '#7209B7', // Royal Nebula Purple
+      accent: '#4CC9F0', // Electric Cyan Tendril Glow
+      bezel: 'space-gray',
+    },
+    description: 'Generated 30 radiant breakthrough hypotheses that illuminated your entire study group.',
+    longDescription:
+      'Inspired by the self-illuminating mystery of pelagic scyphozoa. Awarded for generating luminous original ideas that cast vivid, inspiring light across deep, dark problem spaces.',
+    badgeStyle: 'ocean-jellyfish',
+    depthMetrics: {
+      thickness: '2.9 mm (Tiered Scalloped Umbrella)',
+      curvature: 'Bioluminescent Dome Cavity',
+      layers: 6,
+      enamelFinish: 'Deep Royal Purple with Undulating Electric Cyan Tendrils',
+    },
+  },
+  {
+    id: 'ocean-flying-fish-crest',
+    name: 'Horizon Flying Fish',
+    category: 'Ocean Animals',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 9,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#3A0CA3', // Deep Sea Cobalt
+      secondary: '#00F0FF', // Glider Wing Foam
+      accent: '#FFD60A', // Golden Horizon Wake
+      bezel: 'silver',
+    },
+    description: 'Leaped completely out of your comfort zone to conquer an international championship.',
+    longDescription:
+      'Celebrating the daring courage to break surface tension and soar between elements. Awarded for leaping boldly above familiar horizons to glide into unprecedented realms of achievement.',
+    badgeStyle: 'ocean-flying-fish',
+    depthMetrics: {
+      thickness: '2.7 mm (Expansive Wing Gliders)',
+      curvature: 'Wave Crest Horizon Arch',
+      layers: 5,
+      enamelFinish: 'Iridescent Cobalt & Aerodynamic Wing Fins with Golden Wave Crest',
+    },
+  },
+
+  // =========================================================================
+  // 8. CARTOON CHARACTERS (10 Cartoon Characters • 传奇动漫幻想角色)
+  // =========================================================================
+  {
+    id: 'cartoon-wizard-starlight',
+    name: 'Starlight Sorcerer',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 19,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#3A0CA3', // Midnight Violet
+      secondary: '#F5A623', // Starlight Gold
+      accent: '#00F0FF', // Arcane Cyan
+      bezel: 'gold',
+    },
+    description: 'Cast brilliant deductive spells to decipher 35 arcane mathematical algorithms.',
+    longDescription:
+      'Honoring magical curiosity and celestial intellect. Awarded for wielding logical precision like a magic wand, conjuring stellar solutions out of abstract complexities.',
+    badgeStyle: 'cartoon-wizard',
+    depthMetrics: {
+      thickness: '2.5 mm (Pointed Star Crest)',
+      curvature: 'Concentric Epicyclic Basin',
+      layers: 6,
+      enamelFinish: 'Midnight Violet Lacquer with 24K Gold Starlight Wand & Gem',
+    },
+  },
+  {
+    id: 'cartoon-astronaut-cosmic',
+    name: 'Cosmic Explorer Astronaut',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 8,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#050510', // Deep Cosmos
+      secondary: '#FFFFFF', // Ceramic Suit White
+      accent: '#FFD60A', // Mirror Gold Visor
+      bezel: 'silver',
+    },
+    description: 'Explored uncharted knowledge galaxies through 100 hours of deep astrophysics study.',
+    longDescription:
+      'Celebrating interplanetary courage and cosmic discovery. Awarded for soaring into unknown conceptual frontiers with pristine composure and an expansive galactic perspective.',
+    badgeStyle: 'cartoon-astronaut',
+    depthMetrics: {
+      thickness: '2.8 mm (Gold Visor Dome)',
+      curvature: 'Parabolic Orbital Canopy',
+      layers: 6,
+      enamelFinish: 'Deep Cosmic Black & Ceramic White with Mirror Gold Visor',
+    },
+  },
+  {
+    id: 'cartoon-mecha-neon',
+    name: 'Neon Mecha Vanguard',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 11,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0F172A', // Armored Slate Navy
+      secondary: '#A6FF00', // Volt Armor Plate
+      accent: '#00F0FF', // Cyan Optic Sensor
+      bezel: 'space-gray',
+    },
+    description: 'Engineered robust, fault-tolerant robotic architecture across 20 demanding hackathons.',
+    longDescription:
+      'Embodying high-tech precision and heroic engineering discipline. Awarded for piloting complex cybernetic and software systems with unwavering mechanical mastery.',
+    badgeStyle: 'cartoon-mecha',
+    depthMetrics: {
+      thickness: '2.7 mm (Chiseled V-Fin Blade)',
+      curvature: 'Faceted Angular Armor',
+      layers: 6,
+      enamelFinish: 'Volt Neon Enamel with Space Gray Chiseled Plates & Cyan Visor',
+    },
+  },
+  {
+    id: 'cartoon-knight-valiant',
+    name: 'Valiant Paladin Knight',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 14,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#1D3557', // Deep Royal Blue
+      secondary: '#FA114F', // Scarlet Feathers Plume
+      accent: '#FFD60A', // Golden Visor Trim
+      bezel: 'silver',
+    },
+    description: 'Defended academic integrity and championed peer mentorship through 40 tutoring quests.',
+    longDescription:
+      'Commemorating chivalric virtue, moral courage, and noble scholarship. Awarded for shielding teammates from academic burnout with steadfast loyalty and fearless guidance.',
+    badgeStyle: 'cartoon-knight',
+    depthMetrics: {
+      thickness: '2.9 mm (Curved Plume Crest)',
+      curvature: 'Convex Steel Bascinet',
+      layers: 6,
+      enamelFinish: 'Royal Navy Enamel & Scarlet Feather Crest with Gold Visor Grill',
+    },
+  },
+  {
+    id: 'cartoon-prince-asteroid',
+    name: 'Asteroid Little Prince',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 25,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0F2027', // Twilight Starlight
+      secondary: '#2EC4B6', // Emerald Flowing Scarf
+      accent: '#FF0054', // Precious Rose
+      bezel: 'gold',
+    },
+    description: 'Cultivated sincere empathy and emotional depth across 30 philosophical reflection journals.',
+    longDescription:
+      'Inspired by the timeless wisdom that what is essential is invisible to the eye. Awarded for nurturing tender curiosity, poetic reflection, and caring devotion to meaningful ideas.',
+    badgeStyle: 'cartoon-prince',
+    depthMetrics: {
+      thickness: '2.6 mm (Windblown Scarf Arch)',
+      curvature: 'Starlit Celestial Basin',
+      layers: 6,
+      enamelFinish: 'Emerald Wind Scarf & Golden Star Locks with Ruby Rose Inlay',
+    },
+  },
+  {
+    id: 'cartoon-pirate-corsair',
+    name: 'Brave Corsair Captain',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 17,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0077B6', // Ocean Swell Blue
+      secondary: '#18181B', // Obsidian Tricorn
+      accent: '#FFD60A', // Gold Doubloon Earring
+      bezel: 'gold',
+    },
+    description: 'Navigated tumultuous deadline storms and captured 50 intellectual prize bounties.',
+    longDescription:
+      'Honoring audacity, adventurous spirit, and unquenchable thirst for discovery. Awarded for steering through high-pressure examination seas to claim dazzling intellectual treasures.',
+    badgeStyle: 'cartoon-pirate',
+    depthMetrics: {
+      thickness: '2.8 mm (Tricorn Hat Rim)',
+      curvature: 'High Seas Wave Arc',
+      layers: 6,
+      enamelFinish: 'Ocean Blue & Obsidian Gloss with 24K Gold Compass Ring & Earring',
+    },
+  },
+  {
+    id: 'cartoon-pixel-retro',
+    name: '8-Bit Retro Hero',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 30,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#38B000', // Retro 8-Bit Green
+      secondary: '#FFFFFF', // Pixel White
+      accent: '#00F0FF', // Diamond Pixel Blade
+      bezel: 'gold',
+    },
+    description: 'Cleared 100 level-up coding challenges with flawless retro efficiency and clean architecture.',
+    longDescription:
+      'A nostalgic salute to classic arcade determination and pixelated grit. Awarded for grinding through multi-tier algorithmic dungeons with one life and infinite perseverance.',
+    badgeStyle: 'cartoon-pixel-hero',
+    depthMetrics: {
+      thickness: '2.4 mm (Stepped Pixel Mosaic)',
+      curvature: 'Grid Stepped Relief',
+      layers: 6,
+      enamelFinish: 'Retro Grass Green with Polished Brass Grid & Diamond Cyan Sword',
+    },
+  },
+  {
+    id: 'cartoon-aviator-skies',
+    name: 'Steampunk Sky Aviator',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 12,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#5C4033', // Vintage Leather Saddle
+      secondary: '#00F0FF', // Cyan Specular Goggles
+      accent: '#FFD60A', // Brass Aerodynamic Wing
+      bezel: 'gold',
+    },
+    description: 'Logged 60 hours of high-altitude cross-disciplinary flight, connecting distant fields.',
+    longDescription:
+      'Commemorating pioneering aeronautical vision and daring exploration. Awarded for strapping on scholarly goggles to chart new flight paths across disparate fields of human inquiry.',
+    badgeStyle: 'cartoon-aviator',
+    depthMetrics: {
+      thickness: '2.7 mm (Brass Goggle Rim)',
+      curvature: 'Aerodynamic Cowling Dome',
+      layers: 6,
+      enamelFinish: 'Rich Saddle Leather Enamel with Brass Aviator Goggles & Winglet',
+    },
+  },
+  {
+    id: 'cartoon-elf-verdant',
+    name: 'Verdant Forest Elf',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 15,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#2D6A4F', // Deep Ancient Canopy
+      secondary: '#52B788', // Emerald Leaf Diadem
+      accent: '#00F0FF', // Dewdrop Mana Crystal
+      bezel: 'silver',
+    },
+    description: 'Cultivated sustainable study habits with organic, long-term conceptual growth.',
+    longDescription:
+      'Inspired by ancient woodland harmony and timeless natural intuition. Awarded for cultivating intellectual gardens that blossom season after season with perennial grace.',
+    badgeStyle: 'cartoon-elf',
+    depthMetrics: {
+      thickness: '2.6 mm (Pointed Ear Silhouette)',
+      curvature: 'Woodland Canopy Dish',
+      layers: 6,
+      enamelFinish: 'Deep Forest Cloisonné with Emerald Leaf Diadem & Mana Crystal',
+    },
+  },
+  {
+    id: 'cartoon-ninja-shadow',
+    name: 'Shadow Shinobi Ninja',
+    category: 'Cartoon Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 21,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#18181B', // Midnight Stealth Onyx
+      secondary: '#FA114F', // Crimson Shinobi Band
+      accent: '#FFD60A', // Engraved Gold Clan Crest
+      bezel: 'space-gray',
+    },
+    description: 'Executed 50 stealth focus sprints in silent study rooms with zero distractions.',
+    longDescription:
+      'Mastering the quiet art of invisible, undisturbed focus. Awarded for slipping past procrastination and noise with razor-sharp stealth and laser precision.',
+    badgeStyle: 'cartoon-ninja',
+    depthMetrics: {
+      thickness: '2.8 mm (4-Blade Shuriken Relief)',
+      curvature: 'Shadow Concave Cavity',
+      layers: 6,
+      enamelFinish: 'Midnight Onyx & Crimson Silk with Titanium Shuriken & Gold Crest',
+    },
+  },
 ];
+

@@ -353,6 +353,485 @@ function renderShapePath(
         </g>
       );
 
+    // --- 10 Cute Animals ---
+    case 'cute-panda':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#FFFFFF" stroke={bezelStroke} strokeWidth="8" />
+          <circle cx="48" cy="42" r="16" fill="#18181B" />
+          <circle cx="112" cy="42" r="16" fill="#18181B" />
+          <ellipse cx="60" cy="74" rx="12" ry="16" fill="#18181B" transform="rotate(-15 60 74)" />
+          <ellipse cx="100" cy="74" rx="12" ry="16" fill="#18181B" transform="rotate(15 100 74)" />
+          <circle cx="58" cy="72" r="4" fill="#FFFFFF" />
+          <circle cx="98" cy="72" r="4" fill="#FFFFFF" />
+          <ellipse cx="80" cy="94" rx="10" ry="7" fill="#18181B" />
+          <path d="M72 102 Q80 108 88 102" stroke="#18181B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        </g>
+      );
+
+    case 'cute-shiba':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#F5A623" stroke={bezelStroke} strokeWidth="8" />
+          <polygon points="46,55 35,26 64,40" fill="#F5A623" stroke={bezelStroke} strokeWidth="2" />
+          <polygon points="114,55 125,26 96,40" fill="#F5A623" stroke={bezelStroke} strokeWidth="2" />
+          <polygon points="46,50 38,32 58,40" fill="#FFFFFF" />
+          <polygon points="114,50 122,32 102,40" fill="#FFFFFF" />
+          <ellipse cx="62" cy="88" rx="18" ry="15" fill="#FFFFFF" />
+          <ellipse cx="98" cy="88" rx="18" ry="15" fill="#FFFFFF" />
+          <circle cx="62" cy="72" r="5" fill="#18181B" />
+          <circle cx="98" cy="72" r="5" fill="#18181B" />
+          <circle cx="60" cy="56" r="4" fill="#FFFFFF" />
+          <circle cx="100" cy="56" r="4" fill="#FFFFFF" />
+          <polygon points="80,88 74,80 86,80" fill="#18181B" />
+        </g>
+      );
+
+    case 'cute-red-panda':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#D35400" stroke={bezelStroke} strokeWidth="8" />
+          <circle cx="44" cy="40" r="16" fill="#FFFFFF" stroke="#D35400" strokeWidth="3" />
+          <circle cx="116" cy="40" r="16" fill="#FFFFFF" stroke="#D35400" strokeWidth="3" />
+          <ellipse cx="56" cy="84" rx="14" ry="12" fill="#FFFFFF" />
+          <ellipse cx="104" cy="84" rx="14" ry="12" fill="#FFFFFF" />
+          <circle cx="60" cy="72" r="5" fill="#18181B" />
+          <circle cx="100" cy="72" r="5" fill="#18181B" />
+          <polygon points="80,88 74,80 86,80" fill="#18181B" />
+          <path d="M40 115 Q80 135 120 115" stroke="#F39C12" strokeWidth="10" strokeLinecap="round" fill="none" />
+        </g>
+      );
+
+    case 'cute-koala':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#52B788" stroke={bezelStroke} strokeWidth="8" />
+          <circle cx="36" cy="52" r="22" fill="#95A5A6" stroke="#FFFFFF" strokeWidth="4" />
+          <circle cx="124" cy="52" r="22" fill="#95A5A6" stroke="#FFFFFF" strokeWidth="4" />
+          <circle cx="80" cy="84" r="40" fill="#95A5A6" />
+          <ellipse cx="80" cy="88" rx="15" ry="24" fill="#18181B" />
+          <circle cx="58" cy="76" r="4.5" fill="#18181B" />
+          <circle cx="102" cy="76" r="4.5" fill="#18181B" />
+        </g>
+      );
+
+    case 'cute-hamster':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#F39C12" stroke={bezelStroke} strokeWidth="8" />
+          <circle cx="80" cy="80" r="48" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" strokeDasharray="6 4" fill="none" />
+          <circle cx="46" cy="38" r="10" fill="#FFA8BA" />
+          <circle cx="114" cy="38" r="10" fill="#FFA8BA" />
+          <ellipse cx="60" cy="90" rx="16" ry="14" fill="#FFFFFF" />
+          <ellipse cx="100" cy="90" rx="16" ry="14" fill="#FFFFFF" />
+          <circle cx="62" cy="72" r="4" fill="#18181B" />
+          <circle cx="98" cy="72" r="4" fill="#18181B" />
+          <circle cx="80" cy="84" r="4" fill="#FFA8BA" />
+        </g>
+      );
+
+    case 'cute-fennec-fox':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#FAD02C" stroke={bezelStroke} strokeWidth="8" />
+          {/* Huge Fennec Ears */}
+          <polygon points="40,56 16,14 62,38" fill="#FAD02C" />
+          <polygon points="40,52 24,22 56,38" fill="#FF85A2" />
+          <polygon points="120,56 144,14 98,38" fill="#FAD02C" />
+          <polygon points="120,52 136,22 104,38" fill="#FF85A2" />
+          <polygon points="80,105 60,70 100,70" fill="#FFFFFF" />
+          <circle cx="64" cy="68" r="5" fill="#18181B" />
+          <circle cx="96" cy="68" r="5" fill="#18181B" />
+          <circle cx="80" cy="100" r="4" fill="#18181B" />
+        </g>
+      );
+
+    case 'cute-penguin':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#70D7FF" stroke={bezelStroke} strokeWidth="8" />
+          {/* Black Tux Hood */}
+          <ellipse cx="80" cy="80" rx="38" ry="46" fill="#18181B" />
+          {/* White Belly */}
+          <ellipse cx="80" cy="92" rx="26" ry="32" fill="#FFFFFF" />
+          {/* Yellow Plumes */}
+          <path d="M52 64 Q60 54 72 62" stroke="#FFD60A" strokeWidth="4" strokeLinecap="round" fill="none" />
+          <path d="M108 64 Q100 54 88 62" stroke="#FFD60A" strokeWidth="4" strokeLinecap="round" fill="none" />
+          <circle cx="66" cy="68" r="3.5" fill="#18181B" />
+          <circle cx="94" cy="68" r="3.5" fill="#18181B" />
+          <polygon points="80,82 72,74 88,74" fill="#FF9500" />
+        </g>
+      );
+
+    case 'cute-bunny':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#FFB7B2" stroke={bezelStroke} strokeWidth="8" />
+          {/* Long Ears */}
+          <ellipse cx="62" cy="35" rx="9" ry="26" fill="#FFFFFF" transform="rotate(-8 62 35)" />
+          <ellipse cx="62" cy="35" rx="5" ry="20" fill="#FFB7B2" transform="rotate(-8 62 35)" />
+          <ellipse cx="98" cy="35" rx="9" ry="26" fill="#FFFFFF" transform="rotate(8 98 35)" />
+          <ellipse cx="98" cy="35" rx="5" ry="20" fill="#FFB7B2" transform="rotate(8 98 35)" />
+          {/* Face */}
+          <circle cx="80" cy="88" r="36" fill="#FFFFFF" />
+          <circle cx="66" cy="82" r="4.5" fill="#18181B" />
+          <circle cx="94" cy="82" r="4.5" fill="#18181B" />
+          <polygon points="80,94 76,88 84,88" fill="#FF85A2" />
+        </g>
+      );
+
+    case 'cute-otter':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#00B4D8" stroke={bezelStroke} strokeWidth="8" />
+          {/* Otter Head */}
+          <circle cx="80" cy="68" r="34" fill="#795548" />
+          <ellipse cx="80" cy="74" rx="20" ry="14" fill="#FFFFFF" />
+          <circle cx="64" cy="64" r="4" fill="#18181B" />
+          <circle cx="96" cy="64" r="4" fill="#18181B" />
+          <ellipse cx="80" cy="72" rx="6" ry="4" fill="#18181B" />
+          {/* Pearl gem held by paws */}
+          <circle cx="80" cy="110" r="15" fill="#00F0FF" stroke="#FFFFFF" strokeWidth="2.5" />
+          <circle cx="65" cy="110" r="8" fill="#795548" />
+          <circle cx="95" cy="110" r="8" fill="#795548" />
+        </g>
+      );
+
+    case 'cute-alpaca':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#B388FF" stroke={bezelStroke} strokeWidth="8" />
+          {/* Cloud Puffs */}
+          <circle cx="55" cy="45" r="14" fill="#FFFFFF" />
+          <circle cx="80" cy="38" r="16" fill="#FFFFFF" />
+          <circle cx="105" cy="45" r="14" fill="#FFFFFF" />
+          {/* Head & Neck */}
+          <rect x="68" y="70" width="24" height="48" rx="8" fill="#FFFFFF" />
+          <circle cx="80" cy="68" r="22" fill="#FFFFFF" />
+          {/* Golden Glasses */}
+          <circle cx="70" cy="68" r="10" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" fill="none" />
+          <circle cx="90" cy="68" r="10" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" fill="none" />
+          <line x1="78" y1="68" x2="82" y2="68" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" />
+          <circle cx="70" cy="68" r="3" fill="#18181B" />
+          <circle cx="90" cy="68" r="3" fill="#18181B" />
+        </g>
+      );
+
+    // --- 10 Ocean Animals ---
+    case 'ocean-whale':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#03045E" stroke={bezelStroke} strokeWidth="8" />
+          {/* Water Spout */}
+          <path d="M80 40 C75 22 60 26 62 38" stroke="#00F0FF" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <path d="M80 40 C85 22 100 26 98 38" stroke="#00F0FF" strokeWidth="3" fill="none" strokeLinecap="round" />
+          {/* Whale Fuselage */}
+          <path d="M30 76 Q60 52 110 65 Q135 75 140 92 Q105 115 50 96 Z" fill="#0077B6" />
+          {/* Tail fluke */}
+          <polygon points="32,76 18,62 25,85" fill="#0077B6" />
+          <polygon points="32,76 18,90 25,85" fill="#0077B6" />
+          <circle cx="118" cy="78" r="3.5" fill="#FFFFFF" />
+        </g>
+      );
+
+    case 'ocean-manta':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0D1B2A" stroke={bezelStroke} strokeWidth="8" />
+          {/* Diamond Wings */}
+          <polygon points="80,38 142,75 80,105 18,75" fill="#1B263B" stroke={bezelStroke} strokeWidth="2" />
+          <polygon points="80,50 115,75 80,95 45,75" fill="#FFFFFF" opacity="0.85" />
+          {/* Cephalic Horns */}
+          <polygon points="72,38 68,26 78,35" fill={bezelStroke} />
+          <polygon points="88,38 92,26 82,35" fill={bezelStroke} />
+          {/* Tail */}
+          <line x1="80" y1="105" x2="80" y2="138" stroke={bezelStroke} strokeWidth="2.5" strokeLinecap="round" />
+        </g>
+      );
+
+    case 'ocean-turtle':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0096C7" stroke={bezelStroke} strokeWidth="8" />
+          {/* Flippers */}
+          <ellipse cx="45" cy="58" rx="20" ry="8" fill="url(#bezel-grad-gold-unlocked)" transform="rotate(-30 45 58)" />
+          <ellipse cx="115" cy="58" rx="20" ry="8" fill="url(#bezel-grad-gold-unlocked)" transform="rotate(30 115 58)" />
+          <ellipse cx="50" cy="105" rx="14" ry="6" fill="url(#bezel-grad-gold-unlocked)" transform="rotate(35 50 105)" />
+          <ellipse cx="110" cy="105" rx="14" ry="6" fill="url(#bezel-grad-gold-unlocked)" transform="rotate(-35 110 105)" />
+          {/* Carapace Dome */}
+          <circle cx="80" cy="82" r="32" fill="#2EC4B6" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="4" />
+          <polygon points="80,68 90,75 90,89 80,96 70,89 70,75" fill="none" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" />
+          {/* Head */}
+          <circle cx="80" cy="45" r="10" fill="url(#bezel-grad-gold-unlocked)" />
+        </g>
+      );
+
+    case 'ocean-dolphin':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#023E8A" stroke={bezelStroke} strokeWidth="8" />
+          {/* Sonar Rings */}
+          <path d="M45 45 A 25 25 0 0 1 70 30" stroke="#FFD60A" strokeWidth="2.5" fill="none" />
+          <path d="M40 50 A 35 35 0 0 1 75 25" stroke="#FFD60A" strokeWidth="2.5" fill="none" />
+          {/* Leaping Dolphin */}
+          <path d="M30 105 Q70 35 125 65 Q110 95 65 110 Z" fill="#00F0FF" />
+          <polygon points="85,55 95,38 98,58" fill="#00F0FF" />
+          <circle cx="115" cy="68" r="3" fill="#18181B" />
+        </g>
+      );
+
+    case 'ocean-hammerhead':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#14213D" stroke={bezelStroke} strokeWidth="8" />
+          {/* Fuselage */}
+          <path d="M80 40 Q85 85 80 135 Q75 85 80 40 Z" fill="#4A4E69" />
+          {/* T-bar Hammerhead */}
+          <rect x="36" y="38" width="88" height="18" rx="6" fill="#7E8491" stroke={bezelStroke} strokeWidth="2" />
+          <circle cx="42" cy="47" r="4" fill="#FFD60A" />
+          <circle cx="118" cy="47" r="4" fill="#FFD60A" />
+          <polygon points="80,75 80,95 95,85" fill="#7E8491" />
+        </g>
+      );
+
+    case 'ocean-seahorse':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#FF6B6B" stroke={bezelStroke} strokeWidth="8" />
+          {/* Coronet */}
+          <polygon points="78,35 84,26 88,36 94,28 96,38" fill="url(#bezel-grad-gold-unlocked)" />
+          {/* Head & Body S-Curve */}
+          <path d="M78 40 Q95 48 85 68 Q72 85 86 100 Q95 115 80 128 Q65 120 72 108" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="12" fill="none" strokeLinecap="round" />
+          {/* Snout */}
+          <line x1="78" y1="46" x2="62" y2="44" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="4" strokeLinecap="round" />
+          <circle cx="82" cy="42" r="3" fill="#18181B" />
+        </g>
+      );
+
+    case 'ocean-narwhal':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#005F73" stroke={bezelStroke} strokeWidth="8" />
+          {/* Body */}
+          <path d="M35 115 Q65 65 115 75 Q125 105 65 125 Z" fill="#94D2BD" />
+          {/* Helical Golden Horn */}
+          <polygon points="112,75 148,42 118,72" fill="url(#bezel-grad-gold-unlocked)" stroke="#FFFFFF" strokeWidth="1" />
+          <circle cx="102" cy="82" r="3.5" fill="#18181B" />
+          <circle cx="148" cy="42" r="5" fill="#FFFFFF" opacity="0.8" />
+        </g>
+      );
+
+    case 'ocean-octopus':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0A1128" stroke={bezelStroke} strokeWidth="8" />
+          {/* Coiling Tentacles */}
+          <circle cx="80" cy="95" r="32" stroke="#9D0208" strokeWidth="8" fill="none" strokeDasharray="18 10" />
+          {/* Mantle */}
+          <ellipse cx="80" cy="65" rx="30" ry="26" fill="#9D0208" />
+          {/* Golden Eyes */}
+          <ellipse cx="68" cy="72" rx="6" ry="4" fill="#FFD60A" />
+          <ellipse cx="92" cy="72" rx="6" ry="4" fill="#FFD60A" />
+          <line x1="64" y1="72" x2="72" y2="72" stroke="#18181B" strokeWidth="2" />
+          <line x1="88" y1="72" x2="96" y2="72" stroke="#18181B" strokeWidth="2" />
+        </g>
+      );
+
+    case 'ocean-jellyfish':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#10002B" stroke={bezelStroke} strokeWidth="8" />
+          {/* Scalloped Bell Dome */}
+          <path d="M42 70 C42 40 118 40 118 70 Q80 85 42 70 Z" fill="#7209B7" />
+          <ellipse cx="80" cy="65" rx="18" ry="12" fill="#4CC9F0" opacity="0.85" />
+          {/* Flowing Tendril Ribbons */}
+          <path d="M55 75 Q50 95 58 125" stroke="#4CC9F0" strokeWidth="2.5" fill="none" />
+          <path d="M72 78 Q78 100 70 128" stroke="#4CC9F0" strokeWidth="3" fill="none" />
+          <path d="M88 78 Q82 100 90 128" stroke="#4CC9F0" strokeWidth="3" fill="none" />
+          <path d="M105 75 Q110 95 102 125" stroke="#4CC9F0" strokeWidth="2.5" fill="none" />
+        </g>
+      );
+
+    case 'ocean-flying-fish':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#3A0CA3" stroke={bezelStroke} strokeWidth="8" />
+          {/* Wave Crest */}
+          <path d="M30 110 Q80 85 130 110" stroke="#00F0FF" strokeWidth="4" fill="none" />
+          {/* Airplane-like Pectoral Wings */}
+          <polygon points="80,75 140,55 95,85" fill={bezelStroke} />
+          <polygon points="80,75 20,55 65,85" fill={bezelStroke} />
+          {/* Fuselage */}
+          <ellipse cx="80" cy="80" rx="42" ry="10" fill="#00F0FF" transform="rotate(-15 80 80)" />
+          <circle cx="112" cy="72" r="3.5" fill="#18181B" />
+        </g>
+      );
+
+    // --- 10 Cartoon Characters ---
+    case 'cartoon-wizard':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#3A0CA3" stroke={bezelStroke} strokeWidth="8" />
+          {/* Wizard Hat */}
+          <polygon points="80,24 50,65 110,65" fill="#240046" stroke={bezelStroke} strokeWidth="2" />
+          <ellipse cx="80" cy="65" rx="35" ry="8" fill="url(#bezel-grad-gold-unlocked)" />
+          <circle cx="80" cy="24" r="5" fill="#00F0FF" />
+          {/* Glasses */}
+          <circle cx="68" cy="85" r="9" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" fill="none" />
+          <circle cx="92" cy="85" r="9" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" fill="none" />
+          <line x1="77" y1="85" x2="83" y2="85" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" />
+          {/* Magic Wand */}
+          <line x1="105" y1="125" x2="135" y2="95" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="136" cy="94" r="4" fill="#00F0FF" />
+        </g>
+      );
+
+    case 'cartoon-astronaut':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#050510" stroke={bezelStroke} strokeWidth="8" />
+          {/* White Helmet */}
+          <circle cx="80" cy="80" r="42" fill="#FFFFFF" stroke={bezelStroke} strokeWidth="3" />
+          {/* Gold Visor */}
+          <ellipse cx="80" cy="78" rx="28" ry="20" fill="url(#bezel-grad-gold-unlocked)" />
+          <ellipse cx="80" cy="75" rx="22" ry="12" fill="url(#specular-glint)" />
+          {/* Side Earpads */}
+          <rect x="34" y="72" width="6" height="16" rx="3" fill="#00F0FF" />
+          <rect x="120" y="72" width="6" height="16" rx="3" fill="#00F0FF" />
+        </g>
+      );
+
+    case 'cartoon-mecha':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0F172A" stroke={bezelStroke} strokeWidth="8" />
+          {/* V-Fin Crest */}
+          <polygon points="80,55 50,30 65,58" fill="url(#bezel-grad-gold-unlocked)" />
+          <polygon points="80,55 110,30 95,58" fill="url(#bezel-grad-gold-unlocked)" />
+          <rect x="74" y="52" width="12" height="12" fill="#FA114F" />
+          {/* Chiseled Face Mask */}
+          <polygon points="80,120 52,80 108,80" fill="#A6FF00" />
+          {/* Cyan Sensor Visor */}
+          <rect x="56" y="74" width="48" height="10" rx="2" fill="#00F0FF" />
+        </g>
+      );
+
+    case 'cartoon-knight':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#1D3557" stroke={bezelStroke} strokeWidth="8" />
+          {/* Crimson Plume */}
+          <path d="M72 45 C65 25 90 20 105 38" stroke="#FA114F" strokeWidth="12" strokeLinecap="round" fill="none" />
+          {/* Knight Helmet */}
+          <ellipse cx="80" cy="82" rx="36" ry="40" fill={bezelStroke} />
+          {/* Golden Visor Slot */}
+          <rect x="52" y="78" width="56" height="14" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <line x1="56" y1="85" x2="104" y2="85" stroke="#1D3557" strokeWidth="2.5" />
+        </g>
+      );
+
+    case 'cartoon-prince':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0F2027" stroke={bezelStroke} strokeWidth="8" />
+          {/* Golden Hair Spikes */}
+          <polygon points="55,58 45,40 68,52" fill="url(#bezel-grad-gold-unlocked)" />
+          <polygon points="72,52 80,32 88,52" fill="url(#bezel-grad-gold-unlocked)" />
+          <polygon points="92,52 115,40 105,58" fill="url(#bezel-grad-gold-unlocked)" />
+          {/* Face */}
+          <circle cx="80" cy="78" r="28" fill="#FFFFFF" />
+          <circle cx="70" cy="75" r="3.5" fill="#18181B" />
+          <circle cx="90" cy="75" r="3.5" fill="#18181B" />
+          {/* Emerald Scarf */}
+          <path d="M56 95 Q80 115 104 95 Q120 120 135 110" stroke="#2EC4B6" strokeWidth="8" strokeLinecap="round" fill="none" />
+          <circle cx="48" cy="118" r="7" fill="#FF0054" />
+        </g>
+      );
+
+    case 'cartoon-pirate':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0077B6" stroke={bezelStroke} strokeWidth="8" />
+          {/* Tricorn Hat */}
+          <polygon points="80,35 32,68 128,68" fill="#18181B" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" />
+          <circle cx="80" cy="56" r="6" fill="url(#bezel-grad-gold-unlocked)" />
+          {/* Eye Patch Face */}
+          <circle cx="80" cy="88" r="28" fill="#FFFFFF" />
+          <circle cx="70" cy="85" r="7" fill="#18181B" />
+          <line x1="58" y1="80" x2="102" y2="92" stroke="#18181B" strokeWidth="2" />
+          <circle cx="90" cy="85" r="4" fill="#18181B" />
+          <circle cx="108" cy="94" r="5" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="2.5" fill="none" />
+        </g>
+      );
+
+    case 'cartoon-pixel-hero':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#38B000" stroke={bezelStroke} strokeWidth="8" />
+          {/* Pixelated Helmet */}
+          <rect x="62" y="32" width="36" height="12" fill="url(#bezel-grad-gold-unlocked)" />
+          <rect x="52" y="44" width="56" height="14" fill="url(#bezel-grad-gold-unlocked)" />
+          <rect x="44" y="58" width="72" height="16" fill="url(#bezel-grad-gold-unlocked)" />
+          {/* Face Block */}
+          <rect x="50" y="74" width="60" height="32" fill="#FFFFFF" />
+          <rect x="58" y="80" width="10" height="10" fill="#18181B" />
+          <rect x="92" y="80" width="10" height="10" fill="#18181B" />
+          {/* Pixel Sword */}
+          <rect x="105" y="105" width="8" height="8" fill="#00F0FF" />
+          <rect x="113" y="97" width="8" height="8" fill="#00F0FF" />
+          <rect x="121" y="89" width="8" height="8" fill="#00F0FF" />
+        </g>
+      );
+
+    case 'cartoon-aviator':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#5C4033" stroke={bezelStroke} strokeWidth="8" />
+          {/* Leather Cap */}
+          <ellipse cx="80" cy="75" rx="38" ry="32" fill="#8B4513" />
+          {/* Brass Goggles */}
+          <circle cx="64" cy="72" r="14" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" fill="#00F0FF" />
+          <circle cx="96" cy="72" r="14" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" fill="#00F0FF" />
+          <line x1="78" y1="72" x2="82" y2="72" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="3" />
+          {/* Wing Propeller at Base */}
+          <circle cx="80" cy="118" r="6" fill="url(#bezel-grad-gold-unlocked)" />
+          <ellipse cx="62" cy="118" rx="14" ry="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <ellipse cx="98" cy="118" rx="14" ry="4" fill="url(#bezel-grad-gold-unlocked)" />
+        </g>
+      );
+
+    case 'cartoon-elf':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#2D6A4F" stroke={bezelStroke} strokeWidth="8" />
+          {/* Pointed Elf Ears */}
+          <polygon points="45,72 20,55 48,85" fill="#FFFFFF" />
+          <polygon points="115,72 140,55 112,85" fill="#FFFFFF" />
+          {/* Leaf Crown */}
+          <circle cx="80" cy="78" r="30" fill="#FFFFFF" />
+          <path d="M55 60 Q80 45 105 60" stroke="#52B788" strokeWidth="6" strokeLinecap="round" fill="none" />
+          <polygon points="80,50 74,60 86,60" fill="#00F0FF" />
+          <circle cx="70" cy="78" r="3.5" fill="#2D6A4F" />
+          <circle cx="90" cy="78" r="3.5" fill="#2D6A4F" />
+        </g>
+      );
+
+    case 'cartoon-ninja':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#18181B" stroke={bezelStroke} strokeWidth="8" />
+          {/* Headband with Clan Plate */}
+          <rect x="36" y="55" width="88" height="14" rx="2" fill="#FA114F" />
+          <rect x="62" y="55" width="36" height="14" rx="2" fill="url(#bezel-grad-gold-unlocked)" />
+          {/* Mask & Eye Opening */}
+          <rect x="48" y="72" width="64" height="14" rx="3" fill="#FFFFFF" />
+          <ellipse cx="62" cy="79" rx="6" ry="2.5" fill="#18181B" />
+          <ellipse cx="98" cy="79" rx="6" ry="2.5" fill="#18181B" />
+          {/* 4-Point Shuriken */}
+          <polygon points="80,105 84,115 94,118 84,122 80,132 76,122 66,118 76,115" fill={bezelStroke} />
+        </g>
+      );
+
     default:
       // Generic circular medallion
       return (
