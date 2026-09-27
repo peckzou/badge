@@ -17,7 +17,8 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
   onBack,
   onTriggerUnlock,
 }) => {
-  const [viewAngle, setViewAngle] = useState<ViewAngle>('angled');
+  const [viewAngle, setViewAngle] = useState<ViewAngle>('front');
+  const [isSpinning, setIsSpinning] = useState<boolean>(true);
   const [isBackView, setIsBackView] = useState<boolean>(false);
   const [explodedFactor, setExplodedFactor] = useState<number>(0);
   const controllerRef = useRef<AppleBadgeSceneController | null>(null);
@@ -423,6 +424,8 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
               ambientIntensity={ambientIntensity}
               colorTemperature={colorTemperature}
               specularGloss={specularGloss}
+              autoEntranceSpin={true}
+              onEntranceSpinStateChange={(spinning) => setIsSpinning(spinning)}
               className="w-full h-full"
               onSceneReady={(controller) => {
                 controllerRef.current = controller;
@@ -474,18 +477,63 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
               </button>
             </div>
 
-            {/* Top-Left Stage Hint: 360° Free Drag */}
-            <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/[0.08] backdrop-blur-md text-[10px] text-[#8E8E93] z-20 pointer-events-none">
-              <svg className="w-3 h-3 text-[#00F0FF] animate-spin" style={{ animationDuration: '6s' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2a10 10 0 0 1 10 10" />
+            {/* Top-Left Stage Hint: Entrance Spin or Ready for 360° Hand Drag */}
+            <div
+              className={`absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full backdrop-blur-md text-[10px] transition-all duration-300 z-20 pointer-events-none ${
+                isSpinning
+                  ? 'bg-black/80 border border-[#00F0FF]/40 text-[#00F0FF] shadow-sm shadow-[#00F0FF]/20'
+                  : 'bg-black/60 border border-white/[0.08] text-[#8E8E93]'
+              }`}
+            >
+              <svg
+                className={`w-3 h-3 text-[#00F0FF] ${isSpinning ? 'animate-spin' : ''}`}
+                style={isSpinning ? { animationDuration: '1.2s' } : undefined}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+              >
+                {isSpinning ? (
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                ) : (
+                  <>
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 2a10 10 0 0 1 10 10" />
+                  </>
+                )}
               </svg>
-              <span>Free-form 3D • Drag 360°</span>
+              <span className="font-medium tracking-wide">
+                {isSpinning ? 'Apple Award • Auto 2× 360° Spin' : 'Ready • Drag 360° to rotate with hand'}
+              </span>
             </div>
           </div>
 
           {/* Floating Quick Action Toolbar: Flip, Preset Angles, Replay */}
           <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 flex-wrap justify-center max-w-full px-2">
+            {/* Apple 2-Turn Spin Replay Button */}
+            <button
+              onClick={() => {
+                triggerHaptic('selection');
+                setIsBackView(false);
+                setIsSpinning(true);
+                controllerRef.current?.playEntranceSpin(2.1, () => {
+                  setIsSpinning(false);
+                });
+              }}
+              disabled={isSpinning}
+              className={`px-2.5 py-1 rounded-full border text-[11px] font-medium shadow-md backdrop-blur-md flex items-center gap-1.5 transition-all active:scale-95 disabled:opacity-50 ${
+                isSpinning
+                  ? 'bg-[#00F0FF]/15 border-[#00F0FF]/40 text-[#00F0FF]'
+                  : 'bg-[#1C1C1E]/90 hover:bg-[#2C2C2E] border-white/[0.1] text-white/90 hover:text-white'
+              }`}
+              title="Play Apple 2-turn entrance spin animation (720°)"
+            >
+              <svg className={`w-3 h-3 text-[#00F0FF] ${isSpinning ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+              </svg>
+              <span>{isSpinning ? 'Spinning...' : 'Spin 2×'}</span>
+            </button>
+
             <button
               onClick={() => {
                 triggerHaptic('selection');

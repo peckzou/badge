@@ -62,38 +62,39 @@ function getAppleShieldRadius(theta: number): number {
 }
 
 /**
- * Master Curvature Function for the Apple Shield (Direction 1)
+ * Master Curvature Function for the Apple Shield (Direction 1) - Authentic Convex Pebble Crown
  */
 export function getShieldSurfaceZ(x: number, y: number, isBack: boolean = false, thickness: number = 0.075): number {
   const normY = y / 1.85;
   const normX = x / 1.15;
+  const rNorm = Math.min(1.0, Math.sqrt(normX * normX + normY * normY * 0.6));
 
-  const longBow = (1.0 - normY * normY) * 0.22 - 0.11;
-  const transverseDish = (normX * normX + normY * normY * 0.4) * 0.26 - 0.16;
+  const longBow = (1.0 - normY * normY) * 0.06;
+  const convexDome = (1.0 - rNorm * rNorm) * 0.14;
 
   if (!isBack) {
-    return longBow + transverseDish;
+    return longBow + convexDome;
   } else {
-    const convexDome = -(1.0 - (normX * normX + normY * normY * 0.5) * 0.6) * 0.08;
-    return longBow + convexDome - thickness;
+    const backDome = (1.0 - rNorm * rNorm) * 0.03;
+    return longBow - thickness - backDome;
   }
 }
 
 /**
- * Master Curvature Function for the Hexagon Challenge Medal (Direction 3)
+ * Master Curvature Function for the Hexagon Challenge Medal (Direction 3) - Convex Crowned Face
  */
 export function getHexSurfaceZ(x: number, y: number, isBack: boolean = false, thickness: number = 0.075): number {
   const rNorm = Math.min(1.0, Math.sqrt(x * x + y * y) / 1.48);
   const normY = y / 1.48;
 
-  const longBow = (1.0 - normY * normY) * 0.20 - 0.10;
-  const dish = (rNorm * rNorm) * 0.28 - 0.18;
+  const longBow = (1.0 - normY * normY) * 0.05;
+  const convexDome = (1.0 - rNorm * rNorm) * 0.14;
 
   if (!isBack) {
-    return longBow + dish;
+    return longBow + convexDome;
   } else {
-    const convexDome = -(1.0 - rNorm * 0.6) * 0.08;
-    return longBow + convexDome - thickness;
+    const backDome = (1.0 - rNorm * rNorm) * 0.03;
+    return longBow - thickness - backDome;
   }
 }
 
@@ -420,9 +421,9 @@ export function buildAppleConcentricRingsBadge(
   const getRingZ = (r: number, isBack: boolean = false) => {
     const frac = (r - rInner) / (rOuter - rInner);
     if (!isBack) {
-      return (frac * frac) * 0.24 - 0.14;
+      return (1.0 - frac * frac) * 0.14;
     } else {
-      return (frac * frac) * 0.24 - 0.22;
+      return (1.0 - frac * frac) * 0.14 - 0.075;
     }
   };
 
@@ -579,44 +580,44 @@ export function buildAppleConcentricRingsBadge(
   innerRimMesh.position.z = zInnerF;
   badge.add(innerRimMesh);
 
-  // 6. Recessed Guide Tracks under each ring
+  // 6. Recessed Guide Tracks under each ring (Convex arch conform)
   const track1Geo = new THREE.TorusGeometry(1.24, 0.020, 12, 80);
   const track1Mesh = new THREE.Mesh(track1Geo, darkChannelMat);
-  track1Mesh.position.z = -0.015;
+  track1Mesh.position.z = 0.06;
   badge.add(track1Mesh);
 
   const track2Geo = new THREE.TorusGeometry(0.94, 0.020, 12, 80);
   const track2Mesh = new THREE.Mesh(track2Geo, darkChannelMat);
-  track2Mesh.position.z = -0.075;
+  track2Mesh.position.z = 0.10;
   badge.add(track2Mesh);
 
   const track3Geo = new THREE.TorusGeometry(0.64, 0.020, 12, 80);
   const track3Mesh = new THREE.Mesh(track3Geo, darkChannelMat);
-  track3Mesh.position.z = -0.125;
+  track3Mesh.position.z = 0.13;
   badge.add(track3Mesh);
 
   // 7. Floating Vitreous Enamel Activity Rings
   const ring1Geo = new THREE.TorusGeometry(1.24, 0.082, 28, 96);
   const ring1Mesh = new THREE.Mesh(ring1Geo, coralMat);
-  ring1Mesh.position.z = 0.02;
+  ring1Mesh.position.z = 0.08;
   ring1Mesh.castShadow = true;
   badge.add(ring1Mesh);
 
   const ring2Geo = new THREE.TorusGeometry(0.94, 0.076, 28, 96);
   const ring2Mesh = new THREE.Mesh(ring2Geo, voltMat);
-  ring2Mesh.position.z = -0.04;
+  ring2Mesh.position.z = 0.12;
   ring2Mesh.castShadow = true;
   badge.add(ring2Mesh);
 
   const ring3Geo = new THREE.TorusGeometry(0.64, 0.070, 28, 96);
   const ring3Mesh = new THREE.Mesh(ring3Geo, cyanMat);
-  ring3Mesh.position.z = -0.10;
+  ring3Mesh.position.z = 0.15;
   ring3Mesh.castShadow = true;
   badge.add(ring3Mesh);
 
   // 8. Sculptural 24K Gold "100" Numeral Ribbon Loops
   const knotGroup = new THREE.Group();
-  knotGroup.position.z = -0.02;
+  knotGroup.position.z = 0.18;
 
   const oneGeo = new THREE.CylinderGeometry(0.048, 0.048, 0.68, 24);
   const oneMesh = new THREE.Mesh(oneGeo, mirrorGold);
@@ -645,10 +646,10 @@ export function buildAppleConcentricRingsBadge(
   badge.add(knotGroup);
 
   badge.setExplodedView = (f: number) => {
-    ring1Mesh.position.z = 0.02 + f * 0.35;
-    ring2Mesh.position.z = -0.04 + f * 0.55;
-    ring3Mesh.position.z = -0.10 + f * 0.75;
-    knotGroup.position.z = -0.02 + f * 0.95;
+    ring1Mesh.position.z = 0.08 + f * 0.35;
+    ring2Mesh.position.z = 0.12 + f * 0.55;
+    ring3Mesh.position.z = 0.15 + f * 0.75;
+    knotGroup.position.z = 0.18 + f * 0.95;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -932,13 +933,13 @@ export function buildAppleTeardropStreakBadge(
 
   const getDropZ = (x: number, y: number, isBack: boolean = false) => {
     const normY = y / 1.7;
-    const bulbDist = Math.sqrt(x * x + (y + 0.35) * (y + 0.35)) / 1.25;
-    const bow = (1.0 - normY * normY) * 0.18 - 0.08;
-    const dish = Math.min(1.0, bulbDist * bulbDist) * 0.26 - 0.16;
+    const bulbDist = Math.min(1.0, Math.sqrt(x * x + (y + 0.35) * (y + 0.35)) / 1.25);
+    const bow = (1.0 - normY * normY) * 0.05;
+    const convexDome = (1.0 - bulbDist * bulbDist) * 0.14;
 
-    if (!isBack) return bow + dish;
-    const dome = -(1.0 - Math.min(1.0, bulbDist) * 0.6) * 0.08;
-    return bow + dome - thickness;
+    if (!isBack) return bow + convexDome;
+    const backDome = (1.0 - bulbDist * bulbDist) * 0.03;
+    return bow - thickness - backDome;
   };
 
   // 1. Watertight Outer Rim Ribbon connecting front to back
@@ -1159,11 +1160,11 @@ export function buildAppleOctagonMilestoneBadge(
   }
 
   const getOctZ = (x: number, y: number, isBack: boolean = false) => {
-    const dist = Math.sqrt(x * x + y * y) / radius;
-    const dish = (dist * dist) * 0.26 - 0.18;
-    if (!isBack) return dish;
-    const dome = -(1.0 - dist * 0.6) * 0.08;
-    return dome - thickness;
+    const dist = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convexDome = (1.0 - dist * dist) * 0.14;
+    if (!isBack) return convexDome;
+    const backDome = (1.0 - dist * dist) * 0.03;
+    return -thickness - backDome;
   };
 
   // 1. Watertight Mirror-Polished Silver Octagon Rim Ribbon
@@ -1278,7 +1279,7 @@ export function buildAppleOctagonMilestoneBadge(
 
   // 4. Central Sculptural 8-Pointed Platinum Compass Star
   const starGroup = new THREE.Group();
-  starGroup.position.z = -0.10;
+  starGroup.position.z = 0.16;
   for (let i = 0; i < 8; i++) {
     const theta = (i / 8) * Math.PI * 2;
     const isMajor = i % 2 === 0;
@@ -1337,7 +1338,7 @@ export function buildAppleOctagonMilestoneBadge(
 
   badge.setExplodedView = (f: number) => {
     facetMeshes.forEach((m) => (m.position.z = f * 0.55));
-    starGroup.position.z = -0.10 + f * 0.85;
+    starGroup.position.z = 0.16 + f * 0.85;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -1378,11 +1379,11 @@ export function buildAppleInfinityMasteryBadge(
     const dLeft = Math.sqrt((x + 0.72) * (x + 0.72) + y * y);
     const dRight = Math.sqrt((x - 0.72) * (x - 0.72) + y * y);
     const minD = Math.min(dLeft, dRight) / 0.85;
-    const bowl = Math.min(1.0, minD * minD) * 0.24 - 0.16;
+    const convexPill = (1.0 - Math.min(1.0, minD * minD)) * 0.14;
 
-    if (!isBack) return bowl;
-    const dome = -(1.0 - Math.min(1.0, minD) * 0.5) * 0.08;
-    return dome - thickness;
+    if (!isBack) return convexPill;
+    const backDome = (1.0 - Math.min(1.0, minD * minD)) * 0.03;
+    return -thickness - backDome;
   };
 
   // 1. Watertight Squircle Rim Ribbon connecting front to back
@@ -1715,10 +1716,10 @@ export function buildAppleCircularCoinBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const r = Math.sqrt(x * x + y * y) / radius;
-    const dish = r * r * 0.26 - 0.16;
-    if (!isBack) return dish;
-    return -(1 - r * 0.6) * 0.08 - 0.075;
+    const r = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - r * r) * 0.14;
+    if (!isBack) return convex;
+    return -(1 - r * r) * 0.03 - 0.075;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -1728,25 +1729,25 @@ export function buildAppleCircularCoinBadge(
   // Stepped Laurel Beaded Inner Ring
   const laurelTorus = new THREE.TorusGeometry(1.22, 0.038, 16, 80);
   const laurelMesh = new THREE.Mesh(laurelTorus, mirrorGold);
-  laurelMesh.position.z = -0.02;
+  laurelMesh.position.z = 0.065;
   badge.add(laurelMesh);
 
   // Deep Royal Blue Central Disc
   const discGeo = new THREE.CircleGeometry(1.20, 64);
   const discMesh = new THREE.Mesh(discGeo, royalBlue);
-  discMesh.position.z = -0.05;
+  discMesh.position.z = 0.08;
   badge.add(discMesh);
 
   // Embossed 3D Academic Crest Laurel Sprigs (Gold)
   const sprigGeo = new THREE.TorusGeometry(0.65, 0.032, 12, 48, Math.PI * 1.5);
   const sprigMesh = new THREE.Mesh(sprigGeo, mirrorGold);
   sprigMesh.rotation.z = Math.PI * 0.75;
-  sprigMesh.position.z = -0.03;
+  sprigMesh.position.z = 0.16;
   badge.add(sprigMesh);
 
   badge.setExplodedView = (f: number) => {
-    discMesh.position.z = -0.05 + f * 0.45;
-    sprigMesh.position.z = -0.03 + f * 0.75;
+    discMesh.position.z = 0.08 + f * 0.45;
+    sprigMesh.position.z = 0.16 + f * 0.75;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -1781,9 +1782,9 @@ export function buildAppleShieldCrestedBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const dist = Math.sqrt((x / 1.25) ** 2 + (y / 1.65) ** 2);
-    const dish = dist * 0.22 - 0.14;
-    return isBack ? -(1 - dist * 0.5) * 0.08 - 0.075 : dish;
+    const dist = Math.min(1.0, Math.sqrt((x / 1.25) ** 2 + (y / 1.65) ** 2));
+    const convex = (1.0 - dist * dist) * 0.14;
+    return isBack ? -(1 - dist * dist) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -1793,25 +1794,25 @@ export function buildAppleShieldCrestedBadge(
   // Chevron Inlay 1 (Crimson Top)
   const topCrestGeo = new THREE.PlaneGeometry(1.8, 1.2, 24, 16);
   const topCrestMesh = new THREE.Mesh(topCrestGeo, crimsonMat);
-  topCrestMesh.position.set(0, 0.45, 0.005);
+  topCrestMesh.position.set(0, 0.45, 0.08);
   badge.add(topCrestMesh);
 
   // Chevron Inlay 2 (Ivory Bottom)
   const botCrestGeo = new THREE.PlaneGeometry(1.8, 1.4, 24, 16);
   const botCrestMesh = new THREE.Mesh(botCrestGeo, ivoryCeramic);
-  botCrestMesh.position.set(0, -0.65, 0.005);
+  botCrestMesh.position.set(0, -0.65, 0.08);
   badge.add(botCrestMesh);
 
   // Sculptural Chevron Dividing Bar
   const barGeo = new THREE.BoxGeometry(1.8, 0.07, 0.04);
   const barMesh = new THREE.Mesh(barGeo, mirrorGold);
-  barMesh.position.set(0, 0.05, 0.02);
+  barMesh.position.set(0, 0.05, 0.16);
   badge.add(barMesh);
 
   badge.setExplodedView = (f: number) => {
-    topCrestMesh.position.z = 0.005 + f * 0.45;
-    botCrestMesh.position.z = 0.005 + f * 0.45;
-    barMesh.position.z = 0.02 + f * 0.75;
+    topCrestMesh.position.z = 0.08 + f * 0.45;
+    botCrestMesh.position.z = 0.08 + f * 0.45;
+    barMesh.position.z = 0.16 + f * 0.75;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -1844,56 +1845,56 @@ export function buildAppleRhombusDiamondBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.abs(x) / halfW + Math.abs(y) / halfH;
-    const dish = d * 0.24 - 0.16;
-    return isBack ? -(1 - d * 0.5) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.abs(x) / halfW + Math.abs(y) / halfH);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
     materials, earnedDate, 'BRILLIANT DIAMOND', isLocked, mirrorSilver, pts, getZ, 1.3, 1.8
   );
 
-  // 4 Radiant Diamond Facets
+  // 4 Radiant Diamond Facets (Convex diamond pyramid crown)
   const quad1Geo = new THREE.BufferGeometry();
-  quad1Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.01, halfW * 0.94, 0, 0.01, 0, halfH * 0.94, 0.01], 3));
+  quad1Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.14, halfW * 0.94, 0, 0.01, 0, halfH * 0.94, 0.01], 3));
   quad1Geo.computeVertexNormals();
   const q1Mesh = new THREE.Mesh(quad1Geo, cyanMat);
   badge.add(q1Mesh);
 
   const quad2Geo = new THREE.BufferGeometry();
-  quad2Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.01, 0, halfH * 0.94, 0.01, -halfW * 0.94, 0, 0.01], 3));
+  quad2Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.14, 0, halfH * 0.94, 0.01, -halfW * 0.94, 0, 0.01], 3));
   quad2Geo.computeVertexNormals();
   const q2Mesh = new THREE.Mesh(quad2Geo, cobaltMat);
   badge.add(q2Mesh);
 
   const quad3Geo = new THREE.BufferGeometry();
-  quad3Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.01, -halfW * 0.94, 0, 0.01, 0, -halfH * 0.94, 0.01], 3));
+  quad3Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.14, -halfW * 0.94, 0, 0.01, 0, -halfH * 0.94, 0.01], 3));
   quad3Geo.computeVertexNormals();
   const q3Mesh = new THREE.Mesh(quad3Geo, cyanMat);
   badge.add(q3Mesh);
 
   const quad4Geo = new THREE.BufferGeometry();
-  quad4Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.01, 0, -halfH * 0.94, 0.01, halfW * 0.94, 0, 0.01], 3));
+  quad4Geo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0.14, 0, -halfH * 0.94, 0.01, halfW * 0.94, 0, 0.01], 3));
   quad4Geo.computeVertexNormals();
   const q4Mesh = new THREE.Mesh(quad4Geo, cobaltMat);
   badge.add(q4Mesh);
 
   // Central Platinum Diamond Crosshair Ribs
   const ribV = new THREE.Mesh(new THREE.BoxGeometry(0.04, halfH * 2 * 0.96, 0.03), mirrorSilver);
-  ribV.position.z = 0.02;
+  ribV.position.z = 0.15;
   badge.add(ribV);
 
   const ribH = new THREE.Mesh(new THREE.BoxGeometry(halfW * 2 * 0.96, 0.04, 0.03), mirrorSilver);
-  ribH.position.z = 0.02;
+  ribH.position.z = 0.15;
   badge.add(ribH);
 
   badge.setExplodedView = (f: number) => {
-    q1Mesh.position.z = 0.01 + f * 0.5;
-    q2Mesh.position.z = 0.01 + f * 0.5;
-    q3Mesh.position.z = 0.01 + f * 0.5;
-    q4Mesh.position.z = 0.01 + f * 0.5;
-    ribV.position.z = 0.02 + f * 0.75;
-    ribH.position.z = 0.02 + f * 0.75;
+    q1Mesh.position.z = f * 0.5;
+    q2Mesh.position.z = f * 0.5;
+    q3Mesh.position.z = f * 0.5;
+    q4Mesh.position.z = f * 0.5;
+    ribV.position.z = 0.15 + f * 0.75;
+    ribH.position.z = 0.15 + f * 0.75;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -1924,9 +1925,9 @@ export function buildApplePentagonStarBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const r = Math.sqrt(x * x + y * y) / radius;
-    const dish = r * r * 0.24 - 0.15;
-    return isBack ? -(1 - r * 0.6) * 0.08 - 0.075 : dish;
+    const r = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - r * r) * 0.14;
+    return isBack ? -(1 - r * r) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -1940,7 +1941,7 @@ export function buildApplePentagonStarBadge(
     const a2 = ((s + 1) / 5) * Math.PI * 2 - Math.PI / 2;
     const secGeo = new THREE.BufferGeometry();
     secGeo.setAttribute('position', new THREE.Float32BufferAttribute([
-      0, 0, 0.01,
+      0, 0, 0.14,
       Math.cos(a1) * radius * 0.94, Math.sin(a1) * radius * 0.94, 0.01,
       Math.cos(a2) * radius * 0.94, Math.sin(a2) * radius * 0.94, 0.01,
     ], 3));
@@ -1954,12 +1955,12 @@ export function buildApplePentagonStarBadge(
   const starCoreGeo = new THREE.ConeGeometry(0.48, 0.14, 5);
   const starCore = new THREE.Mesh(starCoreGeo, mirrorGold);
   starCore.rotation.x = Math.PI / 2;
-  starCore.position.z = 0.04;
+  starCore.position.z = 0.16;
   badge.add(starCore);
 
   badge.setExplodedView = (f: number) => {
-    starSectors.forEach((m) => (m.position.z = 0.01 + f * 0.45));
-    starCore.position.z = 0.04 + f * 0.8;
+    starSectors.forEach((m) => (m.position.z = f * 0.45));
+    starCore.position.z = 0.16 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -1991,9 +1992,9 @@ export function buildAppleRoundedSquircleBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / radius;
-    const dish = d * d * 0.26 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2003,12 +2004,12 @@ export function buildAppleRoundedSquircleBadge(
   // Inlay Face
   const faceGeo = new THREE.CircleGeometry(1.42, 64);
   const faceMesh = new THREE.Mesh(faceGeo, voltMat);
-  faceMesh.position.z = -0.02;
+  faceMesh.position.z = 0.08;
   badge.add(faceMesh);
 
   // 3D Sculptural Open Folio Book in Center
   const bookGroup = new THREE.Group();
-  bookGroup.position.z = 0.02;
+  bookGroup.position.z = 0.16;
   const leftPageGeo = new THREE.BoxGeometry(0.42, 0.58, 0.04);
   const leftPage = new THREE.Mesh(leftPageGeo, mirrorGold);
   leftPage.rotation.y = 0.35;
@@ -2024,8 +2025,8 @@ export function buildAppleRoundedSquircleBadge(
   badge.add(bookGroup);
 
   badge.setExplodedView = (f: number) => {
-    faceMesh.position.z = -0.02 + f * 0.45;
-    bookGroup.position.z = 0.02 + f * 0.8;
+    faceMesh.position.z = 0.08 + f * 0.45;
+    bookGroup.position.z = 0.16 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2054,9 +2055,9 @@ export function buildAppleCloverQuatrefoilBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const r = Math.sqrt(x * x + y * y) / 1.6;
-    const dish = r * r * 0.24 - 0.15;
-    return isBack ? -(1 - r * 0.6) * 0.08 - 0.075 : dish;
+    const r = Math.min(1.0, Math.sqrt(x * x + y * y) / 1.6);
+    const convex = (1.0 - r * r) * 0.14;
+    return isBack ? -(1 - r * r) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2069,7 +2070,7 @@ export function buildAppleCloverQuatrefoilBadge(
     const angle = (p / 4) * Math.PI * 2;
     const pGeo = new THREE.CircleGeometry(0.55, 32);
     const pMesh = new THREE.Mesh(pGeo, p % 2 === 0 ? emeraldMat : cyanMat);
-    pMesh.position.set(Math.cos(angle) * 0.65, Math.sin(angle) * 0.65, 0.01);
+    pMesh.position.set(Math.cos(angle) * 0.65, Math.sin(angle) * 0.65, 0.08);
     badge.add(pMesh);
     petals.push(pMesh);
   }
@@ -2077,12 +2078,12 @@ export function buildAppleCloverQuatrefoilBadge(
   // Central Gold Bloom Button
   const centerSphere = new THREE.Mesh(new THREE.SphereGeometry(0.24, 24, 24), mirrorGold);
   centerSphere.scale.set(1, 1, 0.4);
-  centerSphere.position.z = 0.04;
+  centerSphere.position.z = 0.16;
   badge.add(centerSphere);
 
   badge.setExplodedView = (f: number) => {
-    petals.forEach((m) => (m.position.z = 0.01 + f * 0.5));
-    centerSphere.position.z = 0.04 + f * 0.85;
+    petals.forEach((m) => (m.position.z = 0.08 + f * 0.5));
+    centerSphere.position.z = 0.16 + f * 0.85;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2110,9 +2111,9 @@ export function buildAppleOvalCameoBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt((x / a) ** 2 + (y / b) ** 2);
-    const dish = d * d * 0.26 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt((x / a) ** 2 + (y / b) ** 2));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2123,19 +2124,19 @@ export function buildAppleOvalCameoBadge(
   const ovalWellGeo = new THREE.CircleGeometry(1.05, 48);
   const ovalWell = new THREE.Mesh(ovalWellGeo, midnightBlue);
   ovalWell.scale.set(1.0, 1.45, 1.0);
-  ovalWell.position.z = -0.04;
+  ovalWell.position.z = 0.08;
   badge.add(ovalWell);
 
   // Concentric Beveled Oval Inner Ring
   const innerRing = new THREE.TorusGeometry(0.85, 0.035, 16, 64);
   const innerRingMesh = new THREE.Mesh(innerRing, mirrorGold);
   innerRingMesh.scale.set(1.0, 1.42, 1.0);
-  innerRingMesh.position.z = 0.01;
+  innerRingMesh.position.z = 0.15;
   badge.add(innerRingMesh);
 
   badge.setExplodedView = (f: number) => {
-    ovalWell.position.z = -0.04 + f * 0.45;
-    innerRingMesh.position.z = 0.01 + f * 0.75;
+    ovalWell.position.z = 0.08 + f * 0.45;
+    innerRingMesh.position.z = 0.15 + f * 0.75;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2167,9 +2168,9 @@ export function buildAppleTrianglePrismBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / radius;
-    const dish = d * d * 0.25 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2184,7 +2185,7 @@ export function buildAppleTrianglePrismBadge(
     const a2 = ((s + 1) / 3) * Math.PI * 2 + Math.PI / 2;
     const triGeo = new THREE.BufferGeometry();
     triGeo.setAttribute('position', new THREE.Float32BufferAttribute([
-      0, 0, 0.01,
+      0, 0, 0.14,
       Math.cos(a1) * radius * 0.94, Math.sin(a1) * radius * 0.94, 0.01,
       Math.cos(a2) * radius * 0.94, Math.sin(a2) * radius * 0.94, 0.01,
     ], 3));
@@ -2196,18 +2197,18 @@ export function buildAppleTrianglePrismBadge(
 
   // Floating Delta Inner Ring
   const deltaInnerPts = [
-    new THREE.Vector3(0, 0.85, 0.04),
-    new THREE.Vector3(0.74, -0.42, 0.04),
-    new THREE.Vector3(-0.74, -0.42, 0.04),
-    new THREE.Vector3(0, 0.85, 0.04),
+    new THREE.Vector3(0, 0.85, 0.16),
+    new THREE.Vector3(0.74, -0.42, 0.16),
+    new THREE.Vector3(-0.74, -0.42, 0.16),
+    new THREE.Vector3(0, 0.85, 0.16),
   ];
   const deltaCurve = new THREE.CatmullRomCurve3(deltaInnerPts);
   const deltaMesh = new THREE.Mesh(new THREE.TubeGeometry(deltaCurve, 32, 0.042, 12, true), mirrorSilver);
   badge.add(deltaMesh);
 
   badge.setExplodedView = (f: number) => {
-    triSectors.forEach((m) => (m.position.z = 0.01 + f * 0.5));
-    deltaMesh.position.z = 0.04 + f * 0.85;
+    triSectors.forEach((m) => (m.position.z = f * 0.5));
+    deltaMesh.position.z = 0.16 + f * 0.85;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2238,9 +2239,9 @@ export function buildAppleDecagonWheelBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / radius;
-    const dish = d * d * 0.24 - 0.15;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2254,7 +2255,7 @@ export function buildAppleDecagonWheelBadge(
     const a2 = ((s + 1) / 10) * Math.PI * 2;
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.Float32BufferAttribute([
-      0, 0, 0.01,
+      0, 0, 0.14,
       Math.cos(a1) * radius * 0.94, Math.sin(a1) * radius * 0.94, 0.01,
       Math.cos(a2) * radius * 0.94, Math.sin(a2) * radius * 0.94, 0.01,
     ], 3));
@@ -2266,12 +2267,12 @@ export function buildAppleDecagonWheelBadge(
 
   // Central Sunburst Core Ring
   const coreMesh = new THREE.Mesh(new THREE.TorusGeometry(0.48, 0.05, 16, 48), mirrorGold);
-  coreMesh.position.z = 0.03;
+  coreMesh.position.z = 0.16;
   badge.add(coreMesh);
 
   badge.setExplodedView = (f: number) => {
-    wheelSectors.forEach((m) => (m.position.z = 0.01 + f * 0.5));
-    coreMesh.position.z = 0.03 + f * 0.8;
+    wheelSectors.forEach((m) => (m.position.z = f * 0.5));
+    coreMesh.position.z = 0.16 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2307,9 +2308,9 @@ export function buildAppleShieldArchBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt((x / archW) ** 2 + (y / archH) ** 2);
-    const dish = d * 0.24 - 0.16;
-    return isBack ? -(1 - d * 0.5) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt((x / archW) ** 2 + (y / archH) ** 2));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2318,23 +2319,23 @@ export function buildAppleShieldArchBadge(
 
   // Left & Right Pillar Inlays
   const leftPillar = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 1.6), cobaltMat);
-  leftPillar.position.set(-0.55, -0.15, 0.01);
+  leftPillar.position.set(-0.55, -0.15, 0.08);
   badge.add(leftPillar);
 
   const rightPillar = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 1.6), ivoryCeramic);
-  rightPillar.position.set(0.55, -0.15, 0.01);
+  rightPillar.position.set(0.55, -0.15, 0.08);
   badge.add(rightPillar);
 
   // Top Keystone Wedge in Gold
   const keystoneGeo = new THREE.BoxGeometry(0.42, 0.42, 0.06);
   const keystone = new THREE.Mesh(keystoneGeo, mirrorGold);
-  keystone.position.set(0, 1.48, 0.03);
+  keystone.position.set(0, 1.48, 0.05);
   badge.add(keystone);
 
   badge.setExplodedView = (f: number) => {
-    leftPillar.position.z = 0.01 + f * 0.45;
-    rightPillar.position.z = 0.01 + f * 0.45;
-    keystone.position.z = 0.03 + f * 0.8;
+    leftPillar.position.z = 0.08 + f * 0.45;
+    rightPillar.position.z = 0.08 + f * 0.45;
+    keystone.position.z = 0.05 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2362,9 +2363,9 @@ export function buildAppleWaveCrescentBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / radius;
-    const dish = d * d * 0.25 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / radius);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2374,14 +2375,14 @@ export function buildAppleWaveCrescentBadge(
   // Twilight Blue Pond
   const pondGeo = new THREE.CircleGeometry(1.44, 64);
   const pond = new THREE.Mesh(pondGeo, indigoMat);
-  pond.position.z = -0.03;
+  pond.position.z = 0.08;
   badge.add(pond);
 
   // Waxing Silver Crescent Moon Ribbon
   const crescentPts: THREE.Vector3[] = [];
   for (let i = 0; i <= 48; i++) {
     const t = (i / 48) * Math.PI - Math.PI / 2;
-    crescentPts.push(new THREE.Vector3(Math.cos(t) * 1.15 - 0.25, Math.sin(t) * 1.15, 0.02));
+    crescentPts.push(new THREE.Vector3(Math.cos(t) * 1.15 - 0.25, Math.sin(t) * 1.15, 0.14));
   }
   const crescentCurve = new THREE.CatmullRomCurve3(crescentPts);
   const crescentMesh = new THREE.Mesh(new THREE.TubeGeometry(crescentCurve, 48, 0.08, 16, false), mirrorSilver);
@@ -2389,13 +2390,13 @@ export function buildAppleWaveCrescentBadge(
 
   // Golden Solitary Polaris Star
   const starMesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.24, 0), mirrorGold);
-  starMesh.position.set(0.48, 0.35, 0.04);
+  starMesh.position.set(0.48, 0.35, 0.16);
   badge.add(starMesh);
 
   badge.setExplodedView = (f: number) => {
-    pond.position.z = -0.03 + f * 0.45;
-    crescentMesh.position.z = 0.02 + f * 0.75;
-    starMesh.position.z = 0.04 + f * 0.9;
+    pond.position.z = 0.08 + f * 0.45;
+    crescentMesh.position.z = 0.14 + f * 0.75;
+    starMesh.position.z = 0.16 + f * 0.9;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2425,9 +2426,9 @@ export function buildAppleInterlockingRingsBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt((x / a) ** 2 + (y / b) ** 2);
-    const dish = d * d * 0.24 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt((x / a) ** 2 + (y / b) ** 2));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2436,27 +2437,27 @@ export function buildAppleInterlockingRingsBadge(
 
   // Left Ring (Gold Torus + Coral Inlay)
   const leftTorus = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.055, 18, 64), mirrorGold);
-  leftTorus.position.set(-0.48, 0, 0.02);
+  leftTorus.position.set(-0.48, 0, 0.14);
   badge.add(leftTorus);
 
   const leftFill = new THREE.Mesh(new THREE.CircleGeometry(0.66, 32), coralMat);
-  leftFill.position.set(-0.48, 0, -0.02);
+  leftFill.position.set(-0.48, 0, 0.09);
   badge.add(leftFill);
 
   // Right Ring (Silver Torus + Cyan Inlay)
   const rightTorus = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.055, 18, 64), mirrorSilver);
-  rightTorus.position.set(0.48, 0, 0.03);
+  rightTorus.position.set(0.48, 0, 0.15);
   badge.add(rightTorus);
 
   const rightFill = new THREE.Mesh(new THREE.CircleGeometry(0.66, 32), cyanMat);
-  rightFill.position.set(0.48, 0, -0.02);
+  rightFill.position.set(0.48, 0, 0.09);
   badge.add(rightFill);
 
   badge.setExplodedView = (f: number) => {
-    leftFill.position.z = -0.02 + f * 0.45;
-    rightFill.position.z = -0.02 + f * 0.45;
-    leftTorus.position.z = 0.02 + f * 0.8;
-    rightTorus.position.z = 0.03 + f * 0.8;
+    leftFill.position.z = 0.09 + f * 0.45;
+    rightFill.position.z = 0.09 + f * 0.45;
+    leftTorus.position.z = 0.14 + f * 0.8;
+    rightTorus.position.z = 0.15 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2489,9 +2490,9 @@ export function buildAppleHourglassNexusBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt((x / maxW) ** 2 + (y / halfH) ** 2);
-    const dish = d * 0.24 - 0.16;
-    return isBack ? -(1 - d * 0.5) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt((x / maxW) ** 2 + (y / halfH) ** 2));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2500,23 +2501,23 @@ export function buildAppleHourglassNexusBadge(
 
   // Top Sand Chamber (Amber)
   const topSand = new THREE.Mesh(new THREE.CircleGeometry(0.82, 32), amberMat);
-  topSand.position.set(0, 0.72, 0.01);
+  topSand.position.set(0, 0.72, 0.08);
   badge.add(topSand);
 
   // Bottom Sand Chamber (Volt)
   const botSand = new THREE.Mesh(new THREE.CircleGeometry(0.82, 32), voltMat);
-  botSand.position.set(0, -0.72, 0.01);
+  botSand.position.set(0, -0.72, 0.08);
   badge.add(botSand);
 
   // Golden Waist Pinch Collar
   const waistCollar = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.14, 0.06), mirrorGold);
-  waistCollar.position.set(0, 0, 0.03);
+  waistCollar.position.set(0, 0, 0.16);
   badge.add(waistCollar);
 
   badge.setExplodedView = (f: number) => {
-    topSand.position.z = 0.01 + f * 0.45;
-    botSand.position.z = 0.01 + f * 0.45;
-    waistCollar.position.z = 0.03 + f * 0.8;
+    topSand.position.z = 0.08 + f * 0.45;
+    botSand.position.z = 0.08 + f * 0.45;
+    waistCollar.position.z = 0.16 + f * 0.8;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2547,9 +2548,9 @@ export function buildAppleSunburstRadiantBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / rOuter;
-    const dish = d * d * 0.25 - 0.16;
-    return isBack ? -(1 - d * 0.6) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / rOuter);
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2563,7 +2564,7 @@ export function buildAppleSunburstRadiantBadge(
     const a2 = ((i + 1) / 12) * Math.PI * 2;
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.Float32BufferAttribute([
-      0, 0, 0.01,
+      0, 0, 0.14,
       Math.cos(a1) * rOuter * 0.92, Math.sin(a1) * rOuter * 0.92, 0.01,
       Math.cos(a2) * rOuter * 0.92, Math.sin(a2) * rOuter * 0.92, 0.01,
     ], 3));
@@ -2576,12 +2577,12 @@ export function buildAppleSunburstRadiantBadge(
   // Central Sun Core Disc in Mirror Gold
   const sunCore = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), mirrorGold);
   sunCore.scale.set(1, 1, 0.35);
-  sunCore.position.z = 0.04;
+  sunCore.position.z = 0.16;
   badge.add(sunCore);
 
   badge.setExplodedView = (f: number) => {
-    sunRays.forEach((m) => (m.position.z = 0.01 + f * 0.5));
-    sunCore.position.z = 0.04 + f * 0.85;
+    sunRays.forEach((m) => (m.position.z = f * 0.5));
+    sunCore.position.z = 0.16 + f * 0.85;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2638,9 +2639,9 @@ export function buildAppleOwlBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt((x / 1.35) ** 2 + (y / 1.76) ** 2);
-    const dish = d * d * 0.25 - 0.16;
-    return isBack ? -(1 - d * 0.55) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt((x / 1.35) ** 2 + (y / 1.76) ** 2));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2650,12 +2651,12 @@ export function buildAppleOwlBadge(
   // Midnight Enamel Face Fill
   const faceGeo = new THREE.PlaneGeometry(2.5, 3.2, 32, 32);
   const faceMesh = new THREE.Mesh(faceGeo, sapphireMat);
-  faceMesh.position.set(0, 0, -0.015);
+  faceMesh.position.set(0, 0, 0.08);
   badge.add(faceMesh);
 
   // Group for Owl's Dual Concentric Ocular Eyes (Apple Fitness Rings motif)
   const eyesGroup = new THREE.Group();
-  eyesGroup.position.set(0, 0.42, 0.02);
+  eyesGroup.position.set(0, 0.42, 0.14);
 
   const leftEyeGroup = new THREE.Group();
   leftEyeGroup.position.set(-0.46, 0, 0);
@@ -2703,13 +2704,13 @@ export function buildAppleOwlBadge(
   const beakGeo = new THREE.ConeGeometry(0.14, 0.36, 3);
   beakGeo.rotateZ(Math.PI);
   const beakMesh = new THREE.Mesh(beakGeo, mirrorGold);
-  beakMesh.position.set(0, 0.16, 0.04);
+  beakMesh.position.set(0, 0.16, 0.18);
   beakMesh.scale.set(1.2, 1, 0.45);
   badge.add(beakMesh);
 
   // Breast Chevrons / Feather Armor Plates
   const chevronsGroup = new THREE.Group();
-  chevronsGroup.position.set(0, -0.45, 0.015);
+  chevronsGroup.position.set(0, -0.45, 0.12);
   const chevronCount = 3;
   const chevronMeshes: THREE.Mesh[] = [];
 
@@ -2726,10 +2727,10 @@ export function buildAppleOwlBadge(
   badge.add(chevronsGroup);
 
   badge.setExplodedView = (f: number) => {
-    faceMesh.position.z = -0.015 + f * 0.3;
-    eyesGroup.position.z = 0.02 + f * 0.75;
-    beakMesh.position.z = 0.04 + f * 0.95;
-    chevronsGroup.position.z = 0.015 + f * 0.6;
+    faceMesh.position.z = 0.08 + f * 0.3;
+    eyesGroup.position.z = 0.14 + f * 0.75;
+    beakMesh.position.z = 0.18 + f * 0.95;
+    chevronsGroup.position.z = 0.12 + f * 0.6;
     backMesh.position.z = -f * 0.5;
   };
 
@@ -2762,9 +2763,9 @@ export function buildAppleOctopusBadge(
   }
 
   const getZ = (x: number, y: number, isBack: boolean) => {
-    const d = Math.sqrt(x * x + y * y) / (baseR + waveAmp);
-    const dish = d * d * 0.25 - 0.16;
-    return isBack ? -(1 - d * 0.55) * 0.08 - 0.075 : dish;
+    const d = Math.min(1.0, Math.sqrt(x * x + y * y) / (baseR + waveAmp));
+    const convex = (1.0 - d * d) * 0.14;
+    return isBack ? -(1 - d * d) * 0.03 - 0.075 : convex;
   };
 
   const { badge, backMesh } = buildGenericParametricBadge(
@@ -2774,12 +2775,12 @@ export function buildAppleOctopusBadge(
   // Ocean Cyan Base Enamel Channel
   const oceanGeo = new THREE.CircleGeometry(1.58, 64);
   const oceanMesh = new THREE.Mesh(oceanGeo, cyanMat);
-  oceanMesh.position.z = -0.02;
+  oceanMesh.position.z = 0.08;
   badge.add(oceanMesh);
 
   // Central Cephalopod Mantle Dome (Sculpted in Coral Vitreous Lacquer)
   const mantleGroup = new THREE.Group();
-  mantleGroup.position.set(0, 0.15, 0.02);
+  mantleGroup.position.set(0, 0.15, 0.14);
 
   const mantleGeo = new THREE.SphereGeometry(0.54, 32, 24);
   mantleGeo.scale(1, 1.15, 0.38);
@@ -2807,7 +2808,7 @@ export function buildAppleOctopusBadge(
 
   // 8 Curving Tentacles with Golden Suction Nodes
   const tentaclesGroup = new THREE.Group();
-  tentaclesGroup.position.z = 0.01;
+  tentaclesGroup.position.z = 0.12;
   const suctionNodes: THREE.Mesh[] = [];
 
   for (let k = 0; k < 8; k++) {
@@ -2841,23 +2842,540 @@ export function buildAppleOctopusBadge(
   const pearlGeo = new THREE.SphereGeometry(0.22, 28, 28);
   pearlGeo.scale(1, 1, 0.5);
   const pearlMesh = new THREE.Mesh(pearlGeo, amberMat);
-  pearlMesh.position.set(0, -0.42, 0.05);
+  pearlMesh.position.set(0, -0.42, 0.16);
   badge.add(pearlMesh);
 
   const pearlRing = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.028, 16, 36), mirrorGold);
-  pearlRing.position.set(0, -0.42, 0.05);
+  pearlRing.position.set(0, -0.42, 0.16);
   badge.add(pearlRing);
 
   badge.setExplodedView = (f: number) => {
-    oceanMesh.position.z = -0.02 + f * 0.25;
-    tentaclesGroup.position.z = 0.01 + f * 0.55;
-    mantleGroup.position.z = 0.02 + f * 0.85;
-    pearlMesh.position.z = 0.05 + f * 1.05;
-    pearlRing.position.z = 0.05 + f * 1.05;
+    oceanMesh.position.z = 0.08 + f * 0.25;
+    tentaclesGroup.position.z = 0.12 + f * 0.55;
+    mantleGroup.position.z = 0.14 + f * 0.85;
+    pearlMesh.position.z = 0.16 + f * 1.05;
+    pearlRing.position.z = 0.16 + f * 1.05;
     backMesh.position.z = -f * 0.5;
   };
 
   return badge;
 }
+
+/**
+ * 23. PROTOTYPE 23: Deep Abyss Octopus (Subconscious Memory Vault)
+ */
+export function buildAbyssOctopusBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 26, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const spaceGray = materials.getSpaceGrayBezel(isLocked);
+  const cyanMat = materials.getColorLacquer(0x00f0ff, isLocked); // Bioluminescent Trench Cyan
+  const navyMat = materials.getColorLacquer(0x0a192f, isLocked); // Midnight Deep Trench
+  const indigoMat = materials.getColorLacquer(0x5e5ce6, isLocked); // Deep Trench Indigo
+  const backMat = materials.getAppleBackShell(earnedDate, 'DEEP ABYSS OCTOPUS', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Base Parabolic Trench Dish (Negative concave basin)
+  const baseSegments = 64;
+  const baseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.16, baseSegments);
+  const baseMesh = new THREE.Mesh(baseGeo, [spaceGray, navyMat, backMat]);
+  baseMesh.rotation.x = Math.PI / 2;
+  badge.add(baseMesh);
+
+  // Outer Aerospace Bezel Rim with Micro-Chamfer
+  const rimMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.65, 0.08, 16, 64),
+    spaceGray
+  );
+  badge.add(rimMesh);
+
+  // Cephalopod Mantle Dome (Abyssal Crest)
+  const mantleGroup = new THREE.Group();
+  const mantleGeo = new THREE.SphereGeometry(0.55, 32, 24);
+  mantleGeo.scale(1.0, 1.35, 0.45);
+  const mantleMesh = new THREE.Mesh(mantleGeo, indigoMat);
+  mantleMesh.position.set(0, 0.35, 0.06);
+  mantleGroup.add(mantleMesh);
+
+  // Bioluminescent Ocular Sensors
+  const eyeL = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.03, 12, 24), cyanMat);
+  eyeL.position.set(-0.28, 0.28, 0.15);
+  const eyeR = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.03, 12, 24), cyanMat);
+  eyeR.position.set(0.28, 0.28, 0.15);
+  mantleGroup.add(eyeL, eyeR);
+  badge.add(mantleGroup);
+
+  // 8 Spiraling Abyssal Tentacles with Bioluminescent Suction Nodes
+  const tentacleGroup = new THREE.Group();
+  for (let i = 0; i < 8; i++) {
+    const angle = (i / 8) * Math.PI * 2;
+    const spiralArm = new THREE.Mesh(
+      new THREE.TorusGeometry(0.72, 0.045, 12, 32, Math.PI * 0.75),
+      cyanMat
+    );
+    spiralArm.rotation.z = angle + 0.2;
+    tentacleGroup.add(spiralArm);
+
+    // Glowing trench suckers
+    for (let s = 1; s <= 3; s++) {
+      const dist = 0.75 + s * 0.3;
+      const sucker = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.04, 0.05, 0.02, 12),
+        spaceGray
+      );
+      sucker.position.set(Math.cos(angle + s * 0.15) * dist, Math.sin(angle + s * 0.15) * dist, 0.02);
+      sucker.rotation.x = Math.PI / 2;
+      tentacleGroup.add(sucker);
+    }
+  }
+  badge.add(tentacleGroup);
+
+  // Central Abyssal Core
+  const coreGeo = new THREE.SphereGeometry(0.24, 24, 24);
+  coreGeo.scale(1, 1, 0.4);
+  const coreMesh = new THREE.Mesh(coreGeo, cyanMat);
+  coreMesh.position.set(0, -0.35, 0.08);
+  badge.add(coreMesh);
+
+  badge.setExplodedView = (f: number) => {
+    baseMesh.position.z = -f * 0.2;
+    tentacleGroup.position.z = 0.02 + f * 0.6;
+    mantleGroup.position.z = 0.06 + f * 0.9;
+    coreMesh.position.z = 0.08 + f * 1.1;
+  };
+
+  return badge;
+}
+
+/**
+ * 24. PROTOTYPE 24: Quantum Weaver Octopus (Cross-Discipline Synaptic Nexus)
+ */
+export function buildQuantumOctopusBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 27, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const mirrorGold = materials.getMirrorGoldBezel(isLocked);
+  const voltMat = materials.getColorLacquer(0xa6ff00, isLocked); // Electric Volt Green
+  const magentaMat = materials.getColorLacquer(0xff2d55, isLocked); // Quantum Magenta
+  const amberMat = materials.getColorLacquer(0xffd60a, isLocked); // Luminous Amber
+  const backMat = materials.getAppleBackShell(earnedDate, 'QUANTUM WEAVER OCTOPUS', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Interlocking 8-Lobe Golden Base Star
+  const baseMesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.68, 1.68, 0.16, 64),
+    [mirrorGold, magentaMat, backMat]
+  );
+  baseMesh.rotation.x = Math.PI / 2;
+  badge.add(baseMesh);
+
+  // Outer 24K Gold Ring
+  const ringMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.68, 0.08, 16, 64),
+    mirrorGold
+  );
+  badge.add(ringMesh);
+
+  // Interconnected Quantum Lattice Tentacles
+  const latticeGroup = new THREE.Group();
+  for (let k = 0; k < 8; k++) {
+    const angle = (k / 8) * Math.PI * 2;
+    // Outer volt arc
+    const arcMesh = new THREE.Mesh(
+      new THREE.TorusGeometry(0.8, 0.04, 12, 32, Math.PI * 0.5),
+      voltMat
+    );
+    arcMesh.rotation.z = angle;
+    latticeGroup.add(arcMesh);
+
+    // Inner magenta diagonal nexus
+    const beam = new THREE.Mesh(
+      new THREE.BoxGeometry(0.04, 0.9, 0.03),
+      mirrorGold
+    );
+    beam.position.set(Math.cos(angle) * 0.55, Math.sin(angle) * 0.55, 0.02);
+    beam.rotation.z = angle + Math.PI / 4;
+    latticeGroup.add(beam);
+  }
+  badge.add(latticeGroup);
+
+  // Central Multifaceted Chronosphere Core
+  const coreGroup = new THREE.Group();
+  const sphereGeo = new THREE.IcosahedronGeometry(0.32, 1);
+  sphereGeo.scale(1, 1, 0.5);
+  const sphereMesh = new THREE.Mesh(sphereGeo, amberMat);
+  sphereMesh.position.z = 0.08;
+  coreGroup.add(sphereMesh);
+
+  const sphereRing = new THREE.Mesh(
+    new THREE.TorusGeometry(0.36, 0.03, 16, 36),
+    mirrorGold
+  );
+  sphereRing.position.z = 0.08;
+  coreGroup.add(sphereRing);
+  badge.add(coreGroup);
+
+  badge.setExplodedView = (f: number) => {
+    baseMesh.position.z = -f * 0.25;
+    latticeGroup.position.z = 0.02 + f * 0.65;
+    coreGroup.position.z = 0.08 + f * 1.15;
+  };
+
+  return badge;
+}
+
+/**
+ * 25. PROTOTYPE 25: Flow State Jellyfish (Pure Pelagic Flow)
+ */
+export function buildFlowJellyfishBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 25, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const mirrorSilver = materials.getMirrorSilverBezel(isLocked);
+  const azureMat = materials.getColorLacquer(0x70d7ff, isLocked); // Iridescent Pelagic Azure
+  const lavenderMat = materials.getColorLacquer(0xe5b8f4, isLocked); // Bioluminescent Lavender
+  const enamelMat = materials.getOffWhiteEnamel(isLocked);
+  const backMat = materials.getAppleBackShell(earnedDate, 'FLOW STATE JELLYFISH', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Parabolic Bell Umbrella Canopy (Top Dome Half)
+  const bellGroup = new THREE.Group();
+  const bellGeo = new THREE.SphereGeometry(1.45, 48, 24, 0, Math.PI * 2, 0, Math.PI * 0.55);
+  bellGeo.scale(1.05, 0.95, 0.4);
+  const bellMesh = new THREE.Mesh(bellGeo, azureMat);
+  bellMesh.position.set(0, 0.35, 0.02);
+  bellGroup.add(bellMesh);
+
+  // Scalloped Filleted Umbrella Rim
+  const rimGeo = new THREE.TorusGeometry(1.4, 0.07, 16, 64, Math.PI * 1.05);
+  rimGeo.rotateZ(Math.PI * 0.97);
+  const rimMesh = new THREE.Mesh(rimGeo, mirrorSilver);
+  rimMesh.position.set(0, 0.35, 0.02);
+  bellGroup.add(rimMesh);
+
+  // Inner Bell Radiating Channels
+  for (let r = 0; r < 7; r++) {
+    const angle = Math.PI * 0.15 + (r / 6) * Math.PI * 0.7;
+    const rib = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.75, 0.02), enamelMat);
+    rib.position.set(Math.cos(angle) * 0.65, 0.35 + Math.sin(angle) * 0.45, 0.06);
+    rib.rotation.z = angle - Math.PI / 2;
+    bellGroup.add(rib);
+  }
+  badge.add(bellGroup);
+
+  // Descending Undulating Tentacle Ribbons
+  const tentacleGroup = new THREE.Group();
+  const ribbonCount = 7;
+  for (let t = 0; t < ribbonCount; t++) {
+    const xPos = -0.9 + (t / (ribbonCount - 1)) * 1.8;
+    const waveMat = t % 2 === 0 ? lavenderMat : mirrorSilver;
+    const curve = new THREE.Mesh(
+      new THREE.TorusGeometry(0.45, 0.035, 10, 24, Math.PI * 0.85),
+      waveMat
+    );
+    curve.position.set(xPos, -0.45 - (t % 3) * 0.15, 0.04 + (t % 2) * 0.03);
+    curve.rotation.z = (t % 2 === 0 ? 1 : -1) * 0.45;
+    tentacleGroup.add(curve);
+  }
+  badge.add(tentacleGroup);
+
+  // Ceramic Back Base Plate
+  const backBaseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.14, 64);
+  const backBase = new THREE.Mesh(backBaseGeo, [mirrorSilver, azureMat, backMat]);
+  backBase.rotation.x = Math.PI / 2;
+  backBase.position.z = -0.06;
+  badge.add(backBase);
+
+  badge.setExplodedView = (f: number) => {
+    backBase.position.z = -0.06 - f * 0.35;
+    bellGroup.position.z = 0.02 + f * 0.65;
+    tentacleGroup.position.z = 0.04 + f * 1.1;
+  };
+
+  return badge;
+}
+
+/**
+ * 26. PROTOTYPE 26: Cosmic Nebula Jellyfish (Celestial Curiosity Pulse)
+ */
+export function buildNebulaJellyfishBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 26, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const spaceGray = materials.getSpaceGrayBezel(isLocked);
+  const violetMat = materials.getColorLacquer(0xbf5af2, isLocked); // Deep Galactic Nebula Violet
+  const solarMat = materials.getColorLacquer(0xffd60a, isLocked); // Solar Gold
+  const cyanMat = materials.getColorLacquer(0x00f0ff, isLocked); // Cosmic Cyan
+  const backMat = materials.getAppleBackShell(earnedDate, 'COSMIC NEBULA JELLYFISH', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Space Gray Titanium Unibody Base Disc
+  const baseMesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    [spaceGray, violetMat, backMat]
+  );
+  baseMesh.rotation.x = Math.PI / 2;
+  badge.add(baseMesh);
+
+  // Outer Space Gray Chamfer Rim
+  const rimMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.65, 0.08, 16, 64),
+    spaceGray
+  );
+  badge.add(rimMesh);
+
+  // Dual Concentric Cosmic Bell Dome
+  const domeGroup = new THREE.Group();
+  const outerDome = new THREE.Mesh(
+    new THREE.TorusGeometry(1.15, 0.06, 16, 48, Math.PI * 1.1),
+    solarMat
+  );
+  outerDome.position.set(0, 0.3, 0.04);
+  outerDome.rotation.z = Math.PI * 0.95;
+  domeGroup.add(outerDome);
+
+  const innerDome = new THREE.Mesh(
+    new THREE.SphereGeometry(0.85, 32, 16, 0, Math.PI * 2, 0, Math.PI * 0.5),
+    violetMat
+  );
+  innerDome.scale.set(1.0, 0.75, 0.35);
+  innerDome.position.set(0, 0.35, 0.03);
+  domeGroup.add(innerDome);
+  badge.add(domeGroup);
+
+  // Trailing Cosmic Stellar Ribbons with Cyan Nodes
+  const tendrilGroup = new THREE.Group();
+  for (let k = 0; k < 6; k++) {
+    const x = -0.7 + (k / 5) * 1.4;
+    const tendril = new THREE.Mesh(
+      new THREE.TorusGeometry(0.5, 0.035, 10, 24, Math.PI * 0.8),
+      k % 2 === 0 ? spaceGray : solarMat
+    );
+    tendril.position.set(x, -0.4 - (k % 2) * 0.2, 0.05);
+    tendril.rotation.z = (k % 2 === 0 ? 0.35 : -0.35);
+    tendrilGroup.add(tendril);
+
+    const starNode = new THREE.Mesh(
+      new THREE.SphereGeometry(0.06, 12, 12),
+      cyanMat
+    );
+    starNode.position.set(x + (k % 2 === 0 ? 0.2 : -0.2), -0.85, 0.07);
+    tendrilGroup.add(starNode);
+  }
+  badge.add(tendrilGroup);
+
+  badge.setExplodedView = (f: number) => {
+    baseMesh.position.z = -f * 0.25;
+    domeGroup.position.z = 0.03 + f * 0.75;
+    tendrilGroup.position.z = 0.05 + f * 1.15;
+  };
+
+  return badge;
+}
+
+/**
+ * 27. PROTOTYPE 27: Aquila Sovereign Eagle (Pinnacle Macro-Synthesis Framework)
+ */
+export function buildSovereignEagleBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 28, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const mirrorGold = materials.getMirrorGoldBezel(isLocked);
+  const crimsonMat = materials.getColorLacquer(0xfa114f, isLocked); // Imperial Crimson
+  const amberMat = materials.getColorLacquer(0xffd60a, isLocked); // Piercing Luminous Gaze
+  const darkChannel = materials.getGrooveChannelMaterial();
+  const backMat = materials.getAppleBackShell(earnedDate, 'AQUILA SOVEREIGN EAGLE', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Swept Aerodynamic Base Medallion
+  const baseMesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.68, 1.68, 0.16, 64),
+    [mirrorGold, crimsonMat, backMat]
+  );
+  baseMesh.rotation.x = Math.PI / 2;
+  badge.add(baseMesh);
+
+  // 24K Outer Mirror Rim
+  const rimMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.68, 0.08, 16, 64),
+    mirrorGold
+  );
+  badge.add(rimMesh);
+
+  // Swept Golden Wing Blades (Left & Right)
+  const wingGroup = new THREE.Group();
+  for (let side = -1; side <= 1; side += 2) {
+    for (let f = 0; f < 4; f++) {
+      const featherGeo = new THREE.BoxGeometry(0.65 + f * 0.18, 0.14, 0.04);
+      const feather = new THREE.Mesh(featherGeo, mirrorGold);
+      feather.position.set(side * (0.65 + f * 0.2), 0.25 + f * 0.28, 0.04 + f * 0.015);
+      feather.rotation.z = side * (0.35 + f * 0.16);
+      wingGroup.add(feather);
+    }
+  }
+  badge.add(wingGroup);
+
+  // Sculpted Eagle Head & Raptor Beak Crest
+  const headGroup = new THREE.Group();
+  // Skull crest
+  const skullGeo = new THREE.SphereGeometry(0.38, 24, 24);
+  skullGeo.scale(0.85, 1.15, 0.55);
+  const skull = new THREE.Mesh(skullGeo, crimsonMat);
+  skull.position.set(0, 0.15, 0.06);
+  headGroup.add(skull);
+
+  // Brow Ridge visor
+  const browGeo = new THREE.TorusGeometry(0.32, 0.04, 12, 24, Math.PI * 0.7);
+  browGeo.rotateZ(Math.PI * 0.15);
+  const brow = new THREE.Mesh(browGeo, mirrorGold);
+  brow.position.set(0, 0.32, 0.12);
+  headGroup.add(brow);
+
+  // Curving Sharp Beak
+  const beakGeo = new THREE.ConeGeometry(0.18, 0.48, 8);
+  const beak = new THREE.Mesh(beakGeo, mirrorGold);
+  beak.position.set(0, -0.15, 0.14);
+  beak.rotation.z = Math.PI;
+  beak.rotation.x = -0.35;
+  headGroup.add(beak);
+
+  // Piercing Eyes
+  const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), amberMat);
+  eyeL.position.set(-0.2, 0.22, 0.12);
+  const eyeR = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), amberMat);
+  eyeR.position.set(0.2, 0.22, 0.12);
+  headGroup.add(eyeL, eyeR);
+  badge.add(headGroup);
+
+  badge.setExplodedView = (f: number) => {
+    baseMesh.position.z = -f * 0.25;
+    wingGroup.position.z = 0.04 + f * 0.65;
+    headGroup.position.z = 0.06 + f * 1.1;
+  };
+
+  return badge;
+}
+
+/**
+ * 28. PROTOTYPE 28: Archimedes Clockwork Owl (Chrono-Analytical Rigor)
+ */
+export function buildClockworkOwlBadge(
+  materials: AppleAwardMaterials,
+  earnedDate: string = 'OCTOBER 28, 2026',
+  isLocked: boolean = false
+): AppleBadgeMeshGroup {
+  const mirrorGold = materials.getMirrorGoldBezel(isLocked);
+  const emeraldMat = materials.getColorLacquer(0x30d158, isLocked); // Precision Emerald Green
+  const cyanMat = materials.getColorLacquer(0x00f0ff, isLocked); // Sapphire Pivot Jewel
+  const brassMat = materials.getColorLacquer(0xffd97d, isLocked); // Brushed Brass
+  const backMat = materials.getAppleBackShell(earnedDate, 'ARCHIMEDES CLOCKWORK OWL', isLocked);
+
+  const badge = new THREE.Group() as AppleBadgeMeshGroup;
+
+  // Mechanical Outer Bezel with Lathe-turned Notches
+  const baseMesh = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    [mirrorGold, emeraldMat, backMat]
+  );
+  baseMesh.rotation.x = Math.PI / 2;
+  badge.add(baseMesh);
+
+  // Outer 24K Gold Chamfer
+  const rimMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.65, 0.08, 16, 64),
+    mirrorGold
+  );
+  badge.add(rimMesh);
+
+  // Clockwork Epicyclic Ear Gears
+  const gearGroup = new THREE.Group();
+  for (let side = -1; side <= 1; side += 2) {
+    const gearEar = new THREE.Mesh(
+      new THREE.TorusGeometry(0.35, 0.05, 12, 16),
+      mirrorGold
+    );
+    gearEar.position.set(side * 0.72, 1.25, 0.04);
+    gearGroup.add(gearEar);
+  }
+  badge.add(gearGroup);
+
+  // Stereoscopic Geared Ocular Apertures (Eyes)
+  const ocularGroup = new THREE.Group();
+  for (let side = -1; side <= 1; side += 2) {
+    // Outer Gear Rim
+    const eyeGear = new THREE.Mesh(
+      new THREE.TorusGeometry(0.38, 0.05, 16, 24),
+      mirrorGold
+    );
+    eyeGear.position.set(side * 0.48, 0.35, 0.08);
+    ocularGroup.add(eyeGear);
+
+    // Inner Concentric Brass Ring
+    const innerRing = new THREE.Mesh(
+      new THREE.TorusGeometry(0.24, 0.035, 12, 20),
+      brassMat
+    );
+    innerRing.position.set(side * 0.48, 0.35, 0.09);
+    ocularGroup.add(innerRing);
+
+    // Central Sapphire Jewel Pivot
+    const pivotJewel = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 16, 16),
+      cyanMat
+    );
+    pivotJewel.scale.set(1, 1, 0.5);
+    pivotJewel.position.set(side * 0.48, 0.35, 0.12);
+    ocularGroup.add(pivotJewel);
+  }
+  badge.add(ocularGroup);
+
+  // Mechanical Beak Escapement
+  const escapement = new THREE.Mesh(
+    new THREE.ConeGeometry(0.18, 0.38, 4),
+    mirrorGold
+  );
+  escapement.position.set(0, 0.05, 0.11);
+  escapement.rotation.z = Math.PI;
+  badge.add(escapement);
+
+  // Layered Emerald Breast Plates (Micro-Machined Scales)
+  const scalesGroup = new THREE.Group();
+  for (let row = 0; row < 3; row++) {
+    const count = 3 + row;
+    for (let c = 0; c < count; c++) {
+      const x = -0.45 + (c / (count - 1)) * 0.9;
+      const y = -0.25 - row * 0.28;
+      const scaleMesh = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.14, 0.14, 0.03, 16),
+        row % 2 === 0 ? emeraldMat : brassMat
+      );
+      scaleMesh.position.set(x, y, 0.05 + row * 0.02);
+      scaleMesh.rotation.x = Math.PI / 2;
+      scalesGroup.add(scaleMesh);
+    }
+  }
+  badge.add(scalesGroup);
+
+  badge.setExplodedView = (f: number) => {
+    baseMesh.position.z = -f * 0.25;
+    gearGroup.position.z = 0.04 + f * 0.55;
+    ocularGroup.position.z = 0.08 + f * 0.95;
+    scalesGroup.position.z = 0.05 + f * 0.75;
+    escapement.position.z = 0.11 + f * 1.15;
+  };
+
+  return badge;
+}
+
 
 

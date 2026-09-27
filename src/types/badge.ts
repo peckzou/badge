@@ -22,7 +22,13 @@ export type BadgePrototypeId =
   | 'hourglass-nexus'
   | 'sunburst-radiant'
   | 'owl-wisdom'
-  | 'octopus-polymath';
+  | 'octopus-polymath'
+  | 'octopus-abyss'
+  | 'octopus-quantum'
+  | 'jellyfish-flow'
+  | 'jellyfish-nebula'
+  | 'eagle-sovereign'
+  | 'owl-clockwork';
 
 export type BadgeCategory =
   | 'Close Your Study Rings'
@@ -58,6 +64,12 @@ export type BadgeStyleType =
   | 'sunburst-radiant'
   | 'owl-wisdom'
   | 'octopus-polymath'
+  | 'octopus-abyss'
+  | 'octopus-quantum'
+  | 'jellyfish-flow'
+  | 'jellyfish-nebula'
+  | 'eagle-sovereign'
+  | 'owl-clockwork'
   | 'wireframe-dark';
 
 export interface BadgeModel {
@@ -130,6 +142,18 @@ export function getBadgePrototypeId(style: BadgeStyleType): BadgePrototypeId {
       return 'owl-wisdom';
     case 'octopus-polymath':
       return 'octopus-polymath';
+    case 'octopus-abyss':
+      return 'octopus-abyss';
+    case 'octopus-quantum':
+      return 'octopus-quantum';
+    case 'jellyfish-flow':
+      return 'jellyfish-flow';
+    case 'jellyfish-nebula':
+      return 'jellyfish-nebula';
+    case 'eagle-sovereign':
+      return 'eagle-sovereign';
+    case 'owl-clockwork':
+      return 'owl-clockwork';
     default:
       return 'perfect-week-study';
   }

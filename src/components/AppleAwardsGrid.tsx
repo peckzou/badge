@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BadgeModel, BadgeCategory, BadgePrototypeId, getBadgePrototypeId } from '../types/badge';
-import { BadgeCanvas } from './BadgeCanvas';
+import { BadgeModel, BadgeCategory } from '../types/badge';
+import { BadgePreview } from './BadgePreview';
 import { triggerHaptic } from '../utils/haptics';
 import { spatialAudio } from '../utils/spatialAudio';
 
@@ -151,13 +151,8 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
 
       {/* 3. Apple 2-Column Responsive Card Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredAwards.map((award) => {
+        {filteredAwards.map((award, index) => {
           const isProgress = award.state === 'progress';
-          const protoId: BadgePrototypeId = getBadgePrototypeId(award.badgeStyle);
-
-          const parsedColor = award.colorTheme?.primary
-            ? parseInt(award.colorTheme.primary.replace('#', '0x'), 16)
-            : undefined;
 
           return (
             <div
@@ -181,14 +176,10 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
               </div>
 
               {/* 3D Floating Badge Thumbnail Stage */}
-              <div className="relative w-full h-[180px] flex items-center justify-center my-2">
-                <BadgeCanvas
-                  prototypeId={protoId}
-                  state={award.state}
-                  viewAngle="front"
-                  earnedDate={award.earnedDate}
-                  badgeTitle={award.name}
-                  colorHex={parsedColor}
+              <div className="relative w-full h-[180px] flex items-center justify-center my-2 group-hover:scale-105 transition-transform duration-300 ease-out">
+                <BadgePreview
+                  badge={award}
+                  priority={index < 6}
                   className="w-full h-full pointer-events-none"
                 />
               </div>

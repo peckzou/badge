@@ -15,6 +15,8 @@ interface BadgeCanvasProps {
   ambientIntensity?: number;
   colorTemperature?: number;
   specularGloss?: number;
+  autoEntranceSpin?: boolean;
+  onEntranceSpinStateChange?: (isSpinning: boolean) => void;
   className?: string;
   onSceneReady?: (controller: AppleBadgeSceneController) => void;
   onUnlockStepChange?: (step: number, stepName: string) => void;
@@ -32,6 +34,8 @@ export const BadgeCanvas: React.FC<BadgeCanvasProps> = ({
   ambientIntensity,
   colorTemperature,
   specularGloss,
+  autoEntranceSpin = true,
+  onEntranceSpinStateChange,
   className = '',
   onSceneReady,
   onUnlockStepChange,
@@ -53,6 +57,8 @@ export const BadgeCanvas: React.FC<BadgeCanvasProps> = ({
       ambientIntensity,
       colorTemperature,
       specularGloss,
+      autoEntranceSpin,
+      onEntranceSpinStateChange,
       onUnlockStepChange,
       onUnlockComplete,
     });

@@ -6,21 +6,34 @@ import { AppleAwardDetailView } from './components/AppleAwardDetailView';
 import { AppleTabBar } from './components/AppleTabBar';
 import { AppleUnlockModal } from './components/AppleUnlockModal';
 import { BadgeCanvas } from './components/BadgeCanvas';
+import { BadgePreview } from './components/BadgePreview';
 import { CollectionSummary } from './components/CollectionSummary';
+import { ArchiveHubModal } from './components/ArchiveHubModal';
 import { spatialAudio } from './utils/spatialAudio';
 import { triggerHaptic } from './utils/haptics';
+import { badgePreviewService } from './services/BadgePreviewService';
 
 export default function App() {
   const [awards, setAwards] = useState<BadgeModel[]>(APPLE_LEARNING_AWARDS_CATALOG);
   const [selectedAward, setSelectedAward] = useState<BadgeModel | null>(null);
   const [unlockModalBadge, setUnlockModalBadge] = useState<BadgeModel | null>(null);
+  const [isArchiveModalOpen, setIsArchiveModalOpen] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'awards' | 'summary' | 'decks' | 'focus'>('awards');
   const [galleryMode, setGalleryMode] = useState<'grid' | 'comparison'>('grid');
   const [audioState, setAudioState] = useState(() => spatialAudio.getState());
 
   useEffect(() => {
+    badgePreviewService.preloadCatalog(awards);
     return spatialAudio.subscribe((s) => setAudioState(s));
   }, []);
+
+  useEffect(() => {
+    if (selectedAward) {
+      badgePreviewService.pause();
+    } else {
+      badgePreviewService.resume();
+    }
+  }, [selectedAward]);
 
   const handleTriggerUnlock = (badgeId: string) => {
     const badge = awards.find((b) => b.id === badgeId) || awards[0];
@@ -151,25 +164,23 @@ export default function App() {
               </button>
             </div>
 
-            <a
-              href="/badge3.0.html"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               onClick={() => {
                 triggerHaptic('tap');
                 spatialAudio.playClink('facet', 0);
+                setIsArchiveModalOpen(true);
               }}
-              className="px-3 py-1 rounded-full text-xs font-medium bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-white/[0.12] text-white/90 hover:text-white flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
-              title="Open Standalone badge3.0.html Archive (Direct Preview)"
+              className="px-3 py-1 rounded-full text-xs font-medium bg-[#1C1C1E] hover:bg-[#2C2C2E] border border-[#00F0FF]/30 text-white flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
+              title="打开 3.0 / 2.0 归档文件中心 (下载 & 免弹窗应用内实时预览)"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]"></span>
-              <span>badge3.0.html</span>
-              <svg className="w-3 h-3 text-[#8E8E93]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
+              <div className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></div>
+              <span className="font-semibold">归档中心 (v3.0)</span>
+              <svg className="w-3.5 h-3.5 text-[#8E8E93]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -275,7 +286,7 @@ export default function App() {
                 Three Apple Learning Award Directions
               </h2>
               <p className="text-xs sm:text-sm text-[#8E8E93] leading-relaxed">
-                Slim, dished concave physical medals with parabolic dish curvature and laser-engraved space gray unibody backs.
+                Slim, convex crowned physical medals with tactile pebble-pillow curvature and laser-engraved space gray unibody backs.
               </p>
             </div>
 
@@ -294,14 +305,13 @@ export default function App() {
                     Perfect Week (Study)
                   </h3>
                   <p className="text-xs text-[#8E8E93] mt-1">
-                    Slim concave parabolic dish, mirror chamfer bevel, Study crimson lacquer, satin bone enamel, and laser back shell.
+                    Slim convex pebble crowned face, mirror chamfer bevel, Study crimson lacquer, satin bone enamel, and laser back shell.
                   </p>
                 </div>
                 <div className="w-full h-[220px]">
-                  <BadgeCanvas
-                    prototypeId="perfect-week-study"
-                    state="unlocked"
-                    viewAngle="angled"
+                  <BadgePreview
+                    badge={awards[0]}
+                    priority={true}
                     className="w-full h-full pointer-events-none"
                   />
                 </div>
@@ -326,14 +336,13 @@ export default function App() {
                     100 Cards Mastered
                   </h3>
                   <p className="text-xs text-[#8E8E93] mt-1">
-                    Slim fluted gold chassis, dished toroidal concentric tubular rings, and intersecting ribbon loops.
+                    Slim fluted gold chassis, convex stepped toroidal concentric tubular rings, and intersecting ribbon loops.
                   </p>
                 </div>
                 <div className="w-full h-[220px]">
-                  <BadgeCanvas
-                    prototypeId="tricentric-learning"
-                    state="unlocked"
-                    viewAngle="angled"
+                  <BadgePreview
+                    badge={awards[4]}
+                    priority={true}
                     className="w-full h-full pointer-events-none"
                   />
                 </div>
@@ -358,14 +367,13 @@ export default function App() {
                     September Learning Sprint
                   </h3>
                   <p className="text-xs text-[#8E8E93] mt-1">
-                    Slim concave dished golden chassis, multi-plane landscape enamel plates, and continuous 3D ribbon.
+                    Slim convex crowned golden chassis, multi-plane landscape enamel plates, and continuous 3D ribbon.
                   </p>
                 </div>
                 <div className="w-full h-[220px]">
-                  <BadgeCanvas
-                    prototypeId="challenge-september-sprint"
-                    state="unlocked"
-                    viewAngle="angled"
+                  <BadgePreview
+                    badge={awards[6]}
+                    priority={true}
                     className="w-full h-full pointer-events-none"
                   />
                 </div>
@@ -395,6 +403,12 @@ export default function App() {
         isOpen={unlockModalBadge !== null}
         onClose={() => setUnlockModalBadge(null)}
         onConfirmUnlock={handleConfirmUnlock}
+      />
+
+      {/* Version Archive Hub Modal */}
+      <ArchiveHubModal
+        isOpen={isArchiveModalOpen}
+        onClose={() => setIsArchiveModalOpen(false)}
       />
 
       {/* Floating Apple Bottom Tab Bar */}

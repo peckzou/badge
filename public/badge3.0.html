@@ -355,7 +355,7 @@
   <section id="view-comparison" class="max-w-5xl mx-auto px-4 py-8 space-y-8 hidden">
     <div class="text-center max-w-2xl mx-auto space-y-2">
       <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Three Architectural Award Directions</h2>
-      <p class="text-xs sm:text-sm text-[#8E8E93]">Slim concave parabolic physical medals, mirror chamfers, and satin ceramic unibody backs.</p>
+      <p class="text-xs sm:text-sm text-[#8E8E93]">Slim convex crowned physical medals, mirror chamfers, and satin ceramic unibody backs.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <!-- Direction A -->
@@ -363,7 +363,7 @@
         <div>
           <div class="text-xs font-semibold text-[#FA114F] uppercase tracking-wider">Direction A</div>
           <h3 class="text-lg font-bold text-white mt-1">Perfect Week (Study)</h3>
-          <p class="text-xs text-[#8E8E93] mt-1">Concave parabolic dish with Study crimson lacquer and mirror chamfer bevel.</p>
+          <p class="text-xs text-[#8E8E93] mt-1">Convex crowned pebble face with Study crimson lacquer and mirror chamfer bevel.</p>
         </div>
         <div class="w-full h-[200px] flex items-center justify-center">
           <div class="w-28 h-28 rounded-full border border-white/10 flex items-center justify-center shadow-lg" style="background: radial-gradient(circle at 35% 35%, #FA114F 0%, #151517 75%);">
@@ -429,18 +429,29 @@
       <div class="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#8E8E93]">
         Minest Badge 3.0 Inspection
       </div>
-      <button id="modal-flip-btn" class="px-3.5 py-1.5 rounded-full bg-[#1C1C1E] border border-white/10 text-xs font-semibold text-white pill-btn flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-        </svg>
-        <span>Flip 180°</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <button id="modal-unlock-btn" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#FA114F]/25 to-[#00F0FF]/25 border border-white/20 text-xs font-semibold text-white pill-btn flex items-center gap-1.5 hover:border-white/40 active:scale-95 transition-all" title="播放 Apple 风格拟物解锁过场动画">
+          <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+          <span>Apple 解锁动画</span>
+        </button>
+        <button id="modal-flip-btn" class="px-3.5 py-1.5 rounded-full bg-[#1C1C1E] border border-white/10 text-xs font-semibold text-white pill-btn flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+          </svg>
+          <span>Flip 180°</span>
+        </button>
+      </div>
     </div>
 
     <!-- 3D Stage Container -->
     <div class="relative w-full max-w-lg mx-auto flex-1 min-h-[360px] sm:min-h-[420px] flex items-center justify-center px-4 my-auto">
       <div id="modal-canvas-box" class="relative w-full h-[360px] sm:h-[420px] rounded-[36px] border border-white/10 overflow-hidden bg-gradient-to-b from-white/[0.03] to-transparent shadow-2xl">
         <div id="modal-canvas-target" class="w-full h-full cursor-grab active:cursor-grabbing touch-none"></div>
+
+        <!-- Unlock Stage Status Banner -->
+        <div id="unlock-status-banner" class="absolute bottom-4 inset-x-4 mx-auto max-w-sm px-4 py-2 rounded-2xl bg-black/85 border border-[#00F0FF]/40 backdrop-blur-md text-center text-xs font-medium text-white shadow-2xl hidden transition-all z-20">
+          <span id="unlock-status-text">Apple 解锁过场中...</span>
+        </div>
 
         <div class="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[10px] text-[#8E8E93] pointer-events-none">
           <svg class="w-3 h-3 text-[#00F0FF] animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -646,6 +657,14 @@
       { id: 'cards-5000', name: '5,000 Cards Mastered', category: 'Learning Milestones', style: 'infinity-loop', earnedDate: 'SEPTEMBER 1, 2026', earnedCount: 1, color: '#30D158', bezel: 'gold', desc: 'Encyclopedic intellect: 5,000 cards in permanent recall.', shape: 'Möbius Ribbon' },
       { id: 'polyglot', name: 'Polyglot Linguistics Mastery', category: 'Academic Disciplines', style: 'interlocking-rings', earnedDate: 'SEPTEMBER 1, 2026', earnedCount: 1, color: '#00F0FF', bezel: 'gold', desc: 'Mastered 1,500 vocabulary words in foreign languages.', shape: 'Dual-Venn Rings' },
       { id: 'algorithms', name: 'Systems Architecture & Algorithms', category: 'Academic Disciplines', style: 'rhombus-diamond', earnedDate: 'JULY 28, 2026', earnedCount: 1, color: '#30D158', bezel: 'silver', desc: 'Recall of core algorithmic structures & complexity proofs.', shape: 'Brilliant Diamond' },
+      { id: 'night-owl-scholar', name: '夜鹰学者 · 雅典娜智慧之枭 Night Owl Scholar', category: 'Learning Milestones', style: 'owl-wisdom', earnedDate: 'OCTOBER 24, 2026', earnedCount: 1, color: '#5E5CE6', bezel: 'space-gray', desc: 'Embodying Athena’s legendary owl of nocturnal wisdom. Awarded for mastering 50+ quiet nighttime study hours with deep focus.', shape: 'Nocturnal Owl Silhouette' },
+      { id: 'octopus-polymath', name: '八爪博学全才 Octopus Polymath', category: 'Academic Disciplines', style: 'octopus-polymath', earnedDate: 'OCTOBER 28, 2026', earnedCount: 1, color: '#FF2D55', bezel: 'gold', desc: 'Simultaneously mastered flashcard decks across 8 distinct knowledge disciplines. Omniscient multitasking intellect.', shape: 'Eight-Tentacle Crest' },
+      { id: 'deep-abyss-octopus', name: '深渊潜思章鱼 Deep Abyss Octopus', category: 'Learning Milestones', style: 'octopus-abyss', earnedDate: 'OCTOBER 26, 2026', earnedCount: 2, color: '#00F0FF', bezel: 'space-gray', desc: 'Anchored 1,000 flashcards into deep permanent subconscious memory with high stability.', shape: 'Abyssal Trench Spiral' },
+      { id: 'quantum-weaver-octopus', name: '量子织网章鱼 Quantum Weaver Octopus', category: 'Academic Disciplines', style: 'octopus-quantum', earnedDate: 'OCTOBER 27, 2026', earnedCount: 1, color: '#A6FF00', bezel: 'gold', desc: 'Constructed multi-disciplinary synthesis nodes bridging STEM, philosophy, and computing.', shape: 'Quantum Synaptic Toroid' },
+      { id: 'flow-state-jellyfish', name: '心流澄明水母 Flow State Jellyfish', category: 'Close Your Study Rings', style: 'jellyfish-flow', earnedDate: 'OCTOBER 25, 2026', earnedCount: 4, color: '#70D7FF', bezel: 'silver', desc: 'Achieved 10 consecutive frictionless 90-minute deep flow sessions without distraction.', shape: 'Pelagic Dome with Tendril Ribbons' },
+      { id: 'nebula-pulse-jellyfish', name: '星云游弋水母 Cosmic Nebula Jellyfish', category: 'Limited Challenges', style: 'jellyfish-nebula', earnedDate: 'OCTOBER 26, 2026', earnedCount: 1, color: '#BF5AF2', bezel: 'space-gray', desc: 'Conquered the 30-Day Galactic Exploration Challenge with steady curiosity pulses.', shape: 'Dual Concentric Nebula Bell' },
+      { id: 'sovereign-eagle-vision', name: '苍穹金鹰 · 宏观知见 Aquila Sovereign Eagle', category: 'Learning Milestones', style: 'eagle-sovereign', earnedDate: 'OCTOBER 28, 2026', earnedCount: 1, color: '#FA114F', bezel: 'gold', desc: 'Architected grand macro-synthesis frameworks unifying entire domains of knowledge.', shape: 'Swept Wing Blades & Raptor Beak' },
+      { id: 'clockwork-owl-intellect', name: '阿基米德机械之枭 Archimedes Clockwork Owl', category: 'Academic Disciplines', style: 'owl-clockwork', earnedDate: 'IN PROGRESS (44/50)', earnedCount: 0, color: '#30D158', bezel: 'gold', desc: 'Mastered 50 complex algorithmic and mathematical proofs with clockwork consistency.', shape: 'Epicyclic Gears & Chrono-Aperture' },
       { id: 'study-goals-365', name: '365 Days of Learning', category: 'Learning Milestones', style: 'faceted-shield', earnedDate: 'IN PROGRESS (309/365)', earnedCount: 0, color: '#8E8E93', bezel: 'silver', desc: 'Reach study goal 365 times. Currently 309 of 365.', shape: 'Progress Wafer' }
     ];
 
@@ -655,17 +674,19 @@
     function buildBadge3D(badge) {
       const group = new THREE.Group();
       const isGold = badge.bezel === 'gold';
+      const isSpaceGray = badge.bezel === 'space-gray';
+      const bezelColor = isGold ? 0xE6C670 : isSpaceGray ? 0x383B44 : 0xE0E0E5;
       const bezelMat = new THREE.MeshStandardMaterial({
-        color: isGold ? 0xE6C670 : 0xE0E0E5,
-        metalness: 0.92,
-        roughness: 0.22,
+        color: bezelColor,
+        metalness: isSpaceGray ? 0.88 : 0.94,
+        roughness: isSpaceGray ? 0.35 : 0.18,
         side: THREE.DoubleSide
       });
       const parsedColor = parseInt(badge.color.replace('#', '0x'), 16);
       const enamelMat = new THREE.MeshStandardMaterial({
         color: parsedColor,
-        roughness: 0.2,
-        metalness: 0.25,
+        roughness: 0.15,
+        metalness: 0.22,
         side: THREE.DoubleSide
       });
       const backMat = new THREE.MeshStandardMaterial({
@@ -676,16 +697,180 @@
         side: THREE.DoubleSide
       });
 
-      // Front Face
-      const frontGeo = new THREE.CylinderGeometry(1.6, 1.6, 0.18, 64);
-      const frontMesh = new THREE.Mesh(frontGeo, [bezelMat, enamelMat, backMat]);
-      frontMesh.rotation.x = Math.PI / 2;
-      group.add(frontMesh);
+      if (badge.style === 'owl-wisdom') {
+        const bodyGeo = new THREE.CylinderGeometry(1.4, 1.1, 0.2, 48);
+        const bodyMesh = new THREE.Mesh(bodyGeo, [bezelMat, enamelMat, backMat]);
+        bodyMesh.rotation.x = Math.PI / 2;
+        group.add(bodyMesh);
 
-      // Bevel ring
-      const ringGeo = new THREE.TorusGeometry(1.6, 0.08, 16, 64);
-      const ringMesh = new THREE.Mesh(ringGeo, bezelMat);
-      group.add(ringMesh);
+        const earGeo = new THREE.ConeGeometry(0.35, 0.6, 16);
+        const earL = new THREE.Mesh(earGeo, bezelMat);
+        earL.position.set(-0.7, 1.35, 0);
+        earL.rotation.z = 0.25;
+        const earR = new THREE.Mesh(earGeo, bezelMat);
+        earR.position.set(0.7, 1.35, 0);
+        earR.rotation.z = -0.25;
+        group.add(earL, earR);
+
+        const eyeMat = new THREE.MeshStandardMaterial({ color: 0xFFD60A, roughness: 0.1, metalness: 0.6 });
+        const eyeGeo = new THREE.TorusGeometry(0.3, 0.08, 16, 32);
+        const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+        eyeL.position.set(-0.48, 0.35, 0.12);
+        const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
+        eyeR.position.set(0.48, 0.35, 0.12);
+        group.add(eyeL, eyeR);
+
+        const beakGeo = new THREE.ConeGeometry(0.18, 0.36, 4);
+        const beak = new THREE.Mesh(beakGeo, bezelMat);
+        beak.position.set(0, 0.05, 0.14);
+        beak.rotation.z = Math.PI;
+        group.add(beak);
+      } else if (badge.style === 'octopus-polymath') {
+        const centerGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.2, 48);
+        const centerMesh = new THREE.Mesh(centerGeo, [bezelMat, enamelMat, backMat]);
+        centerMesh.rotation.x = Math.PI / 2;
+        group.add(centerMesh);
+
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          const tentacleGeo = new THREE.TorusGeometry(0.55, 0.1, 12, 24, Math.PI * 1.1);
+          const tentacle = new THREE.Mesh(tentacleGeo, bezelMat);
+          tentacle.position.set(Math.cos(angle) * 1.3, Math.sin(angle) * 1.3, 0.02);
+          tentacle.rotation.z = angle + Math.PI / 4;
+          group.add(tentacle);
+        }
+
+        const pearlMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.1, metalness: 0.2 });
+        const pearlGeo = new THREE.SphereGeometry(0.36, 24, 24);
+        const pearl = new THREE.Mesh(pearlGeo, pearlMat);
+        pearl.position.z = 0.12;
+        group.add(pearl);
+      } else if (badge.style === 'octopus-abyss') {
+        // Deep Abyss Octopus (Space gray + bioluminescent trench cyan)
+        const baseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64);
+        const baseMesh = new THREE.Mesh(baseGeo, [bezelMat, enamelMat, backMat]);
+        baseMesh.rotation.x = Math.PI / 2;
+        group.add(baseMesh);
+
+        // 8 Spiraling Abyss tentacles
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          const arm = new THREE.Mesh(new THREE.TorusGeometry(0.65, 0.04, 12, 24, Math.PI * 0.75), bezelMat);
+          arm.position.set(Math.cos(angle) * 0.7, Math.sin(angle) * 0.7, 0.03);
+          arm.rotation.z = angle + 0.3;
+          group.add(arm);
+        }
+        const abyssEyeL = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), new THREE.MeshStandardMaterial({ color: 0x00F0FF }));
+        abyssEyeL.position.set(-0.25, 0.2, 0.12);
+        const abyssEyeR = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 12), new THREE.MeshStandardMaterial({ color: 0x00F0FF }));
+        abyssEyeR.position.set(0.25, 0.2, 0.12);
+        group.add(abyssEyeL, abyssEyeR);
+      } else if (badge.style === 'octopus-quantum') {
+        // Quantum Weaver Octopus (Interlocking volt/magenta lattice)
+        const baseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64);
+        const baseMesh = new THREE.Mesh(baseGeo, [bezelMat, enamelMat, backMat]);
+        baseMesh.rotation.x = Math.PI / 2;
+        group.add(baseMesh);
+
+        for (let k = 0; k < 8; k++) {
+          const angle = (k / 8) * Math.PI * 2;
+          const arc = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.035, 12, 24, Math.PI * 0.5), bezelMat);
+          arc.rotation.z = angle;
+          group.add(arc);
+        }
+        const coreJewel = new THREE.Mesh(new THREE.IcosahedronGeometry(0.28, 1), new THREE.MeshStandardMaterial({ color: 0xFFD60A, metalness: 0.8 }));
+        coreJewel.position.z = 0.12;
+        group.add(coreJewel);
+      } else if (badge.style === 'jellyfish-flow') {
+        // Flow State Jellyfish (Translucent pelagic dome + cascading tendril ribbons)
+        const bellGeo = new THREE.SphereGeometry(1.35, 36, 18, 0, Math.PI * 2, 0, Math.PI * 0.52);
+        bellGeo.scale(1.0, 0.9, 0.35);
+        const bellMesh = new THREE.Mesh(bellGeo, enamelMat);
+        bellMesh.position.set(0, 0.35, 0.04);
+        group.add(bellMesh);
+
+        const bellRim = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.06, 16, 48, Math.PI * 1.05), bezelMat);
+        bellRim.position.set(0, 0.35, 0.04);
+        bellRim.rotation.z = Math.PI * 0.97;
+        group.add(bellRim);
+
+        for (let t = 0; t < 6; t++) {
+          const x = -0.75 + (t / 5) * 1.5;
+          const ribbon = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.03, 10, 20, Math.PI * 0.8), bezelMat);
+          ribbon.position.set(x, -0.4 - (t % 2) * 0.15, 0.04);
+          ribbon.rotation.z = (t % 2 === 0 ? 0.4 : -0.4);
+          group.add(ribbon);
+        }
+        const backPlate = new THREE.Mesh(new THREE.CylinderGeometry(1.65, 1.65, 0.14, 64), [bezelMat, enamelMat, backMat]);
+        backPlate.rotation.x = Math.PI / 2;
+        backPlate.position.z = -0.06;
+        group.add(backPlate);
+      } else if (badge.style === 'jellyfish-nebula') {
+        // Cosmic Nebula Jellyfish
+        const baseMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64), [bezelMat, enamelMat, backMat]);
+        baseMesh.rotation.x = Math.PI / 2;
+        group.add(baseMesh);
+
+        const domeRing = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.05, 16, 36, Math.PI * 1.1), new THREE.MeshStandardMaterial({ color: 0xFFD60A }));
+        domeRing.position.set(0, 0.3, 0.04);
+        domeRing.rotation.z = Math.PI * 0.95;
+        group.add(domeRing);
+
+        for (let k = 0; k < 5; k++) {
+          const x = -0.6 + (k / 4) * 1.2;
+          const trail = new THREE.Mesh(new THREE.TorusGeometry(0.45, 0.03, 10, 20, Math.PI * 0.75), bezelMat);
+          trail.position.set(x, -0.35, 0.05);
+          trail.rotation.z = k % 2 === 0 ? 0.3 : -0.3;
+          group.add(trail);
+        }
+      } else if (badge.style === 'eagle-sovereign') {
+        // Aquila Sovereign Eagle (Swept golden wing blades & raptor beak)
+        const baseMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.68, 1.68, 0.16, 64), [bezelMat, enamelMat, backMat]);
+        baseMesh.rotation.x = Math.PI / 2;
+        group.add(baseMesh);
+
+        for (let side = -1; side <= 1; side += 2) {
+          for (let f = 0; f < 3; f++) {
+            const blade = new THREE.Mesh(new THREE.BoxGeometry(0.65 + f * 0.2, 0.14, 0.04), bezelMat);
+            blade.position.set(side * (0.6 + f * 0.25), 0.25 + f * 0.3, 0.05);
+            blade.rotation.z = side * (0.35 + f * 0.18);
+            group.add(blade);
+          }
+        }
+        const beak = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.45, 6), bezelMat);
+        beak.position.set(0, -0.1, 0.14);
+        beak.rotation.z = Math.PI;
+        beak.rotation.x = -0.3;
+        group.add(beak);
+      } else if (badge.style === 'owl-clockwork') {
+        // Archimedes Clockwork Owl (Epicyclic gears & chrono-aperture)
+        const baseMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64), [bezelMat, enamelMat, backMat]);
+        baseMesh.rotation.x = Math.PI / 2;
+        group.add(baseMesh);
+
+        for (let side = -1; side <= 1; side += 2) {
+          const gearEar = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.05, 12, 16), bezelMat);
+          gearEar.position.set(side * 0.7, 1.25, 0.04);
+          group.add(gearEar);
+
+          const eyeGear = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.045, 16, 24), bezelMat);
+          eyeGear.position.set(side * 0.45, 0.35, 0.08);
+          group.add(eyeGear);
+
+          const jewel = new THREE.Mesh(new THREE.SphereGeometry(0.1, 12, 12), new THREE.MeshStandardMaterial({ color: 0x00F0FF }));
+          jewel.position.set(side * 0.45, 0.35, 0.11);
+          group.add(jewel);
+        }
+      } else {
+        const frontGeo = new THREE.CylinderGeometry(1.6, 1.6, 0.18, 64);
+        const frontMesh = new THREE.Mesh(frontGeo, [bezelMat, enamelMat, backMat]);
+        frontMesh.rotation.x = Math.PI / 2;
+        group.add(frontMesh);
+
+        const ringGeo = new THREE.TorusGeometry(1.6, 0.08, 16, 64);
+        const ringMesh = new THREE.Mesh(ringGeo, bezelMat);
+        group.add(ringMesh);
+      }
 
       return group;
     }
@@ -863,11 +1048,79 @@
       });
     }
 
+    // Apple Unlock Animation Sequence (Multi-Phase Apple Fitness/Watch Ceremony)
+    let isUnlocking = false;
+    let unlockStartTime = 0;
+    function triggerAppleUnlockAnimation() {
+      if (!scene || isUnlocking) return;
+      isUnlocking = true;
+      unlockStartTime = performance.now();
+      const banner = document.getElementById('unlock-status-banner');
+      const bannerText = document.getElementById('unlock-status-text');
+      if (banner) banner.classList.remove('hidden');
+      triggerHaptic('tap');
+      spatialAudio.playChime('celestial');
+
+      camera.position.z = 6.4;
+      targetQuat.setFromEuler(new THREE.Euler(0.25, -0.45, 0.12));
+
+      function updateUnlock() {
+        if (!isUnlocking) return;
+        const now = performance.now();
+        const elapsed = (now - unlockStartTime) / 1000;
+        const smoothStep = (t) => t * t * (3 - 2 * t);
+
+        if (elapsed < 1.0) {
+          const p = smoothStep(elapsed / 1.0);
+          if (bannerText) bannerText.innerText = '1/5 暗态神秘悬浮 · 镜头推入';
+          camera.position.z = 6.4 - p * 1.3;
+          const s = 0.88 + p * 0.12;
+          badgeGroup.scale.set(s, s, s);
+          targetQuat.setFromEuler(new THREE.Euler(0.25 * (1 - p * 0.5), -0.45 * (1 - p * 0.4), 0.12 * (1 - p)));
+        } else if (elapsed < 2.2) {
+          if (bannerText) bannerText.innerText = '2/5 炫彩珐琅流转注色 · 几何微棱镜激越';
+          const p = smoothStep((elapsed - 1.0) / 1.2);
+          camera.position.z = 5.1 - p * 0.2;
+          if (elapsed > 1.15 && elapsed < 1.25) spatialAudio.playChime('celestial');
+        } else if (elapsed < 3.2) {
+          if (bannerText) bannerText.innerText = '3/5 苹果阻尼弹簧回弹 · 边缘自发光锁定';
+          const p = (elapsed - 2.2) / 1.0;
+          const bounce = Math.sin(p * Math.PI * 3.5) * Math.exp(-p * 3.8) * 0.15;
+          badgeGroup.scale.set(1 + bounce, 1 + bounce, 1 + bounce);
+          targetQuat.identity();
+        } else if (elapsed < 4.6) {
+          if (bannerText) bannerText.innerText = '4/5 180°反转 · 陶瓷底盖高精度激光镭雕鉴赏';
+          const p = smoothStep((elapsed - 3.2) / 1.4);
+          const rotY = p * Math.PI;
+          targetQuat.setFromEuler(new THREE.Euler(0.08 * Math.sin(p * Math.PI), rotY, 0));
+          if (elapsed > 3.25 && elapsed < 3.35) spatialAudio.playClink('flip', 0.2);
+        } else if (elapsed < 5.6) {
+          if (bannerText) bannerText.innerText = '5/5 回正前方 · 奖章点亮典藏入库';
+          const p = smoothStep((elapsed - 4.6) / 1.0);
+          const rotY = Math.PI + p * Math.PI;
+          targetQuat.setFromEuler(new THREE.Euler(0, rotY, 0));
+        } else {
+          isUnlocking = false;
+          targetQuat.identity();
+          badgeGroup.scale.set(1, 1, 1);
+          camera.position.z = 5.2;
+          if (bannerText) bannerText.innerText = '✨ 恭喜！奖章已成功解锁，可自由 360° 拖拽把玩';
+          spatialAudio.playChime('celestial');
+          setTimeout(() => { if (banner) banner.classList.add('hidden'); }, 3000);
+          return;
+        }
+        requestAnimationFrame(updateUnlock);
+      }
+      requestAnimationFrame(updateUnlock);
+    }
+
     // Attach listeners
     document.getElementById('tab-grid').onclick = () => switchView('grid');
     document.getElementById('tab-summary').onclick = () => switchView('summary');
     document.getElementById('tab-comparison').onclick = () => switchView('comparison');
     document.getElementById('quick-summary-btn').onclick = () => switchView('summary');
+    const unlockBtn = document.getElementById('modal-unlock-btn');
+    if (unlockBtn) unlockBtn.onclick = triggerAppleUnlockAnimation;
 
     document.getElementById('inspect-rarest-btn').onclick = () => {
       triggerHaptic('tap');

@@ -23,6 +23,12 @@ import {
   buildAppleSunburstRadiantBadge,
   buildAppleOwlBadge,
   buildAppleOctopusBadge,
+  buildAbyssOctopusBadge,
+  buildQuantumOctopusBadge,
+  buildFlowJellyfishBadge,
+  buildNebulaJellyfishBadge,
+  buildSovereignEagleBadge,
+  buildClockworkOwlBadge,
   AppleBadgeMeshGroup,
 } from './BadgeGeometry';
 import { BadgePrototypeId, BadgeState, ViewAngle } from '../types/badge';
@@ -40,6 +46,8 @@ export interface SceneOptions {
   ambientIntensity?: number;
   colorTemperature?: number;
   specularGloss?: number;
+  autoEntranceSpin?: boolean;
+  onEntranceSpinStateChange?: (isSpinning: boolean) => void;
   onUnlockStepChange?: (step: number, stepName: string) => void;
   onUnlockComplete?: () => void;
 }
@@ -95,6 +103,14 @@ export class AppleBadgeSceneController {
   private lastUnlockStep: number = -1;
   private accumulatedDragDist: number = 0;
 
+  // Apple 2-Turn Entrance Spin Animation state
+  private isEntranceSpinning: boolean = false;
+  private entranceSpinStartTime: number = 0;
+  private entranceSpinDuration: number = 2.1;
+  private entranceTargetQuaternion = new THREE.Quaternion();
+  private lastSpinHalfTurn: number = -1;
+  private onEntranceSpinComplete?: () => void;
+
   constructor(container: HTMLElement, options: SceneOptions) {
     this.container = container;
     this.currentOptions = { ...options };
@@ -103,6 +119,10 @@ export class AppleBadgeSceneController {
     this.loadBadge();
     this.setupEvents();
     this.startRenderLoop();
+
+    if (this.currentOptions.autoEntranceSpin ?? true) {
+      this.playEntranceSpin(2.1);
+    }
   }
 
   private initScene() {
@@ -319,6 +339,42 @@ export class AppleBadgeSceneController {
         earnedDate,
         isLocked
       );
+    } else if (prototypeId === 'octopus-abyss') {
+      this.currentBadgeMesh = buildAbyssOctopusBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
+    } else if (prototypeId === 'octopus-quantum') {
+      this.currentBadgeMesh = buildQuantumOctopusBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
+    } else if (prototypeId === 'jellyfish-flow') {
+      this.currentBadgeMesh = buildFlowJellyfishBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
+    } else if (prototypeId === 'jellyfish-nebula') {
+      this.currentBadgeMesh = buildNebulaJellyfishBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
+    } else if (prototypeId === 'eagle-sovereign') {
+      this.currentBadgeMesh = buildSovereignEagleBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
+    } else if (prototypeId === 'owl-clockwork') {
+      this.currentBadgeMesh = buildClockworkOwlBadge(
+        this.materialsLib,
+        earnedDate,
+        isLocked
+      );
     } else {
       this.currentBadgeMesh = buildAppleChallengeHexBadge(
         this.materialsLib,
@@ -421,7 +477,113 @@ export class AppleBadgeSceneController {
     this.targetExplodedFactor = Math.max(0, Math.min(1, factor));
   }
 
+  public playEntranceSpin(duration: number = 2.1, onComplete?: () => void) {
+    if (this.isUnlocking) return;
+    this.isEntranceSpinning = true;
+    this.entranceSpinStartTime = performance.now();
+    this.entranceSpinDuration = Math.max(1.2, duration);
+    this.onEntranceSpinComplete = onComplete;
+    this.lastSpinHalfTurn = -1;
+    this.angularVelocity = { x: 0, y: 0 };
+
+    // Record resting target quaternion
+    this.entranceTargetQuaternion.copy(this.targetQuaternion);
+
+    // Initial scale slightly smaller (0.88) for emergence feel
+    this.badgeGroup.scale.set(0.88, 0.88, 0.88);
+
+    spatialAudio.playChime('crystallize');
+    this.currentOptions.onEntranceSpinStateChange?.(true);
+  }
+
+  public stopEntranceSpin() {
+    if (!this.isEntranceSpinning) return;
+    this.isEntranceSpinning = false;
+    this.badgeGroup.scale.set(1, 1, 1);
+    this.targetQuaternion.copy(this.badgeGroup.quaternion);
+    this.currentQuaternion.copy(this.badgeGroup.quaternion);
+    this.angularVelocity = { x: 0, y: 0 };
+    this.currentOptions.onEntranceSpinStateChange?.(false);
+    this.onEntranceSpinComplete?.();
+  }
+
+  private updateEntranceSpinAnimation(now: number) {
+    if (!this.isEntranceSpinning) return;
+
+    const elapsed = (now - this.entranceSpinStartTime) / 1000;
+    const progressRaw = elapsed / this.entranceSpinDuration;
+
+    if (progressRaw >= 1.0) {
+      // Completed two full rotations!
+      this.isEntranceSpinning = false;
+      this.badgeGroup.scale.set(1, 1, 1);
+      this.targetQuaternion.copy(this.entranceTargetQuaternion);
+      this.currentQuaternion.copy(this.entranceTargetQuaternion);
+      this.badgeGroup.quaternion.copy(this.entranceTargetQuaternion);
+      this.angularVelocity = { x: 0, y: 0 };
+      spatialAudio.playClink('facet', 0);
+      this.currentOptions.onEntranceSpinStateChange?.(false);
+      this.onEntranceSpinComplete?.();
+      return;
+    }
+
+    const t = Math.min(1, Math.max(0, progressRaw));
+    // Apple-style smooth ease-out: swift spin initially, then gentle fluid deceleration
+    const easeOutProgress = 1 - Math.pow(1 - t, 3.4);
+
+    // Spin exactly 2 full turns (4π radians = 720°) around the vertical axis
+    const remainingAngle = (1 - easeOutProgress) * 4 * Math.PI;
+
+    // Subtle Apple tilt on the horizontal axis during spin to showcase chamfers & thickness
+    const tiltX = Math.sin(t * Math.PI) * 0.14; // ~8° tilt
+    const wobbleZ = Math.sin(t * 2 * Math.PI) * 0.03;
+
+    const axisY = new THREE.Vector3(0, 1, 0);
+    const axisX = new THREE.Vector3(1, 0, 0);
+    const axisZ = new THREE.Vector3(0, 0, 1);
+
+    const qRotY = new THREE.Quaternion().setFromAxisAngle(axisY, remainingAngle);
+    const qTiltX = new THREE.Quaternion().setFromAxisAngle(axisX, tiltX);
+    const qWobbleZ = new THREE.Quaternion().setFromAxisAngle(axisZ, wobbleZ);
+
+    const spinComposite = new THREE.Quaternion()
+      .multiplyQuaternions(qTiltX, qRotY)
+      .multiply(qWobbleZ);
+
+    this.currentQuaternion.multiplyQuaternions(spinComposite, this.entranceTargetQuaternion);
+    this.badgeGroup.quaternion.copy(this.currentQuaternion);
+
+    // Scale from 0.88 smoothly to 1.0 with subtle spring cushion at completion
+    let scale = 0.88 + easeOutProgress * 0.12;
+    if (t > 0.82) {
+      const endT = (t - 0.82) / 0.18;
+      scale += Math.sin(endT * Math.PI) * 0.022;
+    }
+    this.badgeGroup.scale.set(scale, scale, scale);
+
+    // Sweeping studio lighting to highlight specular reflections
+    this.keyLight.position.x = 2.4 + Math.sin(remainingAngle) * 1.8;
+    this.rimLight.intensity = 2.8 + Math.abs(Math.sin(remainingAngle)) * 1.4;
+
+    // Haptic/audio cues at half turns
+    const halfTurn = Math.floor(easeOutProgress * 4);
+    if (halfTurn !== this.lastSpinHalfTurn) {
+      this.lastSpinHalfTurn = halfTurn;
+      const pan = Math.sin(remainingAngle) * 0.35;
+      if (halfTurn === 1) {
+        spatialAudio.playClink('rotate_tick', pan);
+      } else if (halfTurn === 2) {
+        spatialAudio.playClink('flip', 0);
+      } else if (halfTurn === 3) {
+        spatialAudio.playClink('rotate_tick', -pan);
+      }
+    }
+  }
+
   public flipBadge() {
+    if (this.isEntranceSpinning) {
+      this.stopEntranceSpin();
+    }
     // Check if medal is currently facing mostly forward or backward
     const forwardVec = new THREE.Vector3(0, 0, 1).applyQuaternion(this.targetQuaternion);
     if (forwardVec.z < 0) {
@@ -436,6 +598,9 @@ export class AppleBadgeSceneController {
   }
 
   public applyViewAngle(angle: ViewAngle, immediate: boolean = false) {
+    if (this.isEntranceSpinning) {
+      this.stopEntranceSpin();
+    }
     switch (angle) {
       case 'front':
         this.targetQuaternion.identity();
@@ -473,6 +638,9 @@ export class AppleBadgeSceneController {
   }
 
   public resetOrientation() {
+    if (this.isEntranceSpinning) {
+      this.stopEntranceSpin();
+    }
     this.targetQuaternion.identity();
     this.targetCameraDistance = 5.4;
     this.angularVelocity = { x: 0, y: 0 };
@@ -480,6 +648,7 @@ export class AppleBadgeSceneController {
   }
 
   public triggerUnlockSequence() {
+    this.isEntranceSpinning = false;
     if (this.isUnlocking) return;
     this.isUnlocking = true;
     this.lastUnlockStep = -1;
@@ -597,6 +766,9 @@ export class AppleBadgeSceneController {
     const el = this.renderer.domElement;
 
     const onPointerDown = (clientX: number, clientY: number) => {
+      if (this.isEntranceSpinning) {
+        this.stopEntranceSpin();
+      }
       const rect = el.getBoundingClientRect();
       const nx = ((clientX - rect.left) / rect.width) * 2 - 1;
       this.isDragging = true;
@@ -758,42 +930,44 @@ export class AppleBadgeSceneController {
 
       if (this.isUnlocking) {
         this.updateUnlockAnimation(now);
-      }
-
-      // Inertia & Damped Spring Physics (Apple Touch feel)
-      if (!this.isDragging) {
-        if (Math.abs(this.angularVelocity.x) > 0.0001 || Math.abs(this.angularVelocity.y) > 0.0001) {
-          const axisY = new THREE.Vector3(0, 1, 0);
-          const axisX = new THREE.Vector3(1, 0, 0);
-          const inertiaQ = new THREE.Quaternion().multiplyQuaternions(
-            new THREE.Quaternion().setFromAxisAngle(axisY, this.angularVelocity.y),
-            new THREE.Quaternion().setFromAxisAngle(axisX, this.angularVelocity.x)
-          );
-          this.targetQuaternion.premultiply(inertiaQ);
-          // Physical friction dampening
-          this.angularVelocity.y *= 0.93;
-          this.angularVelocity.x *= 0.93;
-        }
-      }
-
-      // Smooth slerp interpolation to target orientation
-      const rotRate = this.isDragging ? 26 : 14;
-      this.currentQuaternion.slerp(this.targetQuaternion, Math.min(1, rotRate * delta));
-
-      // Idle micro-breathing when settled
-      if (
-        !this.isDragging &&
-        !this.isUnlocking &&
-        Math.abs(this.angularVelocity.y) < 0.0005 &&
-        Math.abs(this.angularVelocity.x) < 0.0005
-      ) {
-        const t = now * 0.001;
-        const idleQ = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(Math.sin(t * 0.7) * 0.012, Math.cos(t * 0.5) * 0.016, 0)
-        );
-        this.badgeGroup.quaternion.multiplyQuaternions(idleQ, this.currentQuaternion);
+      } else if (this.isEntranceSpinning) {
+        this.updateEntranceSpinAnimation(now);
       } else {
-        this.badgeGroup.quaternion.copy(this.currentQuaternion);
+        // Inertia & Damped Spring Physics (Apple Touch feel)
+        if (!this.isDragging) {
+          if (Math.abs(this.angularVelocity.x) > 0.0001 || Math.abs(this.angularVelocity.y) > 0.0001) {
+            const axisY = new THREE.Vector3(0, 1, 0);
+            const axisX = new THREE.Vector3(1, 0, 0);
+            const inertiaQ = new THREE.Quaternion().multiplyQuaternions(
+              new THREE.Quaternion().setFromAxisAngle(axisY, this.angularVelocity.y),
+              new THREE.Quaternion().setFromAxisAngle(axisX, this.angularVelocity.x)
+            );
+            this.targetQuaternion.premultiply(inertiaQ);
+            // Physical friction dampening
+            this.angularVelocity.y *= 0.93;
+            this.angularVelocity.x *= 0.93;
+          }
+        }
+
+        // Smooth slerp interpolation to target orientation
+        const rotRate = this.isDragging ? 26 : 14;
+        this.currentQuaternion.slerp(this.targetQuaternion, Math.min(1, rotRate * delta));
+
+        // Idle micro-breathing when settled
+        if (
+          !this.isDragging &&
+          !this.isUnlocking &&
+          Math.abs(this.angularVelocity.y) < 0.0005 &&
+          Math.abs(this.angularVelocity.x) < 0.0005
+        ) {
+          const t = now * 0.001;
+          const idleQ = new THREE.Quaternion().setFromEuler(
+            new THREE.Euler(Math.sin(t * 0.7) * 0.012, Math.cos(t * 0.5) * 0.016, 0)
+          );
+          this.badgeGroup.quaternion.multiplyQuaternions(idleQ, this.currentQuaternion);
+        } else {
+          this.badgeGroup.quaternion.copy(this.currentQuaternion);
+        }
       }
 
       // Smooth Camera Zoom
@@ -823,18 +997,35 @@ export class AppleBadgeSceneController {
 
   public dispose() {
     this.isDisposed = true;
+    this.isEntranceSpinning = false;
+    this.onEntranceSpinComplete = undefined;
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
     }
     if (this.currentBadgeMesh) {
       this.currentBadgeMesh.traverse((obj) => {
         if (obj instanceof THREE.Mesh) {
-          obj.geometry.dispose();
+          obj.geometry?.dispose();
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((m) => m.dispose());
+          } else if (obj.material) {
+            obj.material.dispose();
+          }
         }
       });
+      if (this.badgeGroup && this.currentBadgeMesh) {
+        this.badgeGroup.remove(this.currentBadgeMesh);
+      }
+      this.currentBadgeMesh = null;
     }
     if (this.renderer) {
       this.renderer.dispose();
+      try {
+        this.renderer.forceContextLoss();
+      } catch {
+        // Ignore if already lost
+      }
       if (this.renderer.domElement && this.renderer.domElement.parentNode) {
         this.renderer.domElement.parentNode.removeChild(this.renderer.domElement);
       }

@@ -1217,4 +1217,148 @@ export const APPLE_LEARNING_AWARDS_CATALOG: BadgeModel[] = [
       enamelFinish: 'Coral Amethyst & Marine Cyan Terraced Cloisonné',
     },
   },
+  {
+    id: 'deep-abyss-octopus',
+    name: 'Deep Abyss Octopus',
+    category: 'Learning Milestones',
+    earnedDate: 'OCTOBER 26, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#00F0FF', // Abyssal Bio-Cyan
+      secondary: '#0A84FF', // Midnight Trench Blue
+      accent: '#5E5CE6', // Deep Trench Indigo
+      bezel: 'space-gray',
+    },
+    description: 'Anchored 1,000 flashcards into deep permanent subconscious memory.',
+    longDescription:
+      'Exploring the deepest neural trenches of human cognition. Awarded for anchoring over 1,000 core concepts into permanent subconscious memory with 98%+ active recall stability over 180 continuous days.',
+    badgeStyle: 'octopus-abyss',
+    depthMetrics: {
+      thickness: '2.6 mm (Abyssal Spiral)',
+      curvature: 'Deep Concave Trench Cavity',
+      layers: 6,
+      enamelFinish: 'Bioluminescent Trench Cyan & Titanium Gray Cloisonné',
+    },
+  },
+  {
+    id: 'quantum-weaver-octopus',
+    name: 'Quantum Weaver Octopus',
+    category: 'Academic Disciplines & Mastery',
+    earnedDate: 'OCTOBER 27, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#A6FF00', // Electric Volt Green
+      secondary: '#FF2D55', // Quantum Magenta
+      accent: '#FFD60A', // Luminous Amber
+      bezel: 'gold',
+    },
+    description: 'Synthesized 50 complex multi-disciplinary knowledge graphs across STEM and Humanities.',
+    longDescription:
+      'Celebrates multi-threaded cognitive parallel processing. Awarded for constructing cross-disciplinary synthesis nodes that bridge higher mathematics, philosophy, literature, and computational science.',
+    badgeStyle: 'octopus-quantum',
+    depthMetrics: {
+      thickness: '2.5 mm (Synaptic Web)',
+      curvature: 'Multi-Torus Interlocking Toroid',
+      layers: 6,
+      enamelFinish: 'Volt Citron & Hyper-Magenta Vitreous Lacquer',
+    },
+  },
+  {
+    id: 'flow-state-jellyfish',
+    name: 'Flow State Jellyfish',
+    category: 'Close Your Study Rings',
+    earnedDate: 'OCTOBER 25, 2026',
+    earnedCount: 4,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#70D7FF', // Iridescent Ethereal Azure
+      secondary: '#E5B8F4', // Soft Bioluminescent Lavender
+      accent: '#FFFFFF', // Pristine Ceramic White
+      bezel: 'silver',
+    },
+    description: 'Achieved 10 consecutive frictionless 90-minute deep flow sessions without distraction.',
+    longDescription:
+      'Inspired by the frictionless buoyancy of pelagic scyphozoa. Awarded for entering the transcendent state of effortless deep focus, maintaining 90-minute uninterrupted study flow where challenge and skill merge in perfect harmony.',
+    badgeStyle: 'jellyfish-flow',
+    depthMetrics: {
+      thickness: '2.8 mm (Parabolic Bell Umbrella)',
+      curvature: 'Catenary Parabolic Dome Dish',
+      layers: 5,
+      enamelFinish: 'Opalescent Pelagic Azure with Undulating Tendril Ribbons',
+    },
+  },
+  {
+    id: 'nebula-pulse-jellyfish',
+    name: 'Cosmic Nebula Jellyfish',
+    category: 'Limited Edition Challenges',
+    earnedDate: 'OCTOBER 26, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#BF5AF2', // Deep Nebula Violet
+      secondary: '#FFD60A', // Solar Gold
+      accent: '#00F0FF', // Cosmic Cyan
+      bezel: 'space-gray',
+    },
+    description: 'Completed the 30-Day Galactic Exploration Challenge with 100% daily mastery.',
+    longDescription:
+      'Commemorates the rhythmic cosmic pulsation of intellectual curiosity. Awarded for conquering the limited-edition 30-Day Galactic Learning Quest, pulsing steadily through advanced curriculum frontiers without missing a single beat.',
+    badgeStyle: 'jellyfish-nebula',
+    depthMetrics: {
+      thickness: '2.7 mm (Cosmic Bell)',
+      curvature: 'Dual Concentric Ripple Dish',
+      layers: 6,
+      enamelFinish: 'Galactic Nebula Purple with Starlight Enamel Dust',
+    },
+  },
+  {
+    id: 'sovereign-eagle-vision',
+    name: 'Aquila Sovereign Eagle',
+    category: 'Learning Milestones',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FA114F', // Imperial Crimson
+      secondary: '#FFD60A', // 24K Pure Gold
+      accent: '#1C1C1E', // Obsidian Shadow
+      bezel: 'gold',
+    },
+    description: 'Constructed 25 macro-synthesis frameworks unifying entire domains of knowledge.',
+    longDescription:
+      'Embodying the supreme high-altitude vantage of the sovereign eagle. Awarded to scholars who transcend granular memorization to architect grand, unified conceptual frameworks spanning centuries of thought.',
+    badgeStyle: 'eagle-sovereign',
+    depthMetrics: {
+      thickness: '2.8 mm (Sculpted Wing Crest)',
+      curvature: 'Aerodynamic Swept-Wing Parabola',
+      layers: 6,
+      enamelFinish: 'Imperial Scarlet & Mirror Chamfer Gold Blade Feathers',
+    },
+  },
+  {
+    id: 'clockwork-owl-intellect',
+    name: 'Archimedes Clockwork Owl',
+    category: 'Academic Disciplines & Mastery',
+    progressCurrent: 44,
+    progressTotal: 50,
+    state: 'progress',
+    colorTheme: {
+      primary: '#30D158', // Precision Emerald Green
+      secondary: '#FFD97D', // Brushed Brass Gold
+      accent: '#00F0FF', // Sapphire Jewel Pivot
+      bezel: 'gold',
+    },
+    description: 'Logged 50 hours of precision mathematical & algorithmic problem-solving proofs.',
+    longDescription:
+      'Honoring mechanical analytical rigor and untiring night-owl deduction. Awarded for mastering 50 complex algorithmic and mathematical proofs with clockwork consistency and zero logical regressions.',
+    badgeStyle: 'owl-clockwork',
+    depthMetrics: {
+      thickness: '2.6 mm (Chrono-Aperture)',
+      curvature: 'Concentric Epicyclic Gear Cavity',
+      layers: 6,
+      enamelFinish: 'Emerald Tourmaline & Geared Chrono-Aperture Cloisonné',
+    },
+  },
 ];

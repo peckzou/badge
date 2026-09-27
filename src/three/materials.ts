@@ -246,6 +246,18 @@ export class AppleAwardMaterials {
     });
   }
 
+  // Mirror-Polished Aerospace Space Gray / Graphite Rim
+  getSpaceGrayBezel(isLocked: boolean = false): THREE.MeshStandardMaterial {
+    return new THREE.MeshStandardMaterial({
+      color: isLocked ? 0x22242a : 0x3d414a,
+      metalness: isLocked ? 0.8 : 0.92,
+      roughness: isLocked ? 0.4 : 0.12,
+      envMap: this.envMap,
+      envMapIntensity: isLocked ? 0.35 : 2.0,
+      side: THREE.DoubleSide,
+    });
+  }
+
   // Satin Bone / Off-White Ceramic Enamel (The bottom segments of Perfect Week in IMG_2950)
   getOffWhiteEnamel(isLocked: boolean = false): THREE.MeshPhysicalMaterial {
     return new THREE.MeshPhysicalMaterial({
