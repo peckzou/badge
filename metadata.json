@@ -1,0 +1,6 @@
+{
+  "name": "Minest 3D Badge System",
+  "description": "Experimental spatial 3D digital badge library inspired by Apple Watch Activity Rings, physical medals, and liquid glass craftsmanship.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
