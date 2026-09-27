@@ -61,9 +61,37 @@ export type BadgePrototypeId =
   | 'cartoon-pixel-hero'
   | 'cartoon-aviator'
   | 'cartoon-elf'
-  | 'cartoon-ninja';
+  | 'cartoon-ninja'
+  // 10 Minecraft Characters
+  | 'mc-steve'
+  | 'mc-alex'
+  | 'mc-creeper'
+  | 'mc-enderman'
+  | 'mc-skeleton'
+  | 'mc-zombie'
+  | 'mc-iron-golem'
+  | 'mc-pig'
+  | 'mc-ender-dragon'
+  | 'mc-axolotl'
+  // Hexagon Challenge Pop Icons (Apple Limited Edition Hexagon Medal)
+  | 'hex-axolotl-lucy'
+  | 'hex-axolotl-cyan'
+  | 'hex-minion-stuart'
+  | 'hex-minion-bob'
+  | 'hex-bluey'
+  | 'hex-bingo'
+  | 'hex-nemo'
+  | 'hex-dory'
+  | 'hex-rubble'
+  | 'hex-pikachu'
+  | 'hex-darth-vader'
+  | 'hex-vader-helmet'
+  | 'hex-baby-yoda'
+  | 'hex-lightsaber-green'
+  | 'hex-lightsaber-red';
 
 export type BadgeCategory =
+  | 'Hexagon Pop Challenge'
   | 'Close Your Study Rings'
   | 'Learning Milestones'
   | 'Academic Disciplines & Mastery'
@@ -71,7 +99,8 @@ export type BadgeCategory =
   | 'Knowledge Competitions'
   | 'Cute Animals'
   | 'Ocean Animals'
-  | 'Cartoon Characters';
+  | 'Cartoon Characters'
+  | 'Minecraft Characters';
 
 export type BadgeState = 'unlocked' | 'progress' | 'locked';
 
@@ -139,6 +168,33 @@ export type BadgeStyleType =
   | 'cartoon-aviator'
   | 'cartoon-elf'
   | 'cartoon-ninja'
+  // 10 Minecraft Characters
+  | 'mc-steve'
+  | 'mc-alex'
+  | 'mc-creeper'
+  | 'mc-enderman'
+  | 'mc-skeleton'
+  | 'mc-zombie'
+  | 'mc-iron-golem'
+  | 'mc-pig'
+  | 'mc-ender-dragon'
+  | 'mc-axolotl'
+  // Hexagon Challenge Pop Icons (Apple Limited Edition Hexagon Medal)
+  | 'hex-axolotl-lucy'
+  | 'hex-axolotl-cyan'
+  | 'hex-minion-stuart'
+  | 'hex-minion-bob'
+  | 'hex-bluey'
+  | 'hex-bingo'
+  | 'hex-nemo'
+  | 'hex-dory'
+  | 'hex-rubble'
+  | 'hex-pikachu'
+  | 'hex-darth-vader'
+  | 'hex-vader-helmet'
+  | 'hex-baby-yoda'
+  | 'hex-lightsaber-green'
+  | 'hex-lightsaber-red'
   | 'wireframe-dark';
 
 export interface BadgeModel {
@@ -286,6 +342,57 @@ export function getBadgePrototypeId(style: BadgeStyleType): BadgePrototypeId {
       return 'cartoon-elf';
     case 'cartoon-ninja':
       return 'cartoon-ninja';
+    // 10 Minecraft Characters
+    case 'mc-steve':
+      return 'mc-steve';
+    case 'mc-alex':
+      return 'mc-alex';
+    case 'mc-creeper':
+      return 'mc-creeper';
+    case 'mc-enderman':
+      return 'mc-enderman';
+    case 'mc-skeleton':
+      return 'mc-skeleton';
+    case 'mc-zombie':
+      return 'mc-zombie';
+    case 'mc-iron-golem':
+      return 'mc-iron-golem';
+    case 'mc-pig':
+      return 'mc-pig';
+    case 'mc-ender-dragon':
+      return 'mc-ender-dragon';
+    case 'mc-axolotl':
+      return 'mc-axolotl';
+    case 'hex-axolotl-lucy':
+      return 'hex-axolotl-lucy';
+    case 'hex-axolotl-cyan':
+      return 'hex-axolotl-cyan';
+    case 'hex-minion-stuart':
+      return 'hex-minion-stuart';
+    case 'hex-minion-bob':
+      return 'hex-minion-bob';
+    case 'hex-bluey':
+      return 'hex-bluey';
+    case 'hex-bingo':
+      return 'hex-bingo';
+    case 'hex-nemo':
+      return 'hex-nemo';
+    case 'hex-dory':
+      return 'hex-dory';
+    case 'hex-rubble':
+      return 'hex-rubble';
+    case 'hex-pikachu':
+      return 'hex-pikachu';
+    case 'hex-darth-vader':
+      return 'hex-darth-vader';
+    case 'hex-vader-helmet':
+      return 'hex-vader-helmet';
+    case 'hex-baby-yoda':
+      return 'hex-baby-yoda';
+    case 'hex-lightsaber-green':
+      return 'hex-lightsaber-green';
+    case 'hex-lightsaber-red':
+      return 'hex-lightsaber-red';
     default:
       return 'perfect-week-study';
   }

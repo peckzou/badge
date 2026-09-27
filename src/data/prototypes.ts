@@ -2,6 +2,357 @@ import { BadgeModel } from '../types/badge';
 
 export const APPLE_LEARNING_AWARDS_CATALOG: BadgeModel[] = [
   // =========================================================================
+  // 0. HEXAGON POP CHALLENGE (Apple Limited Edition Hexagonal Medals - IMG_2948)
+  // =========================================================================
+  {
+    id: 'hex-axolotl-lucy',
+    name: 'Lucy Axolotl (Leucistic Pink)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FF85A1',
+      secondary: '#FCF4F7',
+      bezel: 'silver',
+    },
+    description: 'Apple Watch hexagonal challenge medal with 3D embossed Leucistic Pink Axolotl.',
+    longDescription:
+      'Crafted in the authentic Apple Watch Monthly Challenge hexagonal medal form factor with dual-zone vitreous sakura pink and opal white enamel, mirror-polished silver beveled rim, and 3D relief Leucistic Axolotl with 6 branching feathered external gills and beaded onyx eyes.',
+    badgeStyle: 'hex-axolotl-lucy',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Vitreous Sakura Pink & Opal White with Silver Bezel',
+    },
+  },
+  {
+    id: 'hex-axolotl-cyan',
+    name: 'Cyan Glint Axolotl (Rare Cyan & Gold)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#00E5FF',
+      secondary: '#0D1B2A',
+      accent: '#FFD700',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal featuring the rare shimmering Blue-Gold Axolotl.',
+    longDescription:
+      'Inspired by rare Axolotl morphs, featuring a beveled hexagonal medal chassis, electric cyan lacquer, deep ocean indigo enamel, 24K mirror-gold branching gills, and starlight forehead crest.',
+    badgeStyle: 'hex-axolotl-cyan',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Aqua Cyan Lacquer & 24K Gold Relief Inlay',
+    },
+  },
+  {
+    id: 'hex-minion-stuart',
+    name: 'Minion Stuart (Single Goggle)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FFD500',
+      secondary: '#1E3F66',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal featuring Stuart with his iconic single goggle eye.',
+    longDescription:
+      'Modeled with Apple Watch challenge medal hexagonal geometry in vibrant Banana Yellow and Denim Overalls Blue enamel, silver dividing seam, full-width goggle strap, chrome monocle goggle with glass lens highlight, and playful smirk.',
+    badgeStyle: 'hex-minion-stuart',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Minion Yellow & Overalls Indigo Enamel',
+    },
+  },
+  {
+    id: 'hex-minion-bob',
+    name: 'Minion Bob (Dual Goggles & Tim Bear)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 3,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FFE033',
+      secondary: '#1B3B6F',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Bob the Minion, heterochromia eyes, and Tim the Bear.',
+    longDescription:
+      'Features Bob the Minion with dual silver goggle lenses displaying his signature green and brown heterochromia eyes, wide cheerful smile, and an embossed miniature Tim the Bear badge at the lower navy denim sector.',
+    badgeStyle: 'hex-minion-bob',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Canary Yellow & Denim Navy with Heterochromia Glass',
+    },
+  },
+  {
+    id: 'hex-bluey',
+    name: 'Bluey Heeler (Blue Cattle Dog)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#4A90E2',
+      secondary: '#1D3557',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Bluey playful cattle dog ears and snout.',
+    longDescription:
+      'Captures the beloved Blue Heeler puppy on an Apple Watch hexagonal medal, featuring dual sky blue and deep navy blue enamel, perky triangular ears with darker eye patch, creamy muzzle, and silver paw crest.',
+    badgeStyle: 'hex-bluey',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Blue Heeler Sky Blue & Midnight Navy Enamel',
+    },
+  },
+  {
+    id: 'hex-bingo',
+    name: 'Bingo Heeler (Red Cattle Dog)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FF7A00',
+      secondary: '#FFE5B4',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Bingo orange puppy ears and sweet snout.',
+    longDescription:
+      'Dedicated to Bluey little sister Bingo, rendered in warm tangerine marmalade and soft peach cream enamel with an embossed Red Heeler puppy face, reddish-brown patch, and silver paw relief.',
+    badgeStyle: 'hex-bingo',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Tangerine Orange & Cream Peach Vitreous Enamel',
+    },
+  },
+  {
+    id: 'hex-nemo',
+    name: 'Nemo Clownfish (Lucky Fin)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FF5722',
+      secondary: '#00897B',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Nemo clownfish stripes and his iconic lucky fin.',
+    longDescription:
+      'Apple Watch hexagonal medal with vivid clownfish coral orange and Great Barrier Reef turquoise enamel, featuring Nemo with 3 curved white enamel stripes, black pinstripe borders, and his brave little Lucky Fin.',
+    badgeStyle: 'hex-nemo',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Coral Orange & Barrier Reef Aqua Enamel',
+    },
+  },
+  {
+    id: 'hex-dory',
+    name: 'Dory Blue Tang (Just Keep Swimming)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#1565C0',
+      secondary: '#0D1B2A',
+      accent: '#FFD600',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Dory royal blue body, yellow tail fin, and magenta eyes.',
+    longDescription:
+      'Features Dory the Pacific Blue Tang on a beveled hexagonal medal chassis with royal surgeonfish blue and deep ocean abyss enamel, curved black marking, vibrant yellow tail fin, and luminous magenta eyes.',
+    badgeStyle: 'hex-dory',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Royal Tang Blue & Radiant Yellow Fin Lacquer',
+    },
+  },
+  {
+    id: 'hex-rubble',
+    name: 'Rubble (PAW Patrol on the Double)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FBC02D',
+      secondary: '#3E2723',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Rubble construction hard hat, PAW shield, and wrench.',
+    longDescription:
+      'Commemorates PAW Patrol construction pup Rubble on an Apple Watch hexagonal medal, featuring hazard yellow and earth granite brown enamel, yellow safety helmet with PAW shield crest, bulldog jowls, and silver mechanic wrench.',
+    badgeStyle: 'hex-rubble',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Hazard Yellow & Earth Granite Brown Enamel',
+    },
+  },
+  {
+    id: 'hex-pikachu',
+    name: 'Pikachu (Electric Sprint & Thunderbolt)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 5,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#FFEA00',
+      secondary: '#212121',
+      accent: '#FF1744',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Pikachu, lightning ears, red cheeks, and lightning bolt.',
+    longDescription:
+      'Electric-type challenge award in the signature Apple Watch hexagonal medal form factor, with high-voltage yellow and graphite charcoal enamel, long pointed black-tipped ears, crimson electric pouches, and a 3D lightning bolt cutting across the medal.',
+    badgeStyle: 'hex-pikachu',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'High-Voltage Yellow & Crimson Spark Enamel',
+    },
+  },
+  {
+    id: 'hex-darth-vader',
+    name: 'Lord Darth Vader (Sith Supreme)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 1,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#101014',
+      secondary: '#B71C1C',
+      bezel: 'space-gray',
+    },
+    description: 'Hexagonal challenge medal with Lord Vader silhouette, cape, and life-support chest box.',
+    longDescription:
+      'Engineered with aerospace space-gray beveled rim, obsidian black lacquer, and Sith crimson plasma enamel, featuring a full 3D sculptural relief of Lord Vader with sweeping cape, life-support chest computer with green/red indicator buttons, and Imperial cog emblem.',
+    badgeStyle: 'hex-darth-vader',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Sith Obsidian & Dark-Side Crimson Enamel',
+    },
+  },
+  {
+    id: 'hex-vader-helmet',
+    name: 'Darth Vader Helmet (The Mask of Mustafar)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0A0A0E',
+      secondary: '#37474F',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with the legendary Darth Vader helmet in high-relief 3D.',
+    longDescription:
+      'A masterclass in 3D metallic and lacquer relief: the iconic Darth Vader helmet dome, flared neck shroud, polished chrome brow crest, angular eye sockets, and triangular lower breath filter grille with silver mesh and twin chin tusks set inside the Apple hexagonal medal.',
+    badgeStyle: 'hex-vader-helmet',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'High-Gloss Obsidian & Titanium Slate Enamel',
+    },
+  },
+  {
+    id: 'hex-baby-yoda',
+    name: 'Baby Yoda Grogu (The Force Is Strong)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 3,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#D7CCC8',
+      secondary: '#81C784',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Baby Yoda, gigantic pointed ears, and floating shift knob.',
+    longDescription:
+      'Features Grogu (The Child) with enormous pointed green alien ears, pink inner ear shading, oversized doe eyes with double specular glints, soft fleece robe collar, and his favorite floating chrome shift knob sphere.',
+    badgeStyle: 'hex-baby-yoda',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Nevarro Dune Tan & Mystic Sage Green Enamel',
+    },
+  },
+  {
+    id: 'hex-lightsaber-green',
+    name: 'Jedi Emerald Lightsaber (Luke Skywalker)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0D1B2A',
+      secondary: '#00E676',
+      bezel: 'silver',
+    },
+    description: 'Hexagonal challenge medal with Luke mechanical hilt emitting a glowing emerald blade.',
+    longDescription:
+      'Apple Watch hexagonal medal in deep galaxy indigo and plasma green enamel, crossed diagonally by Luke Skywalker Return of the Jedi lightsaber with ribbed black grip, copper emitter neck, and blazing emerald plasma blade with white-hot energy core.',
+    badgeStyle: 'hex-lightsaber-green',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Galaxy Starlight Indigo & Radiant Plasma Green',
+    },
+  },
+  {
+    id: 'hex-lightsaber-red',
+    name: 'Sith Crimson Lightsaber (Darth Vader)',
+    category: 'Hexagon Pop Challenge',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 2,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0A0A0F',
+      secondary: '#FF1744',
+      bezel: 'space-gray',
+    },
+    description: 'Hexagonal challenge medal with Vader black fluted hilt emitting a blazing Sith crimson blade.',
+    longDescription:
+      'Encased in a space-gray hexagonal chassis with deep void black and Sith lava red enamel, featuring Darth Vader fluted hilt with silver shroud emitting an intense crimson kyber plasma blade with crackling energy sparks.',
+    badgeStyle: 'hex-lightsaber-red',
+    depthMetrics: {
+      thickness: '2.4 mm (Beveled Hex Unibody)',
+      curvature: 'Filleted Hexagon with Dual Enamel',
+      layers: 5,
+      enamelFinish: 'Void Obsidian & Superheated Sith Crimson Plasma',
+    },
+  },
+  // =========================================================================
   // 1. CLOSE YOUR STUDY RINGS (Daily Active Habits & Weekly Ring Closures)
   // =========================================================================
   {
@@ -2091,6 +2442,249 @@ export const APPLE_LEARNING_AWARDS_CATALOG: BadgeModel[] = [
       curvature: 'Shadow Concave Cavity',
       layers: 6,
       enamelFinish: 'Midnight Onyx & Crimson Silk with Titanium Shuriken & Gold Crest',
+    },
+  },
+  // =========================================================================
+  // 9. MINECRAFT CHARACTERS (10组我的世界角色与生物 3D 徽章)
+  // =========================================================================
+  {
+    id: 'mc-steve-pioneer',
+    name: 'Steve the Pioneer',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 42,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#00BCD4', // Steve Cyan Tunic
+      secondary: '#D7A17C', // Steve Skin Tone
+      accent: '#00F0FF', // Diamond Pickaxe
+      bezel: 'gold',
+    },
+    description: 'Built foundational study systems block-by-block with an unbreakable diamond pickaxe.',
+    longDescription:
+      'Honoring the legendary voxel builder who started from bare hands and punched trees to construct towering architectural monuments. Awarded for constructing robust knowledge foundations piece-by-piece.',
+    badgeStyle: 'mc-steve',
+    depthMetrics: {
+      thickness: '2.8 mm (Cubic Voxel Relief)',
+      curvature: 'Precision Diamond Chamfer',
+      layers: 5,
+      enamelFinish: 'Steve Cyan & Desert Sand Vitreous Enamel with Mirror Gold Bezel',
+    },
+  },
+  {
+    id: 'mc-alex-ranger',
+    name: 'Alex the Wilderness Ranger',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 38,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#4CAF50', // Alex Green Tunic
+      secondary: '#E65100', // Ginger Hair
+      accent: '#795548', // Recurve Bow
+      bezel: 'gold',
+    },
+    description: 'Traversed uncharted conceptual biomes and forged agile, flexible study strategies.',
+    longDescription:
+      'Embodying adventurous curiosity and nimble survival instincts across dense taigas and high mountains. Awarded for venturing into complex, unfamiliar subjects with fearlessness and agile adaptability.',
+    badgeStyle: 'mc-alex',
+    depthMetrics: {
+      thickness: '2.6 mm (Recurve Bow Arch)',
+      curvature: 'Biome Wilderness Dome',
+      layers: 5,
+      enamelFinish: 'Emerald Tunic & Ginger Silk Enamel with Gold Torus Bezel',
+    },
+  },
+  {
+    id: 'mc-creeper-dynamo',
+    name: 'Charged Creeper Dynamo',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 19,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#43A047', // Creeper Green
+      secondary: '#A6FF00', // Volt Lime
+      accent: '#D32F2F', // TNT Core
+      bezel: 'space-gray',
+    },
+    description: 'Ignited explosive bursts of deep-focus energy during high-intensity revision sprints.',
+    longDescription:
+      'Harnessing the thrilling, volatile voltage of sudden intellectual inspiration. Awarded for turning silent focus into explosive productivity breakthroughs without warning.',
+    badgeStyle: 'mc-creeper',
+    depthMetrics: {
+      thickness: '2.9 mm (Pixel Frown Grid)',
+      curvature: 'Volatile Blast Dish',
+      layers: 5,
+      enamelFinish: 'Volt Lime & Deep Charcoal Cloisonné with Space Gray Rim',
+    },
+  },
+  {
+    id: 'mc-enderman-void',
+    name: 'Void Walker Enderman',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 27,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0A0A0F', // Obsidian Black
+      secondary: '#C026D3', // Glowing Magenta Eyes
+      accent: '#00F0FF', // Cyan Ender Pearl
+      bezel: 'space-gray',
+    },
+    description: 'Teleported effortlessly between disparate knowledge domains via spatial conceptual leaps.',
+    longDescription:
+      'Silent, towering, and enigmatic visitor from the End dimension. Awarded for linking distant, abstract concepts across different academic disciplines in an instant blink.',
+    badgeStyle: 'mc-enderman',
+    depthMetrics: {
+      thickness: '3.1 mm (Obsidian Pearl Tier)',
+      curvature: 'Spacetime Void Cavity',
+      layers: 6,
+      enamelFinish: 'Deep Void Obsidian & Luminous Magenta with Cyan Ender Pearl',
+    },
+  },
+  {
+    id: 'mc-skeleton-archer',
+    name: 'Deadeye Skeleton Archer',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 24,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#374151', // Dungeon Slate
+      secondary: '#FAF9F6', // Polished Bone White
+      accent: '#8D6E63', // Carved Wood Bow
+      bezel: 'silver',
+    },
+    description: 'Hit every practice exam question with clinical precision and zero margin for error.',
+    longDescription:
+      'Prowling ancient dungeons with unswerving aim and icy composure. Awarded for pinpoint target acquisition on difficult test questions and surgical accuracy under time pressure.',
+    badgeStyle: 'mc-skeleton',
+    depthMetrics: {
+      thickness: '2.7 mm (Bone White Relief)',
+      curvature: 'Subterranean Slate Dish',
+      layers: 5,
+      enamelFinish: 'Dungeon Slate & Polished Bone Enamel with Mirror Silver Bezel',
+    },
+  },
+  {
+    id: 'mc-zombie-miner',
+    name: 'Tenacious Zombie Miner',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 31,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#1E293B', // Deep Dusk Navy
+      secondary: '#2E7D32', // Rotting Zombie Green
+      accent: '#E2E8F0', // Iron Ingot
+      bezel: 'space-gray',
+    },
+    description: 'Persisted relentlessly through grueling revision sessions with tireless endurance.',
+    longDescription:
+      'Walking steadily onward despite obstacles, fatigue, or dark cave labyrinths. Awarded for relentless grit and relentless repetition that grinds the hardest problems down to dust.',
+    badgeStyle: 'mc-zombie',
+    depthMetrics: {
+      thickness: '2.8 mm (Weathered Ingot Relief)',
+      curvature: 'Midnight Mine Hollow',
+      layers: 5,
+      enamelFinish: 'Deep Dusk Navy & Forest Rot Green with Brushed Iron Ingot',
+    },
+  },
+  {
+    id: 'mc-iron-golem-guard',
+    name: 'Citadel Iron Golem',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 16,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#475569', // Citadel Cobblestone
+      secondary: '#15803D', // Emerald Moss Vines
+      accent: '#FA114F', // Crimson Poppy
+      bezel: 'silver',
+    },
+    description: 'Stood as an unshakeable guardian of daily study streaks, offering gentle encouragement.',
+    longDescription:
+      'Forged from pure iron ingots and animated by quiet loyalty to the community. Awarded for steadfast defense of learning habits while extending gentle, compassionate aid to fellow peers.',
+    badgeStyle: 'mc-iron-golem',
+    depthMetrics: {
+      thickness: '3.2 mm (Massive Brow & Long Nose)',
+      curvature: 'Fortress Masonry Convex',
+      layers: 6,
+      enamelFinish: 'Weathered Iron Alloy with Emerald Moss Vines & Crimson Poppy',
+    },
+  },
+  {
+    id: 'mc-pig-golden',
+    name: 'Pastoral Pig & Golden Carrot',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 45,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#16A34A', // Meadow Green
+      secondary: '#F472B6', // Pig Pink
+      accent: '#FFD700', // Mirror Gold Carrot
+      bezel: 'gold',
+    },
+    description: 'Celebrated sweet daily milestones and rewarded steady study habits with joyful cheer.',
+    longDescription:
+      'The heartwarming symbol of friendly pastures, joyful carrots, and cozy farmsteads. Awarded for taking delightful pride in daily incremental victories and maintaining playful study joy.',
+    badgeStyle: 'mc-pig',
+    depthMetrics: {
+      thickness: '2.5 mm (Rectangular Snout Relief)',
+      curvature: 'Meadow Hillock Curve',
+      layers: 5,
+      enamelFinish: 'Pastel Pig Pink & Clover Green with Mirror Electroplated Gold',
+    },
+  },
+  {
+    id: 'mc-ender-dragon-sovereign',
+    name: 'Ender Dragon Sovereign',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 12,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0F0E17', // End Void
+      secondary: '#D946EF', // Cosmic Dragon Breath
+      accent: '#64748B', // Horn Slate
+      bezel: 'space-gray',
+    },
+    description: 'Conquered the pinnacle challenge of the entire curriculum and claimed the final victory.',
+    longDescription:
+      'Reigning over the desolate obsidian towers of the End. Awarded for overcoming the ultimate capstone examination and mastering the highest tier of comprehensive difficulty.',
+    badgeStyle: 'mc-ender-dragon',
+    depthMetrics: {
+      thickness: '3.4 mm (Sweeping Twin Horns)',
+      curvature: 'End Dimension Cosmic Dome',
+      layers: 7,
+      enamelFinish: 'Obsidian Scales & Cosmic Magenta Breath with Dragon Egg Gem',
+    },
+  },
+  {
+    id: 'mc-axolotl-spirit',
+    name: 'Regenerative Axolotl Spirit',
+    category: 'Minecraft Characters',
+    earnedDate: 'OCTOBER 28, 2026',
+    earnedCount: 52,
+    state: 'unlocked',
+    colorTheme: {
+      primary: '#0284C7', // Lush Cave Azure
+      secondary: '#FBCFE8', // Baby Pink
+      accent: '#00F0FF', // Water Bucket
+      bezel: 'silver',
+    },
+    description: 'Healed academic burnout and restored mental stamina with calm, joyful recovery intervals.',
+    longDescription:
+      'Gliding serenely through glowing moss-lined underwater caves. Awarded for mastering restorative rest, stress regulation, and returning to deep study refreshed and energized.',
+    badgeStyle: 'mc-axolotl',
+    depthMetrics: {
+      thickness: '2.6 mm (3-Tier Gill Frills)',
+      curvature: 'Lush Aquifer Ripple',
+      layers: 6,
+      enamelFinish: 'Baby Pink Enamel & Vivid Fuchsia Gills with Cyan Water Bucket',
     },
   },
 ];

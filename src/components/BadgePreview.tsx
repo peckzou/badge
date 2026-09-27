@@ -832,6 +832,222 @@ function renderShapePath(
         </g>
       );
 
+    // 10 Minecraft Characters
+    case 'mc-steve':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#00BCD4" stroke={bezelStroke} strokeWidth="8" />
+          {/* Steve Face Block */}
+          <rect x="52" y="44" width="56" height="54" fill="#D7A17C" />
+          {/* Steve Brown Hair */}
+          <rect x="52" y="44" width="56" height="18" fill="#4A2E18" />
+          <rect x="52" y="62" width="10" height="20" fill="#4A2E18" />
+          <rect x="98" y="62" width="10" height="20" fill="#4A2E18" />
+          {/* Eyes (White + Indigo pupil) */}
+          <rect x="64" y="66" width="10" height="6" fill="#FFFFFF" />
+          <rect x="68" y="66" width="6" height="6" fill="#3F51B5" />
+          <rect x="86" y="66" width="10" height="6" fill="#FFFFFF" />
+          <rect x="86" y="66" width="6" height="6" fill="#3F51B5" />
+          {/* Nose & Beard */}
+          <rect x="74" y="76" width="12" height="7" fill="#B5734C" />
+          <rect x="70" y="86" width="20" height="6" fill="#4A2E18" />
+          {/* Diamond Pickaxe Icon */}
+          <g transform="translate(86, 92) rotate(-35)">
+            <rect x="0" y="0" width="4" height="28" fill="#8D6E63" />
+            <path d="M-8 -2 L12 -2 L6 -8 Z" fill="#00F0FF" />
+          </g>
+        </g>
+      );
+
+    case 'mc-alex':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#4CAF50" stroke={bezelStroke} strokeWidth="8" />
+          {/* Alex Face Block */}
+          <rect x="52" y="44" width="56" height="54" fill="#F5CBA7" />
+          {/* Ginger Hair */}
+          <rect x="52" y="44" width="56" height="20" fill="#E65100" />
+          <rect x="44" y="58" width="12" height="34" fill="#E65100" />
+          {/* Green Eyes */}
+          <rect x="64" y="66" width="10" height="6" fill="#FFFFFF" />
+          <rect x="68" y="66" width="6" height="6" fill="#2E7D32" />
+          <rect x="86" y="66" width="10" height="6" fill="#FFFFFF" />
+          <rect x="86" y="66" width="6" height="6" fill="#2E7D32" />
+          {/* Recurve Bow at bottom */}
+          <path d="M96 90 Q112 108 96 126" stroke="#795548" strokeWidth="4" fill="none" />
+          <line x1="96" y1="90" x2="96" y2="126" stroke="#FFFFFF" strokeWidth="1.5" />
+        </g>
+      );
+
+    case 'mc-creeper':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#43A047" stroke={bezelStroke} strokeWidth="8" />
+          {/* Lime Green Creeper Head */}
+          <rect x="46" y="38" width="68" height="68" fill="#A6FF00" />
+          {/* Eyes */}
+          <rect x="54" y="50" width="16" height="16" fill="#18181B" />
+          <rect x="90" y="50" width="16" height="16" fill="#18181B" />
+          {/* Nose */}
+          <rect x="72" y="66" width="16" height="20" fill="#18181B" />
+          {/* Mouth */}
+          <rect x="64" y="86" width="32" height="16" fill="#18181B" />
+          <rect x="58" y="86" width="10" height="20" fill="#18181B" />
+          <rect x="92" y="86" width="10" height="20" fill="#18181B" />
+          {/* TNT Block Accent */}
+          <rect x="100" y="102" width="22" height="22" fill="#D32F2F" rx="2" />
+          <rect x="100" y="108" width="22" height="8" fill="#FFFFFF" />
+          <text x="102" y="115" fontSize="6" fontWeight="bold" fill="#18181B">TNT</text>
+        </g>
+      );
+
+    case 'mc-enderman':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0A0A0F" stroke={bezelStroke} strokeWidth="8" />
+          {/* Slender Obsidian Head */}
+          <rect x="54" y="42" width="52" height="52" fill="#18181B" />
+          {/* Glowing Horizontal Magenta Eyes */}
+          <rect x="56" y="64" width="18" height="7" fill="#C026D3" />
+          <rect x="62" y="64" width="6" height="7" fill="#FFFFFF" />
+          <rect x="86" y="64" width="18" height="7" fill="#C026D3" />
+          <rect x="92" y="64" width="6" height="7" fill="#FFFFFF" />
+          {/* Jaw */}
+          <rect x="58" y="86" width="44" height="14" fill="#121216" />
+          {/* Ender Pearl Accent */}
+          <circle cx="80" cy="118" r="12" fill="#00F0FF" />
+          <circle cx="80" cy="118" r="14" stroke="#C026D3" strokeWidth="2.5" fill="none" />
+        </g>
+      );
+
+    case 'mc-skeleton':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#374151" stroke={bezelStroke} strokeWidth="8" />
+          {/* Bone Skull Block */}
+          <rect x="50" y="42" width="60" height="60" fill="#FAF9F6" />
+          {/* Dark Eye Sockets */}
+          <rect x="58" y="54" width="16" height="14" fill="#111827" />
+          <rect x="86" y="54" width="16" height="14" fill="#111827" />
+          {/* Nose Cavity */}
+          <rect x="76" y="70" width="8" height="10" fill="#111827" />
+          {/* Tooth Slots */}
+          <rect x="64" y="86" width="4" height="12" fill="#111827" />
+          <rect x="72" y="86" width="4" height="12" fill="#111827" />
+          <rect x="80" y="86" width="4" height="12" fill="#111827" />
+          <rect x="88" y="86" width="4" height="12" fill="#111827" />
+          <rect x="94" y="86" width="2" height="12" fill="#111827" />
+          {/* Wooden Arrow */}
+          <line x1="95" y1="102" x2="125" y2="128" stroke="#8D6E63" strokeWidth="3" />
+          <polygon points="125,128 120,123 128,122" fill="#D1D5DB" />
+        </g>
+      );
+
+    case 'mc-zombie':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#1E293B" stroke={bezelStroke} strokeWidth="8" />
+          {/* Rotting Green Head Block */}
+          <rect x="50" y="42" width="60" height="60" fill="#2E7D32" />
+          {/* Dark Moss Hair */}
+          <rect x="50" y="42" width="60" height="18" fill="#1B5E20" />
+          {/* Sunken Black Eyes */}
+          <rect x="58" y="62" width="12" height="8" fill="#0F172A" />
+          <rect x="90" y="62" width="12" height="8" fill="#0F172A" />
+          {/* Nose & Frown Mouth */}
+          <rect x="74" y="72" width="12" height="6" fill="#1B5E20" />
+          <rect x="68" y="82" width="24" height="8" fill="#0F172A" />
+          {/* Iron Ingot Accent */}
+          <rect x="66" y="112" width="28" height="12" rx="2" fill="url(#bezel-grad-silver-unlocked)" stroke="#64748B" strokeWidth="1.5" />
+        </g>
+      );
+
+    case 'mc-iron-golem':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#475569" stroke={bezelStroke} strokeWidth="8" />
+          {/* Heavy Weathered Iron Head */}
+          <rect x="48" y="34" width="64" height="74" fill="#E2E8F0" />
+          {/* Moss Vines */}
+          <rect x="52" y="44" width="16" height="34" fill="#15803D" />
+          {/* Heavy Brow */}
+          <rect x="46" y="46" width="68" height="12" fill="#CBD5E1" />
+          {/* Long Nose */}
+          <rect x="73" y="58" width="14" height="34" fill="#B45309" />
+          {/* Glowing Red Eyes */}
+          <rect x="58" y="58" width="10" height="8" fill="#EF4444" />
+          <rect x="92" y="58" width="10" height="8" fill="#EF4444" />
+          {/* Red Poppy */}
+          <circle cx="106" cy="112" r="9" fill="#FA114F" />
+          <line x1="106" y1="121" x2="106" y2="136" stroke="#15803D" strokeWidth="3" />
+        </g>
+      );
+
+    case 'mc-pig':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#16A34A" stroke={bezelStroke} strokeWidth="8" />
+          {/* Pink Pig Head */}
+          <rect x="48" y="44" width="64" height="54" fill="#F472B6" />
+          {/* Snout */}
+          <rect x="64" y="66" width="32" height="18" fill="#DB2777" />
+          <rect x="70" y="72" width="6" height="6" fill="#9D174D" />
+          <rect x="84" y="72" width="6" height="6" fill="#9D174D" />
+          {/* Side Eyes */}
+          <rect x="50" y="62" width="12" height="8" fill="#FFFFFF" />
+          <rect x="54" y="62" width="6" height="8" fill="#18181B" />
+          <rect x="98" y="62" width="12" height="8" fill="#FFFFFF" />
+          <rect x="100" y="62" width="6" height="8" fill="#18181B" />
+          {/* Golden Carrot */}
+          <polygon points="106,128 116,104 122,110" fill="url(#bezel-grad-gold-unlocked)" />
+          <rect x="118" y="100" width="8" height="6" fill="#22C55E" />
+        </g>
+      );
+
+    case 'mc-ender-dragon':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0F0E17" stroke={bezelStroke} strokeWidth="8" />
+          {/* Dragon Skull Block */}
+          <rect x="52" y="46" width="56" height="46" fill="#18181B" />
+          {/* Twin Horns */}
+          <polygon points="56,46 44,24 50,46" fill="#64748B" />
+          <polygon points="104,46 116,24 110,46" fill="#64748B" />
+          {/* Snout */}
+          <rect x="58" y="76" width="44" height="26" fill="#18181B" />
+          <rect x="68" y="94" width="24" height="6" fill="#09090B" />
+          {/* Glowing Magenta Eyes */}
+          <rect x="58" y="58" width="12" height="7" fill="#D946EF" />
+          <rect x="90" y="58" width="12" height="7" fill="#D946EF" />
+          {/* Dragon Egg Accent */}
+          <ellipse cx="80" cy="122" rx="10" ry="14" fill="#18181B" stroke="#D946EF" strokeWidth="2.5" />
+        </g>
+      );
+
+    case 'mc-axolotl':
+      return (
+        <g>
+          <circle cx="80" cy="80" r="58" fill="#0284C7" stroke={bezelStroke} strokeWidth="8" />
+          {/* External Gills (Left & Right 3 Tiers) */}
+          <rect x="28" y="52" width="20" height="6" rx="2" fill="#EC4899" />
+          <rect x="26" y="62" width="22" height="6" rx="2" fill="#EC4899" />
+          <rect x="30" y="72" width="18" height="6" rx="2" fill="#EC4899" />
+          <rect x="112" y="52" width="20" height="6" rx="2" fill="#EC4899" />
+          <rect x="112" y="62" width="22" height="6" rx="2" fill="#EC4899" />
+          <rect x="112" y="72" width="18" height="6" rx="2" fill="#EC4899" />
+          {/* Pink Axolotl Head */}
+          <rect x="46" y="50" width="68" height="46" rx="4" fill="#FBCFE8" />
+          {/* Wide Black Bead Eyes */}
+          <rect x="56" y="64" width="8" height="8" fill="#18181B" />
+          <rect x="96" y="64" width="8" height="8" fill="#18181B" />
+          {/* Axolotl Smile */}
+          <rect x="68" y="78" width="24" height="4" rx="2" fill="#EC4899" />
+          {/* Water Bucket */}
+          <ellipse cx="80" cy="116" rx="12" ry="4" fill="#00F0FF" />
+          <path d="M68 116 L72 130 L88 130 L92 116 Z" fill="url(#bezel-grad-silver-unlocked)" />
+        </g>
+      );
+
     default:
       // Generic circular medallion
       return (

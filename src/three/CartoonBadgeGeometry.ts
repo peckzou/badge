@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { AppleAwardMaterials } from './materials';
-import { AppleBadgeMeshGroup } from './BadgeGeometry';
+import { AppleBadgeMeshGroup, createConvexCoinGeometry } from './BadgeGeometry';
 
 // ============================================================================
 // 10 CARTOON CHARACTERS (10组卡通人物系列)
@@ -24,7 +24,7 @@ export function buildCartoonWizardBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, midnightViolet, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -100,7 +100,7 @@ export function buildCartoonAstronautBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, deepCosmos, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -168,7 +168,7 @@ export function buildCartoonMechaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, mechaNavy, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -235,7 +235,7 @@ export function buildCartoonKnightBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, royalBlue, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -306,7 +306,7 @@ export function buildCartoonPrinceBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, starNavy, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -387,7 +387,7 @@ export function buildCartoonPirateBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, oceanTeal, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -471,7 +471,7 @@ export function buildCartoonPixelHeroBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, pixelEmerald, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -541,7 +541,7 @@ export function buildCartoonAviatorBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, sepiaBrown, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -621,7 +621,7 @@ export function buildCartoonElfBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, forestEmerald, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -699,7 +699,7 @@ export function buildCartoonNinjaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, midnightCharcoal, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;

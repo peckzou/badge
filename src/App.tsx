@@ -9,6 +9,7 @@ import { BadgeCanvas } from './components/BadgeCanvas';
 import { BadgePreview } from './components/BadgePreview';
 import { CollectionSummary } from './components/CollectionSummary';
 import { ArchiveHubModal } from './components/ArchiveHubModal';
+import { MinestIntegrationModal } from './components/MinestIntegrationModal';
 import { spatialAudio } from './utils/spatialAudio';
 import { triggerHaptic } from './utils/haptics';
 import { badgePreviewService } from './services/BadgePreviewService';
@@ -18,6 +19,8 @@ export default function App() {
   const [selectedAward, setSelectedAward] = useState<BadgeModel | null>(null);
   const [unlockModalBadge, setUnlockModalBadge] = useState<BadgeModel | null>(null);
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState<boolean>(false);
+  const [isMinestIntegrationOpen, setIsMinestIntegrationOpen] = useState<boolean>(false);
+  const [isEmbed, setIsEmbed] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'awards' | 'summary' | 'decks' | 'focus'>('awards');
   const [galleryMode, setGalleryMode] = useState<'grid' | 'comparison'>('grid');
   const [audioState, setAudioState] = useState(() => spatialAudio.getState());
@@ -27,6 +30,64 @@ export default function App() {
     return spatialAudio.subscribe((s) => setAudioState(s));
   }, []);
 
+  // URL Query Parameters & Minest postMessage Integration Bridge
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const embedParam = urlParams.get('embed');
+      if (embedParam === 'true' || embedParam === '1') {
+        setIsEmbed(true);
+      }
+
+      const tabParam = urlParams.get('tab');
+      if (tabParam && ['awards', 'summary', 'decks', 'focus'].includes(tabParam)) {
+        setActiveTab(tabParam as any);
+      }
+
+      const awardParam = urlParams.get('award') || urlParams.get('badge') || urlParams.get('id');
+      if (awardParam) {
+        const query = awardParam.toLowerCase().trim();
+        const target = awards.find(
+          (a) => a.id.toLowerCase() === query || a.name.toLowerCase().includes(query)
+        );
+        if (target) {
+          setSelectedAward(target);
+        }
+      }
+    } catch {
+      // safe fallback
+    }
+
+    // Bidirectional postMessage listener for Minest Host Application
+    const handleHostMessage = (event: MessageEvent) => {
+      const data = event.data;
+      if (!data || typeof data !== 'object') return;
+
+      if (data.type === 'MINEST_OPEN_AWARD' && data.badgeId) {
+        const query = String(data.badgeId).toLowerCase().trim();
+        const target = awards.find(
+          (a) => a.id.toLowerCase() === query || a.name.toLowerCase().includes(query)
+        );
+        if (target) {
+          setSelectedAward(target);
+        }
+      } else if (data.type === 'MINEST_TRIGGER_UNLOCK' && data.badgeId) {
+        handleTriggerUnlock(String(data.badgeId));
+      } else if (data.type === 'MINEST_CLOSE_AWARD') {
+        setSelectedAward(null);
+      } else if (data.type === 'MINEST_SET_TAB' && data.tab) {
+        if (['awards', 'summary', 'decks', 'focus'].includes(data.tab)) {
+          setActiveTab(data.tab);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleHostMessage);
+    return () => window.removeEventListener('message', handleHostMessage);
+  }, [awards]);
+
   useEffect(() => {
     if (selectedAward) {
       badgePreviewService.pause();
@@ -34,6 +95,20 @@ export default function App() {
       badgePreviewService.resume();
     }
   }, [selectedAward]);
+
+  const handleSelectAward = (badge: BadgeModel | null) => {
+    setSelectedAward(badge);
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      if (badge) {
+        window.parent.postMessage(
+          { type: 'MINEST_AWARD_SELECTED', badgeId: badge.id, name: badge.name },
+          '*'
+        );
+      } else {
+        window.parent.postMessage({ type: 'MINEST_AWARD_DETAIL_CLOSED' }, '*');
+      }
+    }
+  };
 
   const handleTriggerUnlock = (badgeId: string) => {
     const badge = awards.find((b) => b.id === badgeId) || awards[0];
@@ -59,6 +134,10 @@ export default function App() {
         return b;
       })
     );
+
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'MINEST_AWARD_UNLOCKED', badgeId }, '*');
+    }
   };
 
   return (
@@ -181,16 +260,50 @@ export default function App() {
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
             </button>
+
+            <button
+              onClick={() => {
+                triggerHaptic('tap');
+                spatialAudio.playClink('facet', 0.2);
+                setIsMinestIntegrationOpen(true);
+              }}
+              className="px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-500/40 text-amber-300 flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
+              title="如何将 3D 勋章系统链接到你的 Minest 仓库 Award 按钮"
+            >
+              <span>🔗</span>
+              <span>Minest 接入指引</span>
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Minest Embed Mode Banner (If loaded inside Minest iframe) */}
+      {isEmbed && (
+        <div className="bg-[#1C1C1E]/95 border-b border-white/[0.08] px-4 py-2 flex items-center justify-between text-xs backdrop-blur-md z-40 sticky top-0">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+            <span className="text-white/90 font-medium">Minest 3D Award Subsystem</span>
+            <span className="text-[10px] text-[#8E8E93] bg-white/10 px-1.5 py-0.5 rounded">Active Bridge</span>
+          </div>
+          <button
+            onClick={() => {
+              if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'MINEST_REQUEST_CLOSE' }, '*');
+              }
+            }}
+            className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all active:scale-95"
+          >
+            关闭 / Close
+          </button>
+        </div>
+      )}
 
       {/* Main Viewport */}
       <main className="flex-1 pb-16">
         {activeTab === 'summary' ? (
           <CollectionSummary
             awards={awards}
-            onSelectAward={(award) => setSelectedAward(award)}
+            onSelectAward={(award) => handleSelectAward(award)}
             onTriggerUnlock={handleTriggerUnlock}
             onViewAllAwards={() => {
               setActiveTab('awards');
@@ -274,7 +387,7 @@ export default function App() {
         ) : galleryMode === 'grid' ? (
           <AppleAwardsGrid
             awards={awards}
-            onSelectAward={(award) => setSelectedAward(award)}
+            onSelectAward={(award) => handleSelectAward(award)}
             onTriggerUnlock={handleTriggerUnlock}
             onViewSummary={() => setActiveTab('summary')}
           />
@@ -293,7 +406,7 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {/* Direction 1: Perfect Week Concave Shield (IMG_2949 & IMG_2950) */}
               <div
-                onClick={() => setSelectedAward(awards[0])}
+                onClick={() => handleSelectAward(awards[0])}
                 className="rounded-[22px] bg-[#1C1C1E] p-5 cursor-pointer hover:bg-[#252528] transition-all flex flex-col justify-between"
                 style={{ minHeight: '380px' }}
               >
@@ -324,7 +437,7 @@ export default function App() {
 
               {/* Direction 2: Tricentric Mastery Rings (IMG_2952) */}
               <div
-                onClick={() => setSelectedAward(awards[4])}
+                onClick={() => handleSelectAward(awards[4])}
                 className="rounded-[22px] bg-[#1C1C1E] p-5 cursor-pointer hover:bg-[#252528] transition-all flex flex-col justify-between"
                 style={{ minHeight: '380px' }}
               >
@@ -355,7 +468,7 @@ export default function App() {
 
               {/* Direction 3: Challenge Hexagon (IMG_2948 & IMG_2951) */}
               <div
-                onClick={() => setSelectedAward(awards[6])}
+                onClick={() => handleSelectAward(awards[6])}
                 className="rounded-[22px] bg-[#1C1C1E] p-5 cursor-pointer hover:bg-[#252528] transition-all flex flex-col justify-between"
                 style={{ minHeight: '380px' }}
               >
@@ -392,7 +505,7 @@ export default function App() {
       {selectedAward && (
         <AppleAwardDetailView
           badge={selectedAward}
-          onBack={() => setSelectedAward(null)}
+          onBack={() => handleSelectAward(null)}
           onTriggerUnlock={handleTriggerUnlock}
         />
       )}
@@ -409,6 +522,12 @@ export default function App() {
       <ArchiveHubModal
         isOpen={isArchiveModalOpen}
         onClose={() => setIsArchiveModalOpen(false)}
+      />
+
+      {/* Minest Award Button Integration Guide Modal */}
+      <MinestIntegrationModal
+        isOpen={isMinestIntegrationOpen}
+        onClose={() => setIsMinestIntegrationOpen(false)}
       />
 
       {/* Floating Apple Bottom Tab Bar */}

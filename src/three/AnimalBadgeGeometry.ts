@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { AppleAwardMaterials } from './materials';
-import { AppleBadgeMeshGroup } from './BadgeGeometry';
+import { AppleBadgeMeshGroup, createConvexCoinGeometry } from './BadgeGeometry';
 
 // ============================================================================
 // 10 CUTE ANIMALS (可爱动物系列)
@@ -25,7 +25,7 @@ export function buildCutePandaBadge(
 
   // Base Medallion
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, whiteCeramic, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -123,7 +123,7 @@ export function buildCuteShibaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, shibaAmber, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -213,7 +213,7 @@ export function buildCuteRedPandaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, auburnMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -289,7 +289,7 @@ export function buildCuteKoalaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, sageMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -360,7 +360,7 @@ export function buildCuteHamsterBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, honeyMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -434,7 +434,7 @@ export function buildCuteFoxBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, sandMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -504,7 +504,7 @@ export function buildCutePenguinBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, cyanIce, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -572,7 +572,7 @@ export function buildCuteBunnyBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, sakuraPink, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -648,7 +648,7 @@ export function buildCuteOtterBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, oceanBlue, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -713,7 +713,7 @@ export function buildCuteAlpacaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, lavenderMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -784,7 +784,7 @@ export function buildOceanWhaleBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, deepIndigo, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -853,7 +853,7 @@ export function buildOceanMantaBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, midnightAbyss, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -915,7 +915,7 @@ export function buildOceanTurtleBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, reefTeal, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -987,7 +987,7 @@ export function buildOceanDolphinBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, deepCobalt, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1051,7 +1051,7 @@ export function buildOceanSharkBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, abyssNavy, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1109,7 +1109,7 @@ export function buildOceanSeahorseBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, coralPink, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1168,7 +1168,7 @@ export function buildOceanNarwhalBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, arcticTeal, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1223,7 +1223,7 @@ export function buildOceanOctopusBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, abyssalNavy, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1288,7 +1288,7 @@ export function buildOceanJellyfishBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, deepVoid, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -1347,7 +1347,7 @@ export function buildOceanFlyingFishBadge(
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorSilver, seaCobalt, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;

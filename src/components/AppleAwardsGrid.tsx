@@ -23,6 +23,16 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
   const categories: { key: string; label: string; count: number }[] = [
     { key: 'all', label: 'All Awards', count: awards.length },
     {
+      key: 'Hexagon Pop Challenge',
+      label: '⬡ Hexagon Pop (15)',
+      count: awards.filter((a) => a.category === 'Hexagon Pop Challenge').length,
+    },
+    {
+      key: 'Minecraft Characters',
+      label: '⛏️ Minecraft (10)',
+      count: awards.filter((a) => a.category === 'Minecraft Characters').length,
+    },
+    {
       key: 'Cartoon Characters',
       label: '✨ Cartoon Characters (10)',
       count: awards.filter((a) => a.category === 'Cartoon Characters').length,
@@ -77,7 +87,7 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
         <div>
           <h1 className="text-2xl font-bold text-white tracking-tight">Minest Learning Awards</h1>
           <p className="text-xs text-[#8E8E93] mt-0.5 font-medium">
-            {awards.length} High-Prestige Awards • Cute Animals, Ocean Animals & Cartoon Characters
+            {awards.length} High-Prestige Awards • Minecraft, Cartoon Characters & Cute / Ocean Animals
           </p>
         </div>
 

@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { AppleAwardMaterials } from './materials';
+import { createConvexCoinGeometry } from './ConvexCoinGeometry';
+
+export { createConvexCoinGeometry };
 
 export interface AppleBadgeMeshGroup extends THREE.Group {
   updateProgress?: (progress: number | number[]) => void;
@@ -2877,9 +2880,8 @@ export function buildAbyssOctopusBadge(
 
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
-  // Base Parabolic Trench Dish (Negative concave basin)
-  const baseSegments = 64;
-  const baseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.16, baseSegments);
+  // Base Parabolic Trench Dish (Convex crowned outer coin)
+  const baseGeo = createConvexCoinGeometry(1.65, 0.16, 0.08);
   const baseMesh = new THREE.Mesh(baseGeo, [spaceGray, navyMat, backMat]);
   baseMesh.rotation.x = Math.PI / 2;
   badge.add(baseMesh);
@@ -2965,9 +2967,9 @@ export function buildQuantumOctopusBadge(
 
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
-  // Interlocking 8-Lobe Golden Base Star
+  // Interlocking 8-Lobe Golden Base Star (Convex crowned coin)
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.68, 1.68, 0.16, 64),
+    createConvexCoinGeometry(1.68, 0.16, 0.08),
     [mirrorGold, magentaMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -3085,8 +3087,8 @@ export function buildFlowJellyfishBadge(
   }
   badge.add(tentacleGroup);
 
-  // Ceramic Back Base Plate
-  const backBaseGeo = new THREE.CylinderGeometry(1.65, 1.65, 0.14, 64);
+  // Ceramic Back Base Plate (Convex crowned coin)
+  const backBaseGeo = createConvexCoinGeometry(1.65, 0.14, 0.06);
   const backBase = new THREE.Mesh(backBaseGeo, [mirrorSilver, azureMat, backMat]);
   backBase.rotation.x = Math.PI / 2;
   backBase.position.z = -0.06;
@@ -3117,9 +3119,9 @@ export function buildNebulaJellyfishBadge(
 
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
-  // Space Gray Titanium Unibody Base Disc
+  // Space Gray Titanium Unibody Base Disc (Convex crowned coin)
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [spaceGray, violetMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -3197,9 +3199,9 @@ export function buildSovereignEagleBadge(
 
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
-  // Swept Aerodynamic Base Medallion
+  // Swept Aerodynamic Base Medallion (Convex crowned coin)
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.68, 1.68, 0.16, 64),
+    createConvexCoinGeometry(1.68, 0.16, 0.08),
     [mirrorGold, crimsonMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -3282,9 +3284,9 @@ export function buildClockworkOwlBadge(
 
   const badge = new THREE.Group() as AppleBadgeMeshGroup;
 
-  // Mechanical Outer Bezel with Lathe-turned Notches
+  // Mechanical Outer Bezel with Lathe-turned Notches (Convex crowned coin)
   const baseMesh = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.65, 1.65, 0.16, 64),
+    createConvexCoinGeometry(1.65, 0.16, 0.08),
     [mirrorGold, emeraldMat, backMat]
   );
   baseMesh.rotation.x = Math.PI / 2;
@@ -3412,6 +3414,19 @@ export {
   buildCartoonElfBadge,
   buildCartoonNinjaBadge,
 } from './CartoonBadgeGeometry';
+
+export {
+  buildMinecraftSteveBadge,
+  buildMinecraftAlexBadge,
+  buildMinecraftCreeperBadge,
+  buildMinecraftEndermanBadge,
+  buildMinecraftSkeletonBadge,
+  buildMinecraftZombieBadge,
+  buildMinecraftIronGolemBadge,
+  buildMinecraftPigBadge,
+  buildMinecraftEnderDragonBadge,
+  buildMinecraftAxolotlBadge,
+} from './MinecraftBadgeGeometry';
 
 
 

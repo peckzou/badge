@@ -61,6 +61,35 @@ import {
   buildCartoonNinjaBadge,
   AppleBadgeMeshGroup,
 } from './BadgeGeometry';
+import {
+  buildMinecraftSteveBadge,
+  buildMinecraftAlexBadge,
+  buildMinecraftCreeperBadge,
+  buildMinecraftEndermanBadge,
+  buildMinecraftSkeletonBadge,
+  buildMinecraftZombieBadge,
+  buildMinecraftIronGolemBadge,
+  buildMinecraftPigBadge,
+  buildMinecraftEnderDragonBadge,
+  buildMinecraftAxolotlBadge,
+} from './MinecraftBadgeGeometry';
+import {
+  buildHexAxolotlLucyBadge,
+  buildHexAxolotlCyanBadge,
+  buildHexMinionStuartBadge,
+  buildHexMinionBobBadge,
+  buildHexBlueyBadge,
+  buildHexBingoBadge,
+  buildHexNemoBadge,
+  buildHexDoryBadge,
+  buildHexRubbleBadge,
+  buildHexPikachuBadge,
+  buildHexDarthVaderBadge,
+  buildHexVaderHelmetBadge,
+  buildHexBabyYodaBadge,
+  buildHexLightsaberGreenBadge,
+  buildHexLightsaberRedBadge,
+} from './ChallengeHexBadgeGeometry';
 import { BadgePrototypeId, BadgeState, ViewAngle } from '../types/badge';
 import { spatialAudio } from '../utils/spatialAudio';
 
@@ -468,6 +497,58 @@ export class AppleBadgeSceneController {
       this.currentBadgeMesh = buildCartoonElfBadge(this.materialsLib, earnedDate, isLocked);
     } else if (prototypeId === 'cartoon-ninja') {
       this.currentBadgeMesh = buildCartoonNinjaBadge(this.materialsLib, earnedDate, isLocked);
+    // 10 Minecraft Characters
+    } else if (prototypeId === 'mc-steve') {
+      this.currentBadgeMesh = buildMinecraftSteveBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-alex') {
+      this.currentBadgeMesh = buildMinecraftAlexBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-creeper') {
+      this.currentBadgeMesh = buildMinecraftCreeperBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-enderman') {
+      this.currentBadgeMesh = buildMinecraftEndermanBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-skeleton') {
+      this.currentBadgeMesh = buildMinecraftSkeletonBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-zombie') {
+      this.currentBadgeMesh = buildMinecraftZombieBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-iron-golem') {
+      this.currentBadgeMesh = buildMinecraftIronGolemBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-pig') {
+      this.currentBadgeMesh = buildMinecraftPigBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-ender-dragon') {
+      this.currentBadgeMesh = buildMinecraftEnderDragonBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'mc-axolotl') {
+      this.currentBadgeMesh = buildMinecraftAxolotlBadge(this.materialsLib, earnedDate, isLocked);
+    // Hexagon Challenge Pop Icons (Apple Limited Edition Hexagon Medal)
+    } else if (prototypeId === 'hex-axolotl-lucy') {
+      this.currentBadgeMesh = buildHexAxolotlLucyBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-axolotl-cyan') {
+      this.currentBadgeMesh = buildHexAxolotlCyanBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-minion-stuart') {
+      this.currentBadgeMesh = buildHexMinionStuartBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-minion-bob') {
+      this.currentBadgeMesh = buildHexMinionBobBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-bluey') {
+      this.currentBadgeMesh = buildHexBlueyBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-bingo') {
+      this.currentBadgeMesh = buildHexBingoBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-nemo') {
+      this.currentBadgeMesh = buildHexNemoBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-dory') {
+      this.currentBadgeMesh = buildHexDoryBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-rubble') {
+      this.currentBadgeMesh = buildHexRubbleBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-pikachu') {
+      this.currentBadgeMesh = buildHexPikachuBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-darth-vader') {
+      this.currentBadgeMesh = buildHexDarthVaderBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-vader-helmet') {
+      this.currentBadgeMesh = buildHexVaderHelmetBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-baby-yoda') {
+      this.currentBadgeMesh = buildHexBabyYodaBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-lightsaber-green') {
+      this.currentBadgeMesh = buildHexLightsaberGreenBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'hex-lightsaber-red') {
+      this.currentBadgeMesh = buildHexLightsaberRedBadge(this.materialsLib, earnedDate, isLocked);
     } else {
       this.currentBadgeMesh = buildAppleChallengeHexBadge(
         this.materialsLib,

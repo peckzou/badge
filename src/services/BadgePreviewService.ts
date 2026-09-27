@@ -61,6 +61,35 @@ import {
   buildCartoonNinjaBadge,
   AppleBadgeMeshGroup,
 } from '../three/BadgeGeometry';
+import {
+  buildMinecraftSteveBadge,
+  buildMinecraftAlexBadge,
+  buildMinecraftCreeperBadge,
+  buildMinecraftEndermanBadge,
+  buildMinecraftSkeletonBadge,
+  buildMinecraftZombieBadge,
+  buildMinecraftIronGolemBadge,
+  buildMinecraftPigBadge,
+  buildMinecraftEnderDragonBadge,
+  buildMinecraftAxolotlBadge,
+} from '../three/MinecraftBadgeGeometry';
+import {
+  buildHexAxolotlLucyBadge,
+  buildHexAxolotlCyanBadge,
+  buildHexMinionStuartBadge,
+  buildHexMinionBobBadge,
+  buildHexBlueyBadge,
+  buildHexBingoBadge,
+  buildHexNemoBadge,
+  buildHexDoryBadge,
+  buildHexRubbleBadge,
+  buildHexPikachuBadge,
+  buildHexDarthVaderBadge,
+  buildHexVaderHelmetBadge,
+  buildHexBabyYodaBadge,
+  buildHexLightsaberGreenBadge,
+  buildHexLightsaberRedBadge,
+} from '../three/ChallengeHexBadgeGeometry';
 import { BadgeModel, getBadgePrototypeId, BadgePrototypeId } from '../types/badge';
 
 type PreviewListener = (dataUrl: string) => void;
@@ -408,6 +437,58 @@ class BadgePreviewService {
         return buildCartoonElfBadge(this.materialsLib, earnedDate, isLocked);
       case 'cartoon-ninja':
         return buildCartoonNinjaBadge(this.materialsLib, earnedDate, isLocked);
+      // 10 Minecraft Characters
+      case 'mc-steve':
+        return buildMinecraftSteveBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-alex':
+        return buildMinecraftAlexBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-creeper':
+        return buildMinecraftCreeperBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-enderman':
+        return buildMinecraftEndermanBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-skeleton':
+        return buildMinecraftSkeletonBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-zombie':
+        return buildMinecraftZombieBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-iron-golem':
+        return buildMinecraftIronGolemBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-pig':
+        return buildMinecraftPigBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-ender-dragon':
+        return buildMinecraftEnderDragonBadge(this.materialsLib, earnedDate, isLocked);
+      case 'mc-axolotl':
+        return buildMinecraftAxolotlBadge(this.materialsLib, earnedDate, isLocked);
+      // Hexagon Challenge Pop Icons (Apple Limited Edition Hexagon Medal)
+      case 'hex-axolotl-lucy':
+        return buildHexAxolotlLucyBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-axolotl-cyan':
+        return buildHexAxolotlCyanBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-minion-stuart':
+        return buildHexMinionStuartBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-minion-bob':
+        return buildHexMinionBobBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-bluey':
+        return buildHexBlueyBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-bingo':
+        return buildHexBingoBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-nemo':
+        return buildHexNemoBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-dory':
+        return buildHexDoryBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-rubble':
+        return buildHexRubbleBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-pikachu':
+        return buildHexPikachuBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-darth-vader':
+        return buildHexDarthVaderBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-vader-helmet':
+        return buildHexVaderHelmetBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-baby-yoda':
+        return buildHexBabyYodaBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-lightsaber-green':
+        return buildHexLightsaberGreenBadge(this.materialsLib, earnedDate, isLocked);
+      case 'hex-lightsaber-red':
+        return buildHexLightsaberRedBadge(this.materialsLib, earnedDate, isLocked);
       default:
         return buildAppleChallengeHexBadge(this.materialsLib, earnedDate, isLocked);
     }
