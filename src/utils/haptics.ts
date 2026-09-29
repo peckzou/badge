@@ -140,25 +140,32 @@ function playUnlockFanfare() {
 /**
  * Public Haptic Dispatcher
  */
-export function triggerHaptic(type: HapticType = 'tap', stepIndex: number = 0) {
+export function triggerHaptic(type: HapticType = 'tap', intensityOrStep: number = 1.0) {
   switch (type) {
-    case 'tap':
-      triggerPhysicalVibration(12);
-      playAcousticTapticPulse(140, 48, 0.022, 0.16, true);
+    case 'tap': {
+      const scale = Math.max(0.2, Math.min(2.5, intensityOrStep));
+      triggerPhysicalVibration(Math.round(12 * scale));
+      playAcousticTapticPulse(140 * scale, 48, 0.022, 0.16 * scale, true);
       break;
+    }
 
-    case 'selection':
-      triggerPhysicalVibration(8);
-      playAcousticTapticPulse(180, 80, 0.015, 0.10, true);
+    case 'selection': {
+      const scale = Math.max(0.2, Math.min(2.5, intensityOrStep));
+      triggerPhysicalVibration(Math.round(8 * scale));
+      playAcousticTapticPulse(180 * scale, 80, 0.015, 0.10 * scale, true);
       break;
+    }
 
-    case 'flip':
-      triggerPhysicalVibration([18, 25, 20]);
-      playAcousticTapticPulse(110, 36, 0.038, 0.22, true);
+    case 'flip': {
+      const scale = Math.max(0.2, Math.min(2.5, intensityOrStep));
+      triggerPhysicalVibration([Math.round(18 * scale), Math.round(25 * scale), Math.round(20 * scale)]);
+      playAcousticTapticPulse(110, 36, 0.038, 0.22 * scale, true);
       break;
+    }
 
     case 'unlock_step': {
       // Escalating pitch and vibration intensity as unlock animation progresses (0 to 10)
+      const stepIndex = intensityOrStep;
       const freq = 110 + stepIndex * 28;
       triggerPhysicalVibration(8 + Math.min(stepIndex * 2, 20));
       playAcousticTapticPulse(freq, freq * 0.5, 0.025, 0.14 + stepIndex * 0.015, true);
@@ -171,9 +178,20 @@ export function triggerHaptic(type: HapticType = 'tap', stepIndex: number = 0) {
       playAcousticTapticPulse(95, 30, 0.05, 0.25, true);
       break;
 
-    case 'drag_tick':
-      triggerPhysicalVibration(5);
-      playAcousticTapticPulse(220, 110, 0.012, 0.06, false);
+    case 'drag_tick': {
+      // Scale intensity based on scroll velocity or rotation speed of 3D model
+      const scale = Math.max(0.2, Math.min(3.0, intensityOrStep));
+      const vibDuration = Math.max(2, Math.round(5 * scale));
+      triggerPhysicalVibration(vibDuration);
+
+      // Pitch slightly higher and gain scaled for crisp mechanical Taptic feel at higher speeds
+      const baseFreq = Math.min(360, Math.max(160, 220 + (scale - 1.0) * 80));
+      const endFreq = baseFreq * 0.5;
+      const gain = Math.min(0.25, Math.max(0.02, 0.06 * Math.sqrt(scale)));
+      const duration = Math.min(0.028, Math.max(0.008, 0.012 * Math.sqrt(scale)));
+
+      playAcousticTapticPulse(baseFreq, endFreq, duration, gain, false);
       break;
+    }
   }
 }

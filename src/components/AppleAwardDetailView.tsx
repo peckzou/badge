@@ -5,6 +5,7 @@ import { AppleBadgeSceneController } from '../three/BadgeScene';
 import { kelvinToRGBColor } from '../three/materials';
 import { triggerHaptic } from '../utils/haptics';
 import { spatialAudio } from '../utils/spatialAudio';
+import { calculateBadgeRarity, getRarityColor } from '../utils/rarity';
 
 interface AppleAwardDetailViewProps {
   badge: BadgeModel;
@@ -66,6 +67,11 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
   });
 
   const protoId: BadgePrototypeId = getBadgePrototypeId(badge.badgeStyle);
+
+  const rarityInfo = calculateBadgeRarity(badge);
+  const effectiveRarity = badge.rarity || rarityInfo.tier;
+  const rarityColor = getRarityColor(effectiveRarity);
+  const isRareOrMythic = effectiveRarity === 'Legendary' || effectiveRarity === 'Mythic';
 
   const parsedColor = badge.colorTheme?.primary
     ? parseInt(badge.colorTheme.primary.replace('#', '0x'), 16)
@@ -289,6 +295,35 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
               : 'transform 0.38s cubic-bezier(0.2, 0.9, 0.3, 1), border-radius 0.3s ease',
         }}
       >
+        {/* Legendary & Mythic Premium Edge-Light & Background Shimmer */}
+        {isRareOrMythic && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 rounded-[inherit]">
+            {/* Ambient Rotational Shimmer Rays */}
+            <div
+              className="absolute -inset-[120%] opacity-25 animate-[spin_24s_linear_infinite]"
+              style={{
+                background: `conic-gradient(from 0deg at 50% 50%, transparent 0deg, ${rarityColor} 45deg, transparent 90deg, ${rarityColor} 180deg, transparent 270deg, ${rarityColor} 315deg, transparent 360deg)`,
+                filter: 'blur(90px)',
+              }}
+            />
+            {/* Soft Radial Ambient Backlight */}
+            <div
+              className="absolute inset-0 opacity-30 animate-pulse"
+              style={{
+                background: `radial-gradient(circle at 50% 35%, ${rarityColor} 0%, transparent 68%)`,
+                animationDuration: '3.5s',
+              }}
+            />
+            {/* Glowing Edge Light Inner Border Frame */}
+            <div
+              className="absolute inset-0 rounded-[inherit] pointer-events-none transition-all duration-500"
+              style={{
+                border: `1.5px solid ${rarityColor}65`,
+                boxShadow: `inset 0 0 32px ${rarityColor}25, 0 0 45px ${rarityColor}35`,
+              }}
+            />
+          </div>
+        )}
         {/* 1. iOS Sheet Top Grabber Handle Bar */}
         <div className="DismissGrabber w-full flex flex-col items-center justify-center pt-2.5 pb-1 cursor-grab active:cursor-grabbing touch-none z-30 group">
           <div
@@ -378,10 +413,14 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
           <div
             onPointerMove={handleBadgePointerMove}
             onPointerLeave={handleBadgePointerLeave}
-            className="BadgeCanvas relative w-full h-full min-h-[380px] sm:min-h-[440px] flex items-center justify-center overflow-hidden rounded-[42px] border border-white/[0.06]"
+            className={`BadgeCanvas relative w-full h-full min-h-[380px] sm:min-h-[440px] flex items-center justify-center overflow-hidden rounded-[42px] border transition-all duration-500 ${
+              isRareOrMythic ? 'border-transparent' : 'border-white/[0.06]'
+            }`}
             style={{
-              boxShadow:
-                'inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.18), inset 0 0 22px 2px rgba(0, 0, 0, 0.45), inset 0 0 80px 20px rgba(0, 0, 0, 0.88), inset 0 14px 32px -8px rgba(255, 255, 255, 0.05), inset 0 -36px 52px -12px rgba(0, 0, 0, 0.95)',
+              borderColor: isRareOrMythic ? `${rarityColor}55` : undefined,
+              boxShadow: isRareOrMythic
+                ? `0 0 32px ${rarityColor}28, inset 0 0 28px ${rarityColor}20, inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.2), inset 0 0 80px 20px rgba(0, 0, 0, 0.88)`
+                : 'inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.18), inset 0 0 22px 2px rgba(0, 0, 0, 0.45), inset 0 0 80px 20px rgba(0, 0, 0, 0.88), inset 0 14px 32px -8px rgba(255, 255, 255, 0.05), inset 0 -36px 52px -12px rgba(0, 0, 0, 0.95)',
             }}
           >
             {/* Parabolic dish central shadow ring */}
@@ -955,6 +994,28 @@ export const AppleAwardDetailView: React.FC<AppleAwardDetailViewProps> = ({
 
         {/* 4. Authentic Apple Award Description (Strictly matching IMG_2949 & IMG_2950) */}
         <div className="DismissBottomZone w-full max-w-md mx-auto px-6 text-center space-y-2.5 z-10 pt-2 pb-6 cursor-grab">
+          {/* Color-Coded Rarity Badge */}
+          <div className="flex items-center justify-center gap-2 mb-1.5">
+            <span
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase border shadow-md backdrop-blur-md transition-all"
+              style={{
+                backgroundColor: `${rarityColor}1A`,
+                color: rarityColor,
+                borderColor: `${rarityColor}45`,
+                boxShadow: `0 0 16px ${rarityColor}20`,
+              }}
+            >
+              <span
+                className="w-2 h-2 rounded-full animate-pulse"
+                style={{ backgroundColor: rarityColor, boxShadow: `0 0 8px ${rarityColor}` }}
+              />
+              <span>{effectiveRarity} AWARD</span>
+              <span className="text-[10px] opacity-75 font-mono font-medium border-l border-current/30 pl-2">
+                {rarityInfo.rankBadgeText}
+              </span>
+            </span>
+          </div>
+
           <h1 className="text-[26px] sm:text-[28px] font-bold tracking-tight text-white leading-tight">
             {badge.name}
           </h1>

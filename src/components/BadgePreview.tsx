@@ -1048,6 +1048,131 @@ function renderShapePath(
         </g>
       );
 
+    // 10 Liquid Glass Strike Badges
+    case 'strike-3-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#0A2540" stroke={bezelStroke} strokeWidth="7" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#00F0FF" opacity="0.8" />
+          <path d="M80 40 Q95 65 92 82 Q90 100 80 115 Q70 100 68 82 Q65 65 80 40 Z" fill="#00F0FF" />
+          <text x="80" y="82" textAnchor="middle" dominantBaseline="central" fontSize="36" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">3</text>
+          <rect x="36" y="112" width="88" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">3 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-7-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#7B2CBF" stroke={bezelStroke} strokeWidth="7" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#00F0FF" opacity="0.6" />
+          <circle cx="80" cy="74" r="32" stroke="#FFFFFF" strokeWidth="3" fill="none" strokeDasharray="6 4" />
+          <text x="80" y="74" textAnchor="middle" dominantBaseline="central" fontSize="38" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">7</text>
+          <rect x="36" y="112" width="88" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">7 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-14-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#0A3A22" stroke={bezelStroke} strokeWidth="7" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#00E676" opacity="0.85" />
+          <line x1="42" y1="42" x2="118" y2="118" stroke="#FFFFFF" strokeWidth="5" />
+          <line x1="118" y1="42" x2="42" y2="118" stroke="#FFFFFF" strokeWidth="5" />
+          <text x="80" y="74" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">14</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">14 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-30-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#FF6B00" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="8" />
+          <circle cx="80" cy="72" r="36" fill="#FFD60A" opacity="0.9" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#000000" fontFamily="sans-serif">30</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">30 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-40-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#3D000F" stroke="url(#bezel-grad-space-gray-unlocked)" strokeWidth="8" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#FA114F" opacity="0.85" />
+          <ellipse cx="80" cy="72" rx="38" ry="16" stroke="#FFFFFF" strokeWidth="4" fill="none" transform="rotate(-25 80 72)" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">40</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">40 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-50-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#10002B" stroke="url(#bezel-grad-space-gray-unlocked)" strokeWidth="8" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#9D4EDD" opacity="0.85" />
+          <polygon points="80,36 108,72 80,108 52,72" fill="#E0AAFF" opacity="0.6" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">50</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">50 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-60-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#03045E" stroke={bezelStroke} strokeWidth="8" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#48CAE4" opacity="0.85" />
+          <polygon points="80,38 114,58 114,94 80,114 46,94 46,58" stroke="#FFFFFF" strokeWidth="3" fill="none" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">60</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">60 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-80-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#240046" stroke={bezelStroke} strokeWidth="8" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#FF007F" opacity="0.85" />
+          <polygon points="80,32 102,72 80,112 58,72" fill="#FFFFFF" opacity="0.4" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#FFFFFF" fontFamily="sans-serif">80</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">80 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-90-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#121212" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="8" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#FFB703" opacity="0.9" />
+          {/* Wings */}
+          <path d="M40 70 Q15 45 35 30 Q50 50 60 70 Z" fill="url(#bezel-grad-gold-unlocked)" />
+          <path d="M120 70 Q145 45 125 30 Q110 50 100 70 Z" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="34" fontWeight="900" fill="#000000" fontFamily="sans-serif">90</text>
+          <rect x="34" y="112" width="92" height="16" rx="4" fill="url(#bezel-grad-gold-unlocked)" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="bold" fill="#000000" fontFamily="sans-serif">90 DAYS STRIKE</text>
+        </g>
+      );
+
+    case 'strike-100-days':
+      return (
+        <g>
+          <polygon points="80,18 138,48 138,112 80,142 22,112 22,48" fill="#800080" stroke="url(#bezel-grad-gold-unlocked)" strokeWidth="9" />
+          <polygon points="80,26 130,52 130,108 80,134 30,108 30,52" fill="#FFD700" opacity="0.95" />
+          {/* Crown */}
+          <polygon points="52,42 62,28 72,38 80,22 88,38 98,28 108,42" fill="url(#bezel-grad-gold-unlocked)" stroke="#FFFFFF" strokeWidth="1" />
+          <circle cx="80" cy="22" r="3" fill="#00F0FF" />
+          <text x="80" y="72" textAnchor="middle" dominantBaseline="central" fontSize="32" fontWeight="900" fill="#000000" fontFamily="sans-serif">100</text>
+          <rect x="30" y="112" width="100" height="18" rx="4" fill="url(#bezel-grad-gold-unlocked)" stroke="#FFFFFF" strokeWidth="1" />
+          <text x="80" y="121" textAnchor="middle" dominantBaseline="central" fontSize="10" fontWeight="900" fill="#000000" fontFamily="sans-serif">100 DAYS APEX</text>
+        </g>
+      );
+
     default:
       // Generic circular medallion
       return (

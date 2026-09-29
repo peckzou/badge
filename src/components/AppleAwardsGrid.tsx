@@ -3,6 +3,7 @@ import { BadgeModel, BadgeCategory } from '../types/badge';
 import { BadgePreview } from './BadgePreview';
 import { triggerHaptic } from '../utils/haptics';
 import { spatialAudio } from '../utils/spatialAudio';
+import { calculateBadgeRarity, getRarityColor } from '../utils/rarity';
 
 interface AppleAwardsGridProps {
   awards: BadgeModel[];
@@ -22,6 +23,11 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
 
   const categories: { key: string; label: string; count: number }[] = [
     { key: 'all', label: 'All Awards', count: awards.length },
+    {
+      key: 'Liquid Glass Strike',
+      label: '💧 Liquid Glass Strike (10)',
+      count: awards.filter((a) => a.category === 'Liquid Glass Strike').length,
+    },
     {
       key: 'Hexagon Pop Challenge',
       label: '⬡ Hexagon Pop (15)',
@@ -178,6 +184,9 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredAwards.map((award, index) => {
           const isProgress = award.state === 'progress';
+          const rarityInfo = calculateBadgeRarity(award);
+          const effectiveRarity = award.rarity || rarityInfo.tier;
+          const rarityColor = getRarityColor(effectiveRarity);
 
           return (
             <div
@@ -190,13 +199,20 @@ export const AppleAwardsGrid: React.FC<AppleAwardsGridProps> = ({
               className="group relative rounded-[26px] bg-[#1C1C1E] hover:bg-[#252528] active:scale-[0.98] transition-all duration-200 p-5 flex flex-col justify-between cursor-pointer overflow-hidden border border-white/[0.04] hover:border-white/[0.12] shadow-lg"
               style={{ minHeight: '340px' }}
             >
-              {/* Category & Style Badge Top */}
+              {/* Category & Rarity Badge Top */}
               <div className="flex items-center justify-between text-left">
                 <span className="text-[11px] font-semibold tracking-wider uppercase text-[#8E8E93]">
                   {award.category}
                 </span>
-                <span className="text-[10px] font-medium text-[#636366] px-2 py-0.5 rounded-full bg-white/[0.04]">
-                  {award.badgeStyle}
+                <span
+                  className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border shadow-sm"
+                  style={{
+                    backgroundColor: `${rarityColor}1A`,
+                    color: rarityColor,
+                    borderColor: `${rarityColor}40`,
+                  }}
+                >
+                  {effectiveRarity}
                 </span>
               </div>
 

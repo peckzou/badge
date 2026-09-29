@@ -90,6 +90,18 @@ import {
   buildHexLightsaberGreenBadge,
   buildHexLightsaberRedBadge,
 } from '../three/ChallengeHexBadgeGeometry';
+import {
+  buildStrike3DaysBadge,
+  buildStrike7DaysBadge,
+  buildStrike14DaysBadge,
+  buildStrike30DaysBadge,
+  buildStrike40DaysBadge,
+  buildStrike50DaysBadge,
+  buildStrike60DaysBadge,
+  buildStrike80DaysBadge,
+  buildStrike90DaysBadge,
+  buildStrike100DaysBadge,
+} from '../three/StrikeGlassBadgeGeometry';
 import { BadgeModel, getBadgePrototypeId, BadgePrototypeId } from '../types/badge';
 
 type PreviewListener = (dataUrl: string) => void;
@@ -489,6 +501,27 @@ class BadgePreviewService {
         return buildHexLightsaberGreenBadge(this.materialsLib, earnedDate, isLocked);
       case 'hex-lightsaber-red':
         return buildHexLightsaberRedBadge(this.materialsLib, earnedDate, isLocked);
+      // 10 Liquid Glass Strike Badges
+      case 'strike-3-days':
+        return buildStrike3DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-7-days':
+        return buildStrike7DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-14-days':
+        return buildStrike14DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-30-days':
+        return buildStrike30DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-40-days':
+        return buildStrike40DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-50-days':
+        return buildStrike50DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-60-days':
+        return buildStrike60DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-80-days':
+        return buildStrike80DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-90-days':
+        return buildStrike90DaysBadge(this.materialsLib, earnedDate, isLocked);
+      case 'strike-100-days':
+        return buildStrike100DaysBadge(this.materialsLib, earnedDate, isLocked);
       default:
         return buildAppleChallengeHexBadge(this.materialsLib, earnedDate, isLocked);
     }

@@ -88,9 +88,21 @@ export type BadgePrototypeId =
   | 'hex-vader-helmet'
   | 'hex-baby-yoda'
   | 'hex-lightsaber-green'
-  | 'hex-lightsaber-red';
+  | 'hex-lightsaber-red'
+  // 10 Liquid Glass Strike Badges
+  | 'strike-3-days'
+  | 'strike-7-days'
+  | 'strike-14-days'
+  | 'strike-30-days'
+  | 'strike-40-days'
+  | 'strike-50-days'
+  | 'strike-60-days'
+  | 'strike-80-days'
+  | 'strike-90-days'
+  | 'strike-100-days';
 
 export type BadgeCategory =
+  | 'Liquid Glass Strike'
   | 'Hexagon Pop Challenge'
   | 'Close Your Study Rings'
   | 'Learning Milestones'
@@ -195,12 +207,26 @@ export type BadgeStyleType =
   | 'hex-baby-yoda'
   | 'hex-lightsaber-green'
   | 'hex-lightsaber-red'
+  // 10 Liquid Glass Strike Badges
+  | 'strike-3-days'
+  | 'strike-7-days'
+  | 'strike-14-days'
+  | 'strike-30-days'
+  | 'strike-40-days'
+  | 'strike-50-days'
+  | 'strike-60-days'
+  | 'strike-80-days'
+  | 'strike-90-days'
+  | 'strike-100-days'
   | 'wireframe-dark';
+
+export type BadgeRarity = 'Common' | 'Rare' | 'Legendary' | 'Mythic';
 
 export interface BadgeModel {
   id: BadgeId;
   name: string;
   category: BadgeCategory;
+  rarity?: BadgeRarity;
   earnedDate?: string;
   earnedCount?: number;
   progressCurrent?: number;
@@ -393,6 +419,26 @@ export function getBadgePrototypeId(style: BadgeStyleType): BadgePrototypeId {
       return 'hex-lightsaber-green';
     case 'hex-lightsaber-red':
       return 'hex-lightsaber-red';
+    case 'strike-3-days':
+      return 'strike-3-days';
+    case 'strike-7-days':
+      return 'strike-7-days';
+    case 'strike-14-days':
+      return 'strike-14-days';
+    case 'strike-30-days':
+      return 'strike-30-days';
+    case 'strike-40-days':
+      return 'strike-40-days';
+    case 'strike-50-days':
+      return 'strike-50-days';
+    case 'strike-60-days':
+      return 'strike-60-days';
+    case 'strike-80-days':
+      return 'strike-80-days';
+    case 'strike-90-days':
+      return 'strike-90-days';
+    case 'strike-100-days':
+      return 'strike-100-days';
     default:
       return 'perfect-week-study';
   }

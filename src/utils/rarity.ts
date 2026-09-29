@@ -1,11 +1,25 @@
-import { BadgeModel } from '../types/badge';
+import { BadgeModel, BadgeRarity } from '../types/badge';
 
 export interface BadgeRarityInfo {
   score: number; // 0 - 100
   unlockRate: number; // estimated global % (e.g. 0.1% to 45%)
-  tier: 'Mythic' | 'Legendary' | 'Epic' | 'Rare' | 'Uncommon' | 'Common';
+  tier: BadgeRarity;
   tierColor: string;
   rankBadgeText: string;
+}
+
+export function getRarityColor(rarity: BadgeRarity): string {
+  switch (rarity) {
+    case 'Mythic':
+      return '#FFD60A'; // Apple Gold / Amber
+    case 'Legendary':
+      return '#FA114F'; // Apple Crimson Ruby
+    case 'Rare':
+      return '#00F0FF'; // Apple Electric Cyan
+    case 'Common':
+    default:
+      return '#8E8E93'; // Apple Muted Silver
+  }
 }
 
 /**
@@ -13,105 +27,101 @@ export interface BadgeRarityInfo {
  * based on achievement difficulty, rarity thresholds, frequency, and physical specifications.
  */
 export function calculateBadgeRarity(badge: BadgeModel): BadgeRarityInfo {
+  let tier: BadgeRarity;
   let score = 50;
 
-  // Specific pinnacle achievements with hand-calibrated rarity
-  switch (badge.id) {
-    case 'streak-1000-days':
-      score = 99.8;
-      break;
-    case 'cards-5000-mastered':
-      score = 99.2;
-      break;
-    case 'streak-365-days':
-      score = 98.5;
-      break;
-    case 'cards-2500-mastered':
-      score = 97.4;
-      break;
-    case 'pomodoro-500-hours':
-      score = 96.8;
-      break;
-    case 'challenge-turing-sprint':
-      score = 96.0;
-      break;
-    case 'challenge-da-vinci':
-      score = 95.5;
-      break;
-    case 'perfect-month-all-goals':
-      score = 95.0;
-      break;
-    case 'discipline-quantum-physics':
-      score = 94.2;
-      break;
-    case 'challenge-curie-quest':
-      score = 93.5;
-      break;
-    case 'pomodoro-250-hours':
-      score = 92.0;
-      break;
-    case 'cards-1000-mastered':
-      score = 91.5;
-      break;
-    case 'streak-100-days':
-      score = 90.0;
-      break;
-    default: {
-      let difficultyWeight = 0;
+  if (badge.rarity) {
+    tier = badge.rarity;
+    switch (tier) {
+      case 'Mythic':
+        score = 98.5;
+        break;
+      case 'Legendary':
+        score = 94.0;
+        break;
+      case 'Rare':
+        score = 75.0;
+        break;
+      case 'Common':
+        score = 40.0;
+        break;
+    }
+  } else {
+    // Specific pinnacle achievements with hand-calibrated rarity
+    switch (badge.id) {
+      case 'streak-1000-days':
+        score = 99.8;
+        break;
+      case 'cards-5000-mastered':
+        score = 99.2;
+        break;
+      case 'streak-365-days':
+        score = 98.5;
+        break;
+      case 'cards-2500-mastered':
+        score = 97.4;
+        break;
+      case 'pomodoro-500-hours':
+        score = 96.8;
+        break;
+      case 'challenge-turing-sprint':
+        score = 96.0;
+        break;
+      case 'challenge-da-vinci':
+        score = 95.5;
+        break;
+      case 'perfect-month-all-goals':
+        score = 95.0;
+        break;
+      case 'discipline-quantum-physics':
+        score = 94.2;
+        break;
+      case 'challenge-curie-quest':
+        score = 93.5;
+        break;
+      case 'pomodoro-250-hours':
+        score = 92.0;
+        break;
+      case 'cards-1000-mastered':
+        score = 91.5;
+        break;
+      case 'streak-100-days':
+        score = 90.0;
+        break;
+      default: {
+        let difficultyWeight = 0;
 
-      // Category weight
-      if (badge.category === 'Limited Edition Challenges') difficultyWeight += 28;
-      else if (badge.category === 'Academic Disciplines & Mastery') difficultyWeight += 24;
-      else if (badge.category === 'Learning Milestones') difficultyWeight += 18;
-      else if (badge.category === 'Close Your Study Rings') difficultyWeight += 10;
+        if (badge.category === 'Limited Edition Challenges' || badge.category === 'Hexagon Pop Challenge') difficultyWeight += 28;
+        else if (badge.category === 'Academic Disciplines & Mastery') difficultyWeight += 24;
+        else if (badge.category === 'Learning Milestones') difficultyWeight += 18;
+        else if (badge.category === 'Close Your Study Rings') difficultyWeight += 10;
 
-      // Finish & Craftsmanship weight
-      if (badge.colorTheme.bezel === 'gold') difficultyWeight += 8;
-      if (badge.depthMetrics.layers >= 6) difficultyWeight += 10;
-      else if (badge.depthMetrics.layers === 5) difficultyWeight += 6;
+        if (badge.colorTheme.bezel === 'gold') difficultyWeight += 8;
+        if (badge.depthMetrics.layers >= 6) difficultyWeight += 10;
+        else if (badge.depthMetrics.layers === 5) difficultyWeight += 6;
 
-      // Earned count penalty (higher frequency means less scarce)
-      const count = badge.earnedCount || 1;
-      const countPenalty = Math.min(26, (count - 1) * 1.5);
+        const count = badge.earnedCount || 1;
+        const countPenalty = Math.min(26, (count - 1) * 1.5);
 
-      score = Math.min(92, Math.max(25, 42 + difficultyWeight - countPenalty));
-      break;
+        score = Math.min(92, Math.max(25, 42 + difficultyWeight - countPenalty));
+        break;
+      }
+    }
+
+    if (score >= 96.0) {
+      tier = 'Mythic';
+    } else if (score >= 88.0) {
+      tier = 'Legendary';
+    } else if (score >= 65.0) {
+      tier = 'Rare';
+    } else {
+      tier = 'Common';
     }
   }
 
-  // Calculate estimated global unlock rate: lower score -> higher unlock rate
   const unlockRate = Math.max(0.1, Number(((100 - score) * 0.38).toFixed(1)));
-
-  // Tier classification
-  let tier: BadgeRarityInfo['tier'];
-  let tierColor: string;
-  let rankBadgeText: string;
-
-  if (score >= 98.0) {
-    tier = 'Mythic';
-    tierColor = '#FFD60A'; // Apple Gold
-    rankBadgeText = `Top ${unlockRate}% · Mythic`;
-  } else if (score >= 93.0) {
-    tier = 'Legendary';
-    tierColor = '#FA114F'; // Apple Crimson
-    rankBadgeText = `Top ${unlockRate}% · Legendary`;
-  } else if (score >= 84.0) {
-    tier = 'Epic';
-    tierColor = '#5E5CE6'; // Apple Indigo
-    rankBadgeText = `Top ${unlockRate}% · Epic`;
-  } else if (score >= 70.0) {
-    tier = 'Rare';
-    tierColor = '#00F0FF'; // Apple Cyan
-    rankBadgeText = `Top ${unlockRate}% · Rare`;
-  } else if (score >= 50.0) {
-    tier = 'Uncommon';
-    tierColor = '#30D158'; // Apple Emerald
-    rankBadgeText = `Top ${unlockRate}% · Uncommon`;
-  } else {
-    tier = 'Common';
-    tierColor = '#8E8E93'; // Apple Muted Silver
-    rankBadgeText = `${unlockRate}% · Standard`;
-  }
+  const tierColor = getRarityColor(tier);
+  const rankBadgeText = `Top ${unlockRate}% · ${tier}`;
 
   return {
     score: Number(score.toFixed(1)),

@@ -90,8 +90,21 @@ import {
   buildHexLightsaberGreenBadge,
   buildHexLightsaberRedBadge,
 } from './ChallengeHexBadgeGeometry';
+import {
+  buildStrike3DaysBadge,
+  buildStrike7DaysBadge,
+  buildStrike14DaysBadge,
+  buildStrike30DaysBadge,
+  buildStrike40DaysBadge,
+  buildStrike50DaysBadge,
+  buildStrike60DaysBadge,
+  buildStrike80DaysBadge,
+  buildStrike90DaysBadge,
+  buildStrike100DaysBadge,
+} from './StrikeGlassBadgeGeometry';
 import { BadgePrototypeId, BadgeState, ViewAngle } from '../types/badge';
 import { spatialAudio } from '../utils/spatialAudio';
+import { triggerHaptic } from '../utils/haptics';
 
 export interface SceneOptions {
   prototypeId: BadgePrototypeId;
@@ -161,6 +174,7 @@ export class AppleBadgeSceneController {
   private currentOptions: SceneOptions;
   private lastUnlockStep: number = -1;
   private accumulatedDragDist: number = 0;
+  private accumulatedInertiaDist: number = 0;
 
   // Apple 2-Turn Entrance Spin Animation state
   private isEntranceSpinning: boolean = false;
@@ -549,6 +563,27 @@ export class AppleBadgeSceneController {
       this.currentBadgeMesh = buildHexLightsaberGreenBadge(this.materialsLib, earnedDate, isLocked);
     } else if (prototypeId === 'hex-lightsaber-red') {
       this.currentBadgeMesh = buildHexLightsaberRedBadge(this.materialsLib, earnedDate, isLocked);
+    // 10 Liquid Glass Strike Badges
+    } else if (prototypeId === 'strike-3-days') {
+      this.currentBadgeMesh = buildStrike3DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-7-days') {
+      this.currentBadgeMesh = buildStrike7DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-14-days') {
+      this.currentBadgeMesh = buildStrike14DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-30-days') {
+      this.currentBadgeMesh = buildStrike30DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-40-days') {
+      this.currentBadgeMesh = buildStrike40DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-50-days') {
+      this.currentBadgeMesh = buildStrike50DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-60-days') {
+      this.currentBadgeMesh = buildStrike60DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-80-days') {
+      this.currentBadgeMesh = buildStrike80DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-90-days') {
+      this.currentBadgeMesh = buildStrike90DaysBadge(this.materialsLib, earnedDate, isLocked);
+    } else if (prototypeId === 'strike-100-days') {
+      this.currentBadgeMesh = buildStrike100DaysBadge(this.materialsLib, earnedDate, isLocked);
     } else {
       this.currentBadgeMesh = buildAppleChallengeHexBadge(
         this.materialsLib,
@@ -964,8 +999,15 @@ export class AppleBadgeSceneController {
 
         const dist = Math.hypot(deltaX, deltaY);
         this.accumulatedDragDist += dist;
-        if (this.accumulatedDragDist > 28) {
+
+        // Scale haptic feedback intensity dynamically based on rotation velocity
+        const rotSpeedScale = dist * 0.12;
+        const velocityIntensity = Math.min(2.8, Math.max(0.4, 0.4 + rotSpeedScale));
+        const dynamicThreshold = Math.max(10, 32 - rotSpeedScale * 8);
+
+        if (this.accumulatedDragDist > dynamicThreshold) {
           this.accumulatedDragDist = 0;
+          triggerHaptic('drag_tick', velocityIntensity);
           spatialAudio.playClink('rotate_tick', nx);
         }
 
@@ -1053,7 +1095,7 @@ export class AppleBadgeSceneController {
       { passive: true }
     );
 
-    // Mouse wheel zoom to inspect fine chamfers and laser typography
+    // Mouse wheel zoom to inspect fine chamfers & velocity-scaled scroll haptics
     el.addEventListener(
       'wheel',
       (e: WheelEvent) => {
@@ -1063,6 +1105,10 @@ export class AppleBadgeSceneController {
           this.minCameraDistance,
           Math.min(this.maxCameraDistance, this.targetCameraDistance)
         );
+
+        const scrollSpeed = Math.abs(e.deltaY);
+        const scrollIntensity = Math.min(2.8, Math.max(0.4, scrollSpeed * 0.025));
+        triggerHaptic('drag_tick', scrollIntensity);
       },
       { passive: false }
     );
@@ -1107,9 +1153,10 @@ export class AppleBadgeSceneController {
       } else if (this.isEntranceSpinning) {
         this.updateEntranceSpinAnimation(now);
       } else {
-        // Inertia & Damped Spring Physics (Apple Touch feel)
+        // Inertia & Damped Spring Physics (Apple Touch feel) with velocity-scaled haptics
         if (!this.isDragging) {
-          if (Math.abs(this.angularVelocity.x) > 0.0001 || Math.abs(this.angularVelocity.y) > 0.0001) {
+          const speed = Math.hypot(this.angularVelocity.x, this.angularVelocity.y);
+          if (speed > 0.0001) {
             const axisY = new THREE.Vector3(0, 1, 0);
             const axisX = new THREE.Vector3(1, 0, 0);
             const inertiaQ = new THREE.Quaternion().multiplyQuaternions(
@@ -1117,6 +1164,16 @@ export class AppleBadgeSceneController {
               new THREE.Quaternion().setFromAxisAngle(axisX, this.angularVelocity.x)
             );
             this.targetQuaternion.premultiply(inertiaQ);
+
+            this.accumulatedInertiaDist += speed;
+            const inertiaIntensity = Math.min(2.5, Math.max(0.3, speed * 28));
+            const dynamicInertiaThreshold = Math.max(0.01, 0.045 - speed * 0.4);
+
+            if (this.accumulatedInertiaDist > dynamicInertiaThreshold) {
+              this.accumulatedInertiaDist = 0;
+              triggerHaptic('drag_tick', inertiaIntensity);
+            }
+
             // Physical friction dampening
             this.angularVelocity.y *= 0.93;
             this.angularVelocity.x *= 0.93;
